@@ -38,6 +38,7 @@ class TabBarController: UITabBarController {
         
         if #available(iOS 15.0, *) {
             UITabBar.appearance().isTranslucent = false
+            tabBar.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1 )
         }
     
     }

@@ -13,8 +13,10 @@ class FavoritesLayout {
     static var shared = FavoritesLayout()
     
     func addTabViewConstraints(tabView: UITableView, vc : UIView) {
-        tabView.centerXAnchor.constraint(equalTo: vc.centerXAnchor).isActive = true
-        tabView.centerYAnchor.constraint(equalTo: vc.centerYAnchor).isActive = true
+        tabView.topAnchor.constraint(equalTo: vc.topAnchor, constant: 100).isActive = true
+        tabView.bottomAnchor.constraint(equalTo: vc.bottomAnchor, constant: 100).isActive = true
+        tabView.widthAnchor.constraint(equalTo: vc.widthAnchor, multiplier: 1).isActive = true
+       
     }
     
 }
