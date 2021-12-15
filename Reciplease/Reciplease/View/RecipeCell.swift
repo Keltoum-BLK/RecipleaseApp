@@ -7,9 +7,9 @@
 
 import UIKit
 
-class FavoriteCell: UITableViewCell {
+class RecipeCell: UITableViewCell {
 
-    static let identifier = "favoriteCell"
+    static let identifier = "recipeCell"
     
     let pokemonName = UILabel() 
   

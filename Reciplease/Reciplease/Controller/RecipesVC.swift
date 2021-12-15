@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesVC: UIViewController {
+class RecipesVC: UIViewController {
     
     private lazy var favTabView: UITableView = {
        let tabView = UITableView()
@@ -22,29 +22,34 @@ class FavoritesVC: UIViewController {
         favTabView.dataSource = self
         view.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
         view.addSubview(favTabView)
-        favTabView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.identifier)
-        FavoritesLayout.shared.addTabViewConstraints(tabView: favTabView, vc: view)
-        
-        // Do any additional setup after loading the view.
+        favTabView.register(RecipeCell.self, forCellReuseIdentifier: RecipeCell.identifier)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        FavoritesLayout.shared.addTabViewConstraints(tabView: favTabView, vc: view)
+        RecipesContraints.shared.addTabViewConstraints(tabView: favTabView, vc: view)
     }
 
    
 }
 
-extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
+extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemonArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.identifier, for: indexPath) as! FavoriteCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
         cell.textLabel?.text = pokemonArray[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipeDetailsVC = RecipeDetailsVC()
+        recipeDetailsVC.labelTest.text = pokemonArray[indexPath.row]
+        navigationItem.backButtonTitle = "Back"
+        navigationItem.backBarButtonItem?.tintColor = .white
+        navigationController?.pushViewController(recipeDetailsVC, animated: true)
     }
     
     
