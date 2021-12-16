@@ -14,6 +14,15 @@ class TabBarController: UITabBarController {
         setupVCs()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if CoreOnboarding.shared.isNewUser() {
+            let welcomeVC = WelcomeViewController()
+            welcomeVC.modalPresentationStyle = .formSheet
+            welcomeVC.modalTransitionStyle = .coverVertical
+            present(welcomeVC, animated: true)
+        }
+    }
     func setupVCs() {
        
         viewControllers = [createNavController(for: SearchingVC(), title: NSLocalizedString("Searching", comment: "")), createNavController(for: RecipesVC(), title: NSLocalizedString("Favorites", comment: ""))]
@@ -25,8 +34,8 @@ class TabBarController: UITabBarController {
 
     func setupTabBar() {
         //set the font title
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 25) as Any], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 25) as Any], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 20) as Any], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 20) as Any], for: .selected)
         
         //set the title color
         tabBar.tintColor = .white
@@ -34,7 +43,6 @@ class TabBarController: UITabBarController {
         
         //set the transition style
         self.modalPresentationStyle = .fullScreen
-        self.modalTransitionStyle = .partialCurl
         
         if #available(iOS 15.0, *) {
             UITabBar.appearance().isTranslucent = false
@@ -49,7 +57,6 @@ class TabBarController: UITabBarController {
         rootViewController.navigationItem.title = "Reciplease"
         navController.navigationBar.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 25) as Any, NSAttributedString.Key.foregroundColor: UIColor(.white)]
-       
         return navController
     }
     

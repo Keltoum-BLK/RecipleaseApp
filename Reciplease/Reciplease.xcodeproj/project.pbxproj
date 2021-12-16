@@ -23,6 +23,7 @@
 		B9AED1D92768E52700E80985 /* SearchingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AED1D82768E52700E80985 /* SearchingVC.swift */; };
 		B9AED1DD27690C2B00E80985 /* RecipesContraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AED1DC27690C2B00E80985 /* RecipesContraints.swift */; };
 		B9AED1DF276911B900E80985 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AED1DE276911B900E80985 /* RecipeCell.swift */; };
+		B9EBD26B276B79800065BB2A /* CoreOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EBD26A276B79800065BB2A /* CoreOnboarding.swift */; };
 		B9F834832767815C008A29E7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B9F834822767815C008A29E7 /* Alamofire */; };
 		B9F834852767818E008A29E7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F834842767818E008A29E7 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		B9AED1D82768E52700E80985 /* SearchingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingVC.swift; sourceTree = "<group>"; };
 		B9AED1DC27690C2B00E80985 /* RecipesContraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesContraints.swift; sourceTree = "<group>"; };
 		B9AED1DE276911B900E80985 /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		B9EBD26A276B79800065BB2A /* CoreOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreOnboarding.swift; sourceTree = "<group>"; };
 		B9F834842767818E008A29E7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 			children = (
 				B9F8348B276781D9008A29E7 /* Secret */,
 				B9F8348A276781CE008A29E7 /* Network */,
+				B9EBD26A276B79800065BB2A /* CoreOnboarding.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				B96CA26A275A265900E552D7 /* Reciplease.xcdatamodeld in Sources */,
 				B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */,
 				B9AED1D72768E51000E80985 /* RecipesVC.swift in Sources */,
+				B9EBD26B276B79800065BB2A /* CoreOnboarding.swift in Sources */,
 				B9AED1D92768E52700E80985 /* SearchingVC.swift in Sources */,
 				B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */,
 				B9AED1D12768E00C00E80985 /* TabBarController.swift in Sources */,

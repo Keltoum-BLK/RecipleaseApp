@@ -23,14 +23,27 @@ class WelcomeViewController: UIViewController {
     }()
     
     private lazy var welcomeText: UILabel = {
-        let welcome = UILabel()
-        welcome.text = "Welcome to the Reciplease app! \n\nHere, You can search for recipes using ingredients at your disposal but also register your favorite recipes."
+        let welcome = UILabel(frame: CGRect(x: 10, y: 70, width: view.frame.size.width-20, height: 120))
+        welcome.text = "Welcome to Reciplease App!"
         welcome.textAlignment = .center
+        welcome.backgroundColor = UIColor(red: 43/255, green: 95/255, blue: 59/255, alpha: 1)
+        welcome.layer.cornerRadius = 20
         welcome.numberOfLines = 0
-        welcome.font = UIFont(name: "Chalkduster", size: 20)
+        welcome.font = UIFont(name: "chalkduster", size: 30)
         welcome.textColor = UIColor.white
        
         return welcome
+    }()
+    
+    private lazy var descApp: UILabel = {
+        let desc = UILabel()
+        desc.text = "Here, You can search for recipes using ingredients at your disposal but also register your favorite recipes."
+        desc.textAlignment = .center
+        desc.numberOfLines = 0
+        desc.font = UIFont(name: "chalkduster", size: 20)
+        desc.textColor = UIColor.white
+       
+        return desc
     }()
     
     private lazy var stack:UIStackView = {
@@ -38,11 +51,10 @@ class WelcomeViewController: UIViewController {
         s.axis = .vertical
         s.distribution = .fillProportionally
         s.alignment = .fill
-        s.spacing = 40
-        s.addArrangedSubview(self.welcomeText)
+        s.spacing = 50
+        s.addArrangedSubview(self.descApp)
         s.addArrangedSubview(self.button)
         s.translatesAutoresizingMaskIntoConstraints = false
-        
         return s
     }()
     
@@ -50,7 +62,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        goTheTabBar()
         // Do any additional setup after loading the view.
     }
     
@@ -60,12 +72,18 @@ class WelcomeViewController: UIViewController {
     }
     
     func setupLayout() {
+        view.addSubview(welcomeText)
         view.addSubview(stack)
         WelcomeVCLayout.sharedWVC.stackLayoutConstraints(myStack: stack, vc: view)
     }
     
+    func goTheTabBar() {
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    }
+    
     @objc func didTapButton() {
-        present(TabBarController(), animated: true)
+        CoreOnboarding.shared.setIsNotNewUser()
+        dismiss(animated: true, completion: nil)
     }
     
 }

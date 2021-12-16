@@ -16,6 +16,7 @@ class RecipesVC: UIViewController {
     }()
 
     let pokemonArray = ["pikachu", "ratatak", "bulbizarre", "carapuce", "salameche"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         favTabView.delegate = self
@@ -29,8 +30,6 @@ class RecipesVC: UIViewController {
         super.viewDidLayoutSubviews()
         RecipesContraints.shared.addTabViewConstraints(tabView: favTabView, vc: view)
     }
-
-   
 }
 
 extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
