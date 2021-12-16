@@ -59,7 +59,6 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
         goTheTabBar()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillLayoutSubviews() {

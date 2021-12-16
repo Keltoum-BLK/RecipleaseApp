@@ -22,6 +22,7 @@ class RecipesVC: UIViewController {
         favTabView.delegate = self
         favTabView.dataSource = self
         view.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
+        favTabView.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
         view.addSubview(favTabView)
         favTabView.register(RecipeCell.self, forCellReuseIdentifier: RecipeCell.identifier)
     }

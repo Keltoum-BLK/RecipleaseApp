@@ -34,18 +34,20 @@ class TabBarController: UITabBarController {
 
     func setupTabBar() {
         //set the font title
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 20) as Any], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 20) as Any], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 25) as Any], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 25) as Any], for: .selected)
         
         //set the title color
         tabBar.tintColor = .white
         tabBar.barTintColor = .lightGray
-        
+        //position of elements in tab bar
+    
+        tabBar.itemPositioning = .fill
+        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
         //set the transition style
         self.modalPresentationStyle = .fullScreen
         
         if #available(iOS 15.0, *) {
-            UITabBar.appearance().isTranslucent = false
             tabBar.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1 )
         }
     
