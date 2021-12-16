@@ -13,10 +13,10 @@ class WelcomeVCLayout {
     static var sharedWVC = WelcomeVCLayout()
     private init() {}
     
-    func stackLayoutConstraints(myStack: UIStackView, vc: UIView) {
-        myStack.centerXAnchor.constraint(equalTo: vc.centerXAnchor).isActive = true
-        myStack.centerYAnchor.constraint(equalTo: vc.centerYAnchor).isActive = true
-        myStack.widthAnchor.constraint(equalTo: vc.widthAnchor, multiplier: 0.8).isActive = true
+    func labelLayoutConstraints(label: UILabel, vc: UIView) {
+        label.centerXAnchor.constraint(equalTo: vc.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: vc.centerYAnchor).isActive = true
+        label.widthAnchor.constraint(equalTo: vc.widthAnchor, multiplier: 0.8).isActive = true
     }
     
 

@@ -12,7 +12,7 @@ class WelcomeViewController: UIViewController {
     
     //MARK: Properties
     private lazy var button: UIButton = {
-        let button = UIButton()
+        let button = UIButton(frame: CGRect(x: 20, y: view.frame.size.height-150, width: view.frame.size.width-40, height: 50))
         button.titleLabel?.font = UIFont(name: "Chalkduster", size: 35)
         button.setTitle("Next", for: .normal)
         button.backgroundColor = UIColor(red: 43/255, green: 95/255, blue: 59/255, alpha: 1)
@@ -22,12 +22,18 @@ class WelcomeViewController: UIViewController {
         return button
     }()
     
+    private lazy var welcomeContainer: UIView = {
+        let container = UIView(frame: CGRect(x: 10, y: 50, width: view.frame.size.width-20, height: 100))
+        container.backgroundColor = UIColor(red: 43/255, green: 95/255, blue: 59/255, alpha: 1)
+        container.layer.cornerRadius = 20
+        container.addSubview(welcomeText)
+        return container
+    }()
+    
     private lazy var welcomeText: UILabel = {
-        let welcome = UILabel(frame: CGRect(x: 10, y: 70, width: view.frame.size.width-20, height: 120))
+        let welcome = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.size.width-20, height: 100))
         welcome.text = "Welcome to Reciplease App!"
         welcome.textAlignment = .center
-        welcome.backgroundColor = UIColor(red: 43/255, green: 95/255, blue: 59/255, alpha: 1)
-        welcome.layer.cornerRadius = 20
         welcome.numberOfLines = 0
         welcome.font = UIFont(name: "chalkduster", size: 30)
         welcome.textColor = UIColor.white
@@ -42,21 +48,11 @@ class WelcomeViewController: UIViewController {
         desc.numberOfLines = 0
         desc.font = UIFont(name: "chalkduster", size: 20)
         desc.textColor = UIColor.white
-       
+        desc.translatesAutoresizingMaskIntoConstraints = false 
         return desc
     }()
     
-    private lazy var stack:UIStackView = {
-        let s = UIStackView()
-        s.axis = .vertical
-        s.distribution = .fillProportionally
-        s.alignment = .fill
-        s.spacing = 50
-        s.addArrangedSubview(self.descApp)
-        s.addArrangedSubview(self.button)
-        s.translatesAutoresizingMaskIntoConstraints = false
-        return s
-    }()
+    
     
     //MARK: Life Cycle
     override func viewDidLoad() {
@@ -72,9 +68,10 @@ class WelcomeViewController: UIViewController {
     }
     
     func setupLayout() {
-        view.addSubview(welcomeText)
-        view.addSubview(stack)
-        WelcomeVCLayout.sharedWVC.stackLayoutConstraints(myStack: stack, vc: view)
+        view.addSubview(welcomeContainer)
+        view.addSubview(descApp)
+        view.addSubview(button)
+        WelcomeVCLayout.sharedWVC.labelLayoutConstraints(label: descApp, vc: view)
     }
     
     func goTheTabBar() {
