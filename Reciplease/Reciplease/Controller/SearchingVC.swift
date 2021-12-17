@@ -8,6 +8,10 @@
 import UIKit
 
 class SearchingVC: UIViewController {
+    //MARK: Properties
+    var ingredientArray = [String]()
+    
+    //MARK: UI Properties
     private lazy var sContainer: UIStackView = {
         let s = UIStackView(frame: CGRect(x: 10, y: 50, width: view.frame.size.width-20, height: 100))
         s.axis = .vertical
@@ -26,7 +30,7 @@ class SearchingVC: UIViewController {
     }()
     
     private lazy var ingredientsTabView: UITableView = {
-        let ingredients = UITableView(frame: CGRect(x: 0, y: 280, width: view.frame.size.width, height: view.frame.size.height/3))
+        let ingredients = UITableView(frame: CGRect(x: 0, y: 280, width: view.frame.size.width, height: view.frame.size.height-450))
         ingredients.backgroundColor = UIColor.blue
         ingredients.translatesAutoresizingMaskIntoConstraints = false
         
@@ -42,8 +46,10 @@ class SearchingVC: UIViewController {
         return question
     }()
     
-    private lazy var addTextField: UITextField = {
+    private lazy var addIngredientTextField: UITextField = {
         let textField = UITextField()
+        textField.textColor = .black
+        textField.font = UIFont(name: "chalkboard SE", size: 20)
         textField.changeThePLaceholderFont(text: "Lemon, Cheese, Sausages...", textField: textField)
         return textField
     }()
@@ -62,7 +68,7 @@ class SearchingVC: UIViewController {
         addStack.distribution = .fillProportionally
         addStack.alignment = .center
         addStack.spacing = 0
-        addStack.addArrangedSubview(addTextField)
+        addStack.addArrangedSubview(addIngredientTextField)
         addStack.addArrangedSubview(addBTN)
         return addStack
     }()
@@ -94,12 +100,22 @@ class SearchingVC: UIViewController {
         return btn
     }()
     
-
+    private lazy var searchBTN: UIButton = {
+        let btn = UIButton(frame: CGRect(x: 40, y: view.frame.size.height-145, width: view.frame.size.width-80, height: 60))
+        btn.backgroundColor = UIColor(red: 43/255, green: 95/255, blue: 59/255, alpha: 1)
+        btn.setTitle("Search", for: .normal)
+        btn.layer.cornerRadius = 10
+        return btn
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        ingredientsTabView.delegate = self
+        ingredientsTabView.dataSource = self
+        ingredientsTabView.reloadData()
         view.addSubview(addIngredientContainer)
         view.addSubview(headerTabView)
         view.addSubview(ingredientsTabView)
+        view.addSubview(searchBTN)
         view.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
         // Do any additional setup after loading the view.
     }
@@ -111,14 +127,26 @@ class SearchingVC: UIViewController {
     }
     
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func addIngredient() {
+        addBTN.target(forAction: #selector(addToTheList), withSender: addBTN)
     }
-    */
+    
+    @objc func addToTheList() {
+        guard let ingredient = addIngredientTextField.text else { return }
+        SearchVCActions.shared.addIngredient(ingredient: ingredient, array: ingredientArray)
+    }
+
+}
+
+extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        ingredientArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: IngredientCell.identifier, for: indexPath) as! IngredientCell
+        cell.textLabel?.text = ingredientArray[indexPath.row]
+        return cell
+    }
 
 }

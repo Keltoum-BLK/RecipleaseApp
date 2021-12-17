@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931F24F276CD8B9003B175A /* UITextField + Extension.swift */; };
+		B931F252276CF6BA003B175A /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931F251276CF6BA003B175A /* IngredientCell.swift */; };
+		B931F254276CF83A003B175A /* SearchVCActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931F253276CF83A003B175A /* SearchVCActions.swift */; };
 		B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CA25F275A265900E552D7 /* AppDelegate.swift */; };
 		B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CA261275A265900E552D7 /* SceneDelegate.swift */; };
 		B96CA26A275A265900E552D7 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B96CA268275A265900E552D7 /* Reciplease.xcdatamodeld */; };
@@ -48,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		B931F24F276CD8B9003B175A /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
+		B931F251276CF6BA003B175A /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
+		B931F253276CF83A003B175A /* SearchVCActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVCActions.swift; sourceTree = "<group>"; };
 		B96CA25C275A265900E552D7 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B96CA25F275A265900E552D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B96CA261275A265900E552D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				B9F8348B276781D9008A29E7 /* Secret */,
 				B9F8348A276781CE008A29E7 /* Network */,
 				B9EBD26A276B79800065BB2A /* CoreOnboarding.swift */,
+				B931F253276CF83A003B175A /* SearchVCActions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 				B9AED1D22768E40900E80985 /* WelcomeVCLayout.swift */,
 				B9AED1DC27690C2B00E80985 /* RecipesContraints.swift */,
 				B9AED1DE276911B900E80985 /* RecipeCell.swift */,
+				B931F251276CF6BA003B175A /* IngredientCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -358,7 +364,9 @@
 				B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */,
 				B9EBD26B276B79800065BB2A /* CoreOnboarding.swift in Sources */,
 				B9AED1D92768E52700E80985 /* SearchingVC.swift in Sources */,
+				B931F252276CF6BA003B175A /* IngredientCell.swift in Sources */,
 				B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */,
+				B931F254276CF83A003B175A /* SearchVCActions.swift in Sources */,
 				B9AED1D12768E00C00E80985 /* TabBarController.swift in Sources */,
 				B978EB442769ECE9008E00A8 /* RecipeDetailsVC.swift in Sources */,
 				B9F834852767818E008A29E7 /* WelcomeViewController.swift in Sources */,
