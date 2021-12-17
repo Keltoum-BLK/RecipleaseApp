@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931F24F276CD8B9003B175A /* UITextField + Extension.swift */; };
 		B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CA25F275A265900E552D7 /* AppDelegate.swift */; };
 		B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CA261275A265900E552D7 /* SceneDelegate.swift */; };
 		B96CA26A275A265900E552D7 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B96CA268275A265900E552D7 /* Reciplease.xcdatamodeld */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B931F24F276CD8B9003B175A /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		B96CA25C275A265900E552D7 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B96CA25F275A265900E552D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B96CA261275A265900E552D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B931F24E276CD897003B175A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B931F24F276CD8B9003B175A /* UITextField + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B96CA253275A265900E552D7 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +184,7 @@
 				B9AED1D82768E52700E80985 /* SearchingVC.swift */,
 				B9AED1D62768E51000E80985 /* RecipesVC.swift */,
 				B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */,
+				B931F24E276CD897003B175A /* Extensions */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,6 +355,7 @@
 				B96CA26A275A265900E552D7 /* Reciplease.xcdatamodeld in Sources */,
 				B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */,
 				B9AED1D72768E51000E80985 /* RecipesVC.swift in Sources */,
+				B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */,
 				B9EBD26B276B79800065BB2A /* CoreOnboarding.swift in Sources */,
 				B9AED1D92768E52700E80985 /* SearchingVC.swift in Sources */,
 				B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */,
