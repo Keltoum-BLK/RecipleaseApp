@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class RecipesContraints{
+class RecipesMainView{
     
-    static var shared = RecipesContraints()
+    static var shared = RecipesMainView()
     
     func addTabViewConstraints(tabView: UITableView, vc : UIView) {
         tabView.topAnchor.constraint(equalTo: vc.topAnchor, constant: 100).isActive = true

@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class WelcomeVCLayout {
+class WelcomeMainView {
     
-    static var sharedWVC = WelcomeVCLayout()
+    static var shared = WelcomeMainView()
     private init() {}
     
     func labelLayoutConstraints(label: UILabel, vc: UIView) {

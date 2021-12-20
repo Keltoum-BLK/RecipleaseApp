@@ -29,7 +29,7 @@ class RecipesVC: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        RecipesContraints.shared.addTabViewConstraints(tabView: favTabView, vc: view)
+        RecipesMainView.shared.addTabViewConstraints(tabView: favTabView, vc: view)
     }
 }
 

@@ -34,8 +34,8 @@ class TabBarController: UITabBarController {
 
     func setupTabBar() {
         //set the font title
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 25) as Any], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 25) as Any], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any], for: .selected)
         
         //set the title color
         tabBar.tintColor = .white
@@ -48,7 +48,7 @@ class TabBarController: UITabBarController {
         self.modalPresentationStyle = .fullScreen
         
         if #available(iOS 15.0, *) {
-            tabBar.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1 )
+            tabBar.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
         }
     
     }
@@ -57,8 +57,8 @@ class TabBarController: UITabBarController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         rootViewController.navigationItem.title = "Reciplease"
-        navController.navigationBar.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
-        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "chalkduster", size: 25) as Any, NSAttributedString.Key.foregroundColor: UIColor(.white)]
+        navController.navigationBar.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
+        navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any, NSAttributedString.Key.foregroundColor: UIColor(.white)]
         return navController
     }
     

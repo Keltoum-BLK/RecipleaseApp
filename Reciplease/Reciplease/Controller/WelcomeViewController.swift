@@ -13,9 +13,9 @@ class WelcomeViewController: UIViewController {
     //MARK: Properties
     private lazy var button: UIButton = {
         let button = UIButton(frame: CGRect(x: 20, y: view.frame.size.height-150, width: view.frame.size.width-40, height: 50))
-        button.titleLabel?.font = UIFont(name: "Chalkduster", size: 35)
+        button.titleLabel?.font = UIFont.chalkduster(fontSize: 35)
         button.setTitle("Next", for: .normal)
-        button.backgroundColor = UIColor(red: 43/255, green: 95/255, blue: 59/255, alpha: 1)
+        button.backgroundColor = UIColor.recipleasePantone(color: .greenReciplease)
         button.layer.cornerRadius = 20
         button.setTitleColor(.white, for: .normal)
         
@@ -24,7 +24,7 @@ class WelcomeViewController: UIViewController {
     
     private lazy var welcomeContainer: UIView = {
         let container = UIView(frame: CGRect(x: 10, y: 50, width: view.frame.size.width-20, height: 100))
-        container.backgroundColor = UIColor(red: 43/255, green: 95/255, blue: 59/255, alpha: 1)
+        container.backgroundColor = UIColor.recipleasePantone(color: .greenReciplease)
         container.layer.cornerRadius = 20
         container.addSubview(welcomeText)
         return container
@@ -35,7 +35,7 @@ class WelcomeViewController: UIViewController {
         welcome.text = "Welcome to Reciplease App!"
         welcome.textAlignment = .center
         welcome.numberOfLines = 0
-        welcome.font = UIFont(name: "chalkduster", size: 30)
+        welcome.font = UIFont.chalkduster(fontSize: 30)
         welcome.textColor = UIColor.white
        
         return welcome
@@ -46,7 +46,7 @@ class WelcomeViewController: UIViewController {
         desc.text = "Here, You can search for recipes using ingredients at your disposal but also register your favorite recipes."
         desc.textAlignment = .center
         desc.numberOfLines = 0
-        desc.font = UIFont(name: "chalkduster", size: 20)
+        desc.font = UIFont.chalkduster(fontSize: 20)
         desc.textColor = UIColor.white
         desc.translatesAutoresizingMaskIntoConstraints = false 
         return desc
@@ -57,7 +57,7 @@ class WelcomeViewController: UIViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
+        view.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
         goTheTabBar()
     }
     
@@ -70,7 +70,7 @@ class WelcomeViewController: UIViewController {
         view.addSubview(welcomeContainer)
         view.addSubview(descApp)
         view.addSubview(button)
-        WelcomeVCLayout.sharedWVC.labelLayoutConstraints(label: descApp, vc: view)
+        WelcomeMainView.shared.labelLayoutConstraints(label: descApp, vc: view)
     }
     
     func goTheTabBar() {

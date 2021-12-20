@@ -8,14 +8,15 @@
 import Foundation
 
 
-class SearchVCActions {
+class BTNActions {
     
-    static let shared  = SearchVCActions()
+    static let shared  = BTNActions()
     
-    func addIngredient(ingredient: String, array: [String]) {
+    func addIngredient(ingredient: String, array: [String]) -> String {
         let element = ingredient
         var tab = array
         tab.append(element)
+        return element
     }
     
     func clearArray(tab: [String]) {

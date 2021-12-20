@@ -11,7 +11,7 @@ import UIKit
 extension UITextField {
     
     func changeThePLaceholderFont(text: String, textField: UITextField) {
-        let fontPlaceholderText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont(name: "chalkboard SE", size: 20) as Any, NSAttributedString.Key.foregroundColor: UIColor.gray])
+        let fontPlaceholderText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font: UIFont.chalkboard(fontSize: 20) as Any, NSAttributedString.Key.foregroundColor: UIColor.gray])
             textField.attributedPlaceholder = fontPlaceholderText
     }
     
