@@ -23,6 +23,7 @@ class TabBarController: UITabBarController {
             present(welcomeVC, animated: true)
         }
     }
+
     func setupVCs() {
        
         viewControllers = [createNavController(for: SearchingVC(), title: NSLocalizedString("Searching", comment: "")), createNavController(for: RecipesVC(), title: NSLocalizedString("Favorites", comment: ""))]
@@ -56,10 +57,17 @@ class TabBarController: UITabBarController {
     fileprivate func createNavController(for rootViewController: UIViewController, title: String) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
+        navController.navigationItem.backButtonTitle = "Back"
+        navController.navigationItem.backBarButtonItem?.tintColor = .white
+        
         rootViewController.navigationItem.title = "Reciplease"
         navController.navigationBar.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any, NSAttributedString.Key.foregroundColor: UIColor(.white)]
+    
+       
         return navController
     }
+    
+    
     
 }

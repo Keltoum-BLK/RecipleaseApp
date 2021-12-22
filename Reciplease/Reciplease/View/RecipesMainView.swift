@@ -8,15 +8,35 @@
 import Foundation
 import UIKit
 
-class RecipesMainView{
+class RecipesMainView: UIView {
     
-    static var shared = RecipesMainView()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureSubviews()
+        addTabViewConstraints()
+    }
     
-    func addTabViewConstraints(tabView: UITableView, vc : UIView) {
-        tabView.topAnchor.constraint(equalTo: vc.topAnchor, constant: 100).isActive = true
-        tabView.bottomAnchor.constraint(equalTo: vc.bottomAnchor, constant: 100).isActive = true
-        tabView.widthAnchor.constraint(equalTo: vc.widthAnchor, multiplier: 1).isActive = true
-       
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        configureSubviews()
+    }
+    
+    lazy var recipesTabView: UITableView = {
+       let tabView = UITableView()
+        tabView.translatesAutoresizingMaskIntoConstraints = false
+        tabView.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
+        return tabView
+    }()
+
+    
+    func addTabViewConstraints() {
+        recipesTabView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.75).isActive = true
+        recipesTabView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+    }
+    
+    func configureSubviews() {
+        addSubview(recipesTabView)
+        backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
     }
     
 }

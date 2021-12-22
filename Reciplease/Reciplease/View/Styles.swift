@@ -19,13 +19,14 @@ public extension UIFont {
 public extension UIColor {
 
     enum RecipleaseColors {
-        case greenReciplease, chalkBoardBackground, whiteReciplease, grayReciplease
+        case greenReciplease, chalkBoardBackground, whiteReciplease, grayReciplease, goldReciplease
             public func rgb() -> (CGFloat, CGFloat, CGFloat) {
                 switch self {
                 case .chalkBoardBackground: return (34/255,34/255,34/255)
                 case .greenReciplease: return (43/255, 95/255, 59/255)
                 case .grayReciplease: return (211/255,211/255,211/255)
                 case .whiteReciplease: return (255/255, 255/255, 255/255)
+                case .goldReciplease: return (255/255, 215/255, 0/255)
                 }
             }
     }

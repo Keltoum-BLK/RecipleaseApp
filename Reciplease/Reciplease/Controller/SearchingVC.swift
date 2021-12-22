@@ -9,14 +9,16 @@ import UIKit
 
 class SearchingVC: UIViewController {
     //MARK: Properties
-    var ingredientArray = ["potatoes", "tomatoes", "plum", "red wine"]
+    private var ingredientArray = ["potatoes", "tomatoes", "plum", "red wine"]
     
     //MARK: UI Properties
     private let searchMainView = SearchMainView()
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = searchMainView
+        searchMainView.delegate = self
         searchMainView.ingredientsTabView.delegate = self
         searchMainView.ingredientsTabView.dataSource = self
         searchMainView.ingredientsTabView.register(IngredientCell.self, forCellReuseIdentifier: IngredientCell.identifier)
@@ -27,7 +29,7 @@ class SearchingVC: UIViewController {
         super.viewDidLayoutSubviews()
     }
     
- 
+    
 }
 
 extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
@@ -38,16 +40,36 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchMainView.ingredientsTabView.dequeueReusableCell(withIdentifier: IngredientCell.identifier, for: indexPath) as! IngredientCell
+        let cell = searchMainView.ingredientsTabView.dequeueReusableCell(withIdentifier: "ingredientCell", for: indexPath) 
         cell.textLabel?.text = ingredientArray[indexPath.row]
+        cell.textLabel?.font = UIFont.chalkduster(fontSize: 20)
+        cell.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
+        cell.textLabel?.textColor = UIColor.recipleasePantone(color: .whiteReciplease)
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             ingredientArray.remove(at: indexPath.row)
             searchMainView.ingredientsTabView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
+    
+}
 
+extension SearchingVC: SearchMainViewDelegate {
+    //Methods SearchMainViewDelegate
+    func clearIngredientList() {
+        print("cleared")
+    }
+    
+    func searchRecipes() {
+        print("search")
+    }
+    
+    func addIngredient() {
+        
+        print("add ingredient")
+    }
+    
 }

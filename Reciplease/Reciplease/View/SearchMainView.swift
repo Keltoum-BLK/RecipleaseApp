@@ -5,18 +5,32 @@
 //  Created by Kel_Jellysh on 19/12/2021.
 //
 
+protocol SearchMainViewDelegate: AnyObject {
+    func addIngredient()
+    func clearIngredientList()
+    func searchRecipes()
+}
+
 import UIKit
 
 class SearchMainView: UIView {
-    
+    //Delegate
+    weak var delegate: SearchMainViewDelegate?
+   
+    //Inits 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setSubviews()
+            setBackground()
+            configureSubviews()
+            setButtonsTarget()
+            setTitleContainerConstraints()
+            setTabViewConstraints()
+            setSearchBTNContraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setSubviews()
+            configureSubviews()
     }
     
     
@@ -52,6 +66,7 @@ class SearchMainView: UIView {
     lazy var addIngredientTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
+        textField.keyboardType = .twitter
         textField.font = UIFont.chalkboard(fontSize: 20)
         textField.changeThePLaceholderFont(text: "Lemon, Cheese, Sausages...", textField: textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +74,7 @@ class SearchMainView: UIView {
     }()
     
     lazy var addBTN: UIButton = {
-        let btn = UIButton()
+        let btn = UIButton(type: .custom)
         btn.backgroundColor = UIColor.recipleasePantone(color: .greenReciplease)
         btn.setTitle("Add", for: .normal)
         btn.layer.cornerRadius = 10
@@ -102,7 +117,7 @@ class SearchMainView: UIView {
     }()
     
     private lazy var clearBTN: UIButton = {
-        let btn = UIButton(frame: CGRect())
+        let btn = UIButton(type: .custom)
         btn.backgroundColor = UIColor.gray
         btn.setTitle("Clear", for: .normal)
         btn.layer.cornerRadius = 10
@@ -118,7 +133,7 @@ class SearchMainView: UIView {
     }()
     
     private lazy var searchBTN: UIButton = {
-        let btn = UIButton()
+        let btn = UIButton(type: .custom)
         btn.backgroundColor = UIColor.recipleasePantone(color: .greenReciplease)
         btn.titleLabel?.font = UIFont.chalkduster(fontSize: 30)
         btn.setTitle("Search", for: .normal)
@@ -129,24 +144,38 @@ class SearchMainView: UIView {
     
     
     //MARK: Methods to add to the MainView
-    func setSubviews() {
-        setBackground()
+    func configureSubviews() {
         let subviews = [addIngredientContainer, headerTabView, ingredientsTabView, searchBTN]
         for view in subviews {
             addSubview(view)
         }
-        setTitleContainerConstraints()
-        setTabViewConstraints()
-        setSearchBTNContraints()
     }
     
     func setBackground() {
         self.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
     }
+    //MARK: Targets
+    private func setButtonsTarget() {
+        addBTN.addTarget(self, action: #selector(addIngredientBTNAction), for: .touchUpInside)
+        clearBTN.addTarget(self, action: #selector(clearIngredientList), for: .touchUpInside)
+        searchBTN.addTarget(self, action: #selector(searchRecipes), for: .touchUpInside)
+    }
     
+    @objc private func addIngredientBTNAction() {
+        delegate?.addIngredient()
+    }
+    @objc private func clearIngredientList() {
+        delegate?.clearIngredientList()
+    }
+    @objc private func searchRecipes() {
+        delegate?.searchRecipes()
+    }
     
-    //MARK: methodes to set constraints.
-    func setTitleContainerConstraints() {
+}
+//MARK: Constraints
+extension SearchMainView {
+
+    private func setTitleContainerConstraints() {
         addIngredientContainer.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
         addIngredientContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.17).isActive = true
         addIngredientContainer.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
@@ -158,7 +187,7 @@ class SearchMainView: UIView {
         addBTN.widthAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
-    func setTabViewConstraints() {
+    private func setTabViewConstraints() {
         //set Header Constraints
         headerTabView.topAnchor.constraint(equalTo: addIngredientContainer.bottomAnchor).isActive = true
         headerTabView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06).isActive = true
@@ -173,7 +202,7 @@ class SearchMainView: UIView {
         ingredientsTabView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     //
-    func setSearchBTNContraints() {
+   private func setSearchBTNContraints() {
         searchBTN.topAnchor.constraint(equalTo: ingredientsTabView.bottomAnchor, constant: 15).isActive = true
         searchBTN.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.08 ).isActive = true
         searchBTN.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
@@ -182,3 +211,5 @@ class SearchMainView: UIView {
     }
     
 }
+
+
