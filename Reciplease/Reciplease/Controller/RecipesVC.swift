@@ -43,7 +43,7 @@ extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipeDetailsVC = RecipeDetailsVC()
-        recipeDetailsVC.recipedetailsView.labelTest.text = pokemonArray[indexPath.row]
+        recipeDetailsVC.recipedetailsView.recipeTitle.text = pokemonArray[indexPath.row]
         navigationItem.backButtonTitle = "Back"
         navigationItem.backBarButtonItem?.tintColor = .white
         navigationController?.pushViewController(recipeDetailsVC, animated: true)

@@ -11,7 +11,22 @@ class RecipeCell: UITableViewCell {
 
     static let identifier = "recipeCell"
     
+    // MARK: - Initializer
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setInfoStackConstraints()
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+   
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        addGradientLayer(imageView: backgroundImage)
+    }
+    
+    // MARK: - Subviews
     lazy var title: UILabel = {
         let text = UILabel()
         text.textColor = .recipleasePantone(color: .whiteReciplease)
@@ -52,12 +67,12 @@ class RecipeCell: UITableViewCell {
     
     lazy var backgroundImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    lazy var likeStack: UIStackView = {
+    private lazy var likeStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fillProportionally
@@ -68,7 +83,7 @@ class RecipeCell: UITableViewCell {
         return stack
     }()
     
-    lazy var timeStack: UIStackView = {
+    private lazy var timeStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fillProportionally
@@ -79,33 +94,18 @@ class RecipeCell: UITableViewCell {
         return stack
     }()
     
-    lazy var infoStack: UIStackView = {
-        let s = UIStackView()
-        s.axis = .vertical
-        s.distribution = .fillProportionally
-        s.alignment = .fill
-        s.spacing = 5
-        s.addArrangedSubview(likeStack)
-        s.addArrangedSubview(timeStack)
-        return s
+    private lazy var infoStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillProportionally
+        stack.alignment = .fill
+        stack.spacing = 5
+        stack.addArrangedSubview(likeStack)
+        stack.addArrangedSubview(timeStack)
+        return stack
     }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-       
-    }
-    //MARK: Setup the Cell with constraints
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
  
-    
-    func addGradientLayer(imageView: UIImageView) {
+    private func addGradientLayer(imageView: UIImageView) {
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor.clear.cgColor, UIColor.recipleasePantone(color: .chalkBoardBackground)]
         gradient.startPoint = CGPoint(x: 1, y: 0)
@@ -115,9 +115,18 @@ class RecipeCell: UITableViewCell {
         gradient.frame = imageView.bounds
         imageView.layer.insertSublayer(gradient, at: 0)
     }
-
-
-    
-        
-    
 }
+// MARK: - Constraints
+extension RecipeCell {
+    private func setInfoStackConstraints() {
+        contentView.addSubview(infoStack)
+        infoStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            infoStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+            infoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            infoStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            infoStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+        ])
+    }
+}
+
