@@ -36,6 +36,7 @@ extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
         let cell = recipesMainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
         cell.textLabel?.text = pokemonArray[indexPath.row]
         cell.textLabel?.font = UIFont.chalkduster(fontSize: 20)
+        cell.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
         cell.textLabel?.textColor = .recipleasePantone(color: .whiteReciplease)
         return cell
     }

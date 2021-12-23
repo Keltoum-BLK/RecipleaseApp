@@ -13,7 +13,8 @@ class SearchingVC: UIViewController {
     
     //MARK: UI Properties
     private let searchMainView = SearchMainView()
-  
+    
+    let ingredientCellIdentifier = "ingredientCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class SearchingVC: UIViewController {
         searchMainView.delegate = self
         searchMainView.ingredientsTabView.delegate = self
         searchMainView.ingredientsTabView.dataSource = self
-        searchMainView.ingredientsTabView.register(IngredientCell.self, forCellReuseIdentifier: IngredientCell.identifier)
+        searchMainView.ingredientsTabView.register(UITableViewCell.self, forCellReuseIdentifier: ingredientCellIdentifier)
         // Do any additional setup after loading the view.
     }
     

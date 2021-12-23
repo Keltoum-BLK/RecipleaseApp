@@ -10,7 +10,7 @@ import UIKit
 
 class RecipeDetailsMainView: UIView {
     
-    let labelTest: UILabel = {
+   lazy var labelTest: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
@@ -18,6 +18,8 @@ class RecipeDetailsMainView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

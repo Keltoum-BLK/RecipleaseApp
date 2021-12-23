@@ -52,6 +52,8 @@ class RecipeCell: UITableViewCell {
     
     lazy var backgroundImage: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
@@ -90,21 +92,18 @@ class RecipeCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureSubViews()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configureSubViews()
+       
     }
     //MARK: Setup the Cell with constraints
     override func layoutSubviews() {
         super.layoutSubviews()
     }
 
-    private func configureSubViews() {
-        backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
-    }
+ 
     
     func addGradientLayer(imageView: UIImageView) {
         let gradient = CAGradientLayer()
@@ -117,11 +116,8 @@ class RecipeCell: UITableViewCell {
         imageView.layer.insertSublayer(gradient, at: 0)
     }
 
+
     
-    private func configureSubviews() {
-        contentView.addSubview(backgroundImage)
-        contentView.sendSubviewToBack(backgroundImage)
-    }
         
     
 }

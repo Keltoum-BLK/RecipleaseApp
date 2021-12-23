@@ -31,6 +31,8 @@
 		B9C27A3F276F7DF10009BD92 /* SearchMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C27A3E276F7DF10009BD92 /* SearchMainView.swift */; };
 		B9C27A41276F7F730009BD92 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C27A40276F7F730009BD92 /* Styles.swift */; };
 		B9EBD26B276B79800065BB2A /* CoreOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EBD26A276B79800065BB2A /* CoreOnboarding.swift */; };
+		B9F099612774C35100DED4F0 /* RecipeWebView .swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F099602774C35100DED4F0 /* RecipeWebView .swift */; };
+		B9F099632774C37500DED4F0 /* RecipeWebPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F099622774C37500DED4F0 /* RecipeWebPageVC.swift */; };
 		B9F834832767815C008A29E7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B9F834822767815C008A29E7 /* Alamofire */; };
 		B9F834852767818E008A29E7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F834842767818E008A29E7 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +83,8 @@
 		B9C27A3E276F7DF10009BD92 /* SearchMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainView.swift; sourceTree = "<group>"; };
 		B9C27A40276F7F730009BD92 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		B9EBD26A276B79800065BB2A /* CoreOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreOnboarding.swift; sourceTree = "<group>"; };
+		B9F099602774C35100DED4F0 /* RecipeWebView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeWebView .swift"; sourceTree = "<group>"; };
+		B9F099622774C37500DED4F0 /* RecipeWebPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeWebPageVC.swift; sourceTree = "<group>"; };
 		B9F834842767818E008A29E7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,9 +198,10 @@
 			children = (
 				B9AED1D22768E40900E80985 /* WelcomeMainView.swift */,
 				B9C27A3E276F7DF10009BD92 /* SearchMainView.swift */,
+				B9AED1DE276911B900E80985 /* RecipeCell.swift */,
 				B9AED1DC27690C2B00E80985 /* RecipesMainView.swift */,
 				B9AEAB242773300D00B75D49 /* RecipeDetailsMainView.swift */,
-				B9AED1DE276911B900E80985 /* RecipeCell.swift */,
+				B9F099602774C35100DED4F0 /* RecipeWebView .swift */,
 				B9C27A40276F7F730009BD92 /* Styles.swift */,
 			);
 			path = View;
@@ -210,6 +215,7 @@
 				B9AED1D82768E52700E80985 /* SearchingVC.swift */,
 				B9AED1D62768E51000E80985 /* RecipesVC.swift */,
 				B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */,
+				B9F099622774C37500DED4F0 /* RecipeWebPageVC.swift */,
 				B931F24E276CD897003B175A /* Extensions */,
 			);
 			path = Controller;
@@ -385,11 +391,13 @@
 				B9AEAB2727736E8800B75D49 /* UIImageView + Extension.swift in Sources */,
 				B9EBD26B276B79800065BB2A /* CoreOnboarding.swift in Sources */,
 				B9AEAB252773300D00B75D49 /* RecipeDetailsMainView.swift in Sources */,
+				B9F099632774C37500DED4F0 /* RecipeWebPageVC.swift in Sources */,
 				B9C27A3F276F7DF10009BD92 /* SearchMainView.swift in Sources */,
 				B9AED1D92768E52700E80985 /* SearchingVC.swift in Sources */,
 				B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */,
 				B931F254276CF83A003B175A /* SearchBTNTargets.swift in Sources */,
 				B9AED1D12768E00C00E80985 /* TabBarController.swift in Sources */,
+				B9F099612774C35100DED4F0 /* RecipeWebView .swift in Sources */,
 				B978EB442769ECE9008E00A8 /* RecipeDetailsVC.swift in Sources */,
 				B9C27A41276F7F730009BD92 /* Styles.swift in Sources */,
 				B9F834852767818E008A29E7 /* WelcomeViewController.swift in Sources */,
