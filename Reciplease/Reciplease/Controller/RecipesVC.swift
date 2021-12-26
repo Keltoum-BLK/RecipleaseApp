@@ -19,6 +19,8 @@ class RecipesVC: UIViewController {
         recipesMainView.recipesTabView.delegate = self
         recipesMainView.recipesTabView.dataSource = self
         recipesMainView.recipesTabView.register(RecipeCell.self, forCellReuseIdentifier: RecipeCell.identifier)
+        recipesMainView.recipesTabView.rowHeight = 200
+        recipesMainView.recipesTabView.estimatedRowHeight = UITableView.automaticDimension
     }
 
     override func viewDidLayoutSubviews() {
@@ -43,7 +45,7 @@ extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipeDetailsVC = RecipeDetailsVC()
-        recipeDetailsVC.recipedetailsView.recipeTitle.text = pokemonArray[indexPath.row]
+        recipeDetailsVC.recipedetailsView.recipeTitle.text = pokemonArray[indexPath.row].uppercased()
         navigationItem.backButtonTitle = "Back"
         navigationItem.backBarButtonItem?.tintColor = .white
         navigationController?.pushViewController(recipeDetailsVC, animated: true)

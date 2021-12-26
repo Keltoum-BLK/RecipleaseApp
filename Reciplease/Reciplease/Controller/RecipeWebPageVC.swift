@@ -9,9 +9,11 @@ import UIKit
 
 class RecipeWebPageVC: UIViewController {
 
+    let recipeWebPage = RecipeWebView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view = recipeWebPage
         // Do any additional setup after loading the view.
     }
     

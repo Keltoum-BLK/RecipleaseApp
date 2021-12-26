@@ -14,6 +14,7 @@ class RecipeDetailsVC: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        recipedetailsView.delegate = self 
         view = recipedetailsView
         title = "Reciplease"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFav))
@@ -29,3 +30,20 @@ class RecipeDetailsVC: UIViewController {
     }
 
 }
+    
+extension RecipeDetailsVC: RecipeDetailsDelegate {
+   
+    //MARK: Methods RecipePageWeb
+    func nextView() {
+        let recipeWeb = RecipeWebPageVC()
+        navigationController?.pushViewController(recipeWeb, animated: true)
+        print("pushed")
+    }
+    
+
+      
+        
+}
+
+    
+

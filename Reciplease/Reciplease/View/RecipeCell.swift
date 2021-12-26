@@ -119,14 +119,14 @@ class RecipeCell: UITableViewCell {
 // MARK: - Constraints
 extension RecipeCell {
     private func setInfoStackConstraints() {
-        contentView.addSubview(infoStack)
-        infoStack.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            infoStack.topAnchor.constraint(equalTo: contentView.topAnchor),
-            infoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            infoStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            infoStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-        ])
+//        contentView.addSubview(infoStack)
+//        infoStack.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            infoStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            infoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            infoStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            infoStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+//        ])
     }
 }
 
