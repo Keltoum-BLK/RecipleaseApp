@@ -22,6 +22,7 @@ class RecipeDetailsMainView: UIView {
         super.init(frame: frame)
         configureSubviews()
         setButtonsTarget()
+        layoutSubviews()
         setUpContraints()
     }
     
@@ -31,10 +32,10 @@ class RecipeDetailsMainView: UIView {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        addGradientLayer(view: recipeImage)
+        recipeImage.addBlackGradientLayerInBackground(frame: recipeImage.frame, colors: [UIColor(.clear), UIColor.recipleasePantone(color: .chalkBoardBackground)])
     }
-    //MARK: Subviews
     
+    //MARK: Subviews
     lazy var recipeTitle: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -47,7 +48,7 @@ class RecipeDetailsMainView: UIView {
     lazy var recipeImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "RecipeCellImage")
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -90,7 +91,7 @@ class RecipeDetailsMainView: UIView {
     lazy var directionsBTN: UIButton = {
         let btn = UIButton()
         btn.titleLabel?.font = UIFont.chalkboard(fontSize: 30)
-        btn.setTitle("Get the directions", for: .normal)
+        btn.setTitle("Get directions", for: .normal)
         btn.backgroundColor = .recipleasePantone(color: .greenReciplease)
         btn.layer.cornerRadius = 20
         return btn
@@ -101,17 +102,6 @@ class RecipeDetailsMainView: UIView {
         addSubview(recipeImage)
         addSubview(addStack)
         backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
-    }
-    
-    func addGradientLayer(view: UIView) {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.clear.cgColor, UIColor.recipleasePantone(color: .chalkBoardBackground)]
-        gradient.startPoint = CGPoint(x: 1, y: 0)
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.opacity = 0.5
-        gradient.locations = [0,1]
-        gradient.frame = view.bounds
-        view.layer.insertSublayer(gradient, at: 0)
     }
     
     //MARK: Targets
@@ -134,8 +124,6 @@ extension RecipeDetailsMainView {
         recipeImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35).isActive = true
         recipeImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         recipeImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        
-     
         
         addStack.topAnchor.constraint(equalTo: recipeImage.bottomAnchor, constant: -35).isActive = true
         addStack.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true

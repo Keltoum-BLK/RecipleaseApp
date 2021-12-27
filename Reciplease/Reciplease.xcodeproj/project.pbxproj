@@ -20,6 +20,7 @@
 		B96CA286275A265A00E552D7 /* RecipleaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CA285275A265A00E552D7 /* RecipleaseUITestsLaunchTests.swift */; };
 		B96CA293275A2AF700E552D7 /* Lemon.otf in Resources */ = {isa = PBXBuildFile; fileRef = B96CA292275A2AF700E552D7 /* Lemon.otf */; };
 		B978EB442769ECE9008E00A8 /* RecipeDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */; };
+		B97EAA6C2779AF5600BAF7A8 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */; };
 		B9AEAB252773300D00B75D49 /* RecipeDetailsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AEAB242773300D00B75D49 /* RecipeDetailsMainView.swift */; };
 		B9AEAB2727736E8800B75D49 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AEAB2627736E8800B75D49 /* UIImageView + Extension.swift */; };
 		B9AED1D12768E00C00E80985 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AED1D02768E00C00E80985 /* TabBarController.swift */; };
@@ -72,6 +73,7 @@
 		B96CA285275A265A00E552D7 /* RecipleaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B96CA292275A2AF700E552D7 /* Lemon.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lemon.otf; sourceTree = "<group>"; };
 		B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsVC.swift; sourceTree = "<group>"; };
+		B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		B9AEAB242773300D00B75D49 /* RecipeDetailsMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsMainView.swift; sourceTree = "<group>"; };
 		B9AEAB2627736E8800B75D49 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		B9AED1D02768E00C00E80985 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				B931F24F276CD8B9003B175A /* UITextField + Extension.swift */,
 				B9AEAB2627736E8800B75D49 /* UIImageView + Extension.swift */,
+				B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */,
 				B9AED1D72768E51000E80985 /* RecipesVC.swift in Sources */,
 				B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */,
+				B97EAA6C2779AF5600BAF7A8 /* UIView + Extension.swift in Sources */,
 				B9AEAB2727736E8800B75D49 /* UIImageView + Extension.swift in Sources */,
 				B9EBD26B276B79800065BB2A /* CoreOnboarding.swift in Sources */,
 				B9AEAB252773300D00B75D49 /* RecipeDetailsMainView.swift in Sources */,

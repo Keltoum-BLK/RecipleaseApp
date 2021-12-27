@@ -23,7 +23,7 @@ class RecipeCell: UITableViewCell {
    
     override func layoutSubviews() {
         super.layoutSubviews()
-        addGradientLayer(imageView: backgroundImage)
+        backgroundImage.addBlackGradientLayerInBackground(frame: backgroundImage.frame, colors: [UIColor.clear, UIColor.recipleasePantone(color: .chalkBoardBackground)])
     }
     
     // MARK: - Subviews
@@ -104,17 +104,7 @@ class RecipeCell: UITableViewCell {
         stack.addArrangedSubview(timeStack)
         return stack
     }()
- 
-    private func addGradientLayer(imageView: UIImageView) {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.clear.cgColor, UIColor.recipleasePantone(color: .chalkBoardBackground)]
-        gradient.startPoint = CGPoint(x: 1, y: 0)
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.opacity = 0.25
-        gradient.locations = [0,1]
-        gradient.frame = imageView.bounds
-        imageView.layer.insertSublayer(gradient, at: 0)
-    }
+
 }
 // MARK: - Constraints
 extension RecipeCell {
