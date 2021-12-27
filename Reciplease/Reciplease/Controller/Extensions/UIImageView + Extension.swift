@@ -10,7 +10,6 @@ import UIKit
 
 extension UIImageView {
     
-    
     func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
         contentMode = mode
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in

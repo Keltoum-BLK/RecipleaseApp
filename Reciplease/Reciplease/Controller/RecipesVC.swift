@@ -47,9 +47,4 @@ extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
         navigationItem.backBarButtonItem?.tintColor = .white
         navigationController?.pushViewController(recipeDetailsVC, animated: true)
     }
-    
-    
-    
-    
-    
 }

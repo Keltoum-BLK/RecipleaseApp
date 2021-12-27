@@ -11,6 +11,13 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
+            tabBar.standardAppearance = appearance
+            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        }
         setupVCs()
     }
     
@@ -25,15 +32,25 @@ class TabBarController: UITabBarController {
     }
 
     func setupVCs() {
-       
         viewControllers = [createNavController(for: SearchingVC(), title: NSLocalizedString("Searching", comment: "")), createNavController(for: RecipesVC(), title: NSLocalizedString("Favorites", comment: ""))]
         self.setViewControllers(viewControllers, animated: false)
     
-        setupTabBar()
+        setUpTabBar()
     }
     
-
-    func setupTabBar() {
+    func setUpTabBar() {
+        
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            let tabBarItemAppearance = UITabBarItemAppearance()
+            tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any]
+            tabBarItemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any]
+            appearance.stackedLayoutAppearance = tabBarItemAppearance
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
+            tabBar.standardAppearance = appearance
+            tabBar.scrollEdgeAppearance = appearance
+        }
         //set the font title
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any], for: .selected)
@@ -41,17 +58,13 @@ class TabBarController: UITabBarController {
         //set the title color
         tabBar.tintColor = .white
         tabBar.barTintColor = .lightGray
+        
         //position of elements in tab bar
-    
         tabBar.itemPositioning = .fill
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
         //set the transition style
         self.modalPresentationStyle = .fullScreen
-        
-        if #available(iOS 15.0, *) {
-            tabBar.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
-        }
-    
+        tabBar.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
     }
     
     fileprivate func createNavController(for rootViewController: UIViewController, title: String) -> UIViewController {

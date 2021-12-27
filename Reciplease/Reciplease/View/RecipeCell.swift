@@ -146,10 +146,10 @@ class RecipeCell: UITableViewCell {
 
     
     private func configureSubViews() {
-        addSubview(backgroundImage)
-        addSubview(infoView)
-        addSubview(title)
-        addSubview(ingredients)
+        let subviews = [backgroundImage, infoView, title, ingredients]
+        for view in subviews {
+            addSubview(view)
+        }
     }
 
 }

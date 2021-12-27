@@ -188,7 +188,6 @@ class RecipeDetailsMainView: UIView {
         addSubview(recipeTitle)
         addSubview(recipeImage)
         addSubview(infoView)
-        bringSubviewToFront(infoView)
         addSubview(viewStack)
         backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
     }
