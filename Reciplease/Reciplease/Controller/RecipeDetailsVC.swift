@@ -17,6 +17,7 @@ class RecipeDetailsVC: UIViewController {
         recipedetailsView.delegate = self 
         view = recipedetailsView
         title = "Reciplease"
+        navigationItem.backButtonTitle = "Back"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFav))
         navigationItem.rightBarButtonItem?.tintColor = .recipleasePantone(color: .goldReciplease)
         // Do any additional setup after loading the view.

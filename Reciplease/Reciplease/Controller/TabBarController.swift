@@ -58,7 +58,7 @@ class TabBarController: UITabBarController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.navigationItem.backButtonTitle = "Back"
-        navController.navigationItem.backBarButtonItem?.tintColor = .white
+        navController.navigationItem.backBarButtonItem?.tintColor = .recipleasePantone(color: .whiteReciplease)
         
         rootViewController.navigationItem.title = "Reciplease"
         navController.navigationBar.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
