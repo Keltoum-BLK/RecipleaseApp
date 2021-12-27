@@ -188,10 +188,10 @@
 			isa = PBXGroup;
 			children = (
 				B931F253276CF83A003B175A /* SearchBTNTargets.swift */,
+				B94753642771EDEF009E850A /* Recipe.swift */,
 				B94753662771EE03009E850A /* UserInfo */,
 				B9F8348B276781D9008A29E7 /* Secret */,
 				B9F8348A276781CE008A29E7 /* Network */,
-				B94753642771EDEF009E850A /* Recipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

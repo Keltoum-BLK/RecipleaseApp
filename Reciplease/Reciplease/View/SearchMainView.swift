@@ -20,7 +20,6 @@ class SearchMainView: UIView {
     //Inits 
     override init(frame: CGRect) {
         super.init(frame: frame)
-            setBackground()
             configureSubviews()
             setButtonsTarget()
             setTitleContainerConstraints()
@@ -145,15 +144,13 @@ class SearchMainView: UIView {
     
     //MARK: Methods to add to the MainView
     func configureSubviews() {
+        backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
         let subviews = [addIngredientContainer, headerTabView, ingredientsTabView, searchBTN]
         for view in subviews {
             addSubview(view)
         }
     }
     
-    func setBackground() {
-        self.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
-    }
     //MARK: Targets
     private func setButtonsTarget() {
         addBTN.addTarget(self, action: #selector(addIngredientBTNAction), for: .touchUpInside)
@@ -177,7 +174,7 @@ extension SearchMainView {
 
     private func setTitleContainerConstraints() {
         addIngredientContainer.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
-        addIngredientContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.17).isActive = true
+        addIngredientContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20).isActive = true
         addIngredientContainer.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         addIngredientContainer.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         addIngredientContainer.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -189,7 +186,7 @@ extension SearchMainView {
     
     private func setTabViewConstraints() {
         //set Header Constraints
-        headerTabView.topAnchor.constraint(equalTo: addIngredientContainer.bottomAnchor).isActive = true
+        headerTabView.topAnchor.constraint(equalTo: addIngredientContainer.bottomAnchor, constant: 10).isActive = true
         headerTabView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.06).isActive = true
         headerTabView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.95).isActive = true
         headerTabView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -203,7 +200,7 @@ extension SearchMainView {
     }
     //
    private func setSearchBTNContraints() {
-        searchBTN.topAnchor.constraint(equalTo: ingredientsTabView.bottomAnchor, constant: 15).isActive = true
+        searchBTN.topAnchor.constraint(equalTo: ingredientsTabView.bottomAnchor, constant: 10).isActive = true
         searchBTN.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.08 ).isActive = true
         searchBTN.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
         searchBTN.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
