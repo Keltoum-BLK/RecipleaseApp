@@ -74,7 +74,7 @@ class RecipeDetailsMainView: UIView {
     lazy var likeTitle: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "0"
+        label.text = "N/A"
         label.textAlignment = .center
         label.font = UIFont.chalkboard(fontSize: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -83,13 +83,62 @@ class RecipeDetailsMainView: UIView {
     lazy var timeTitle: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "0m"
+        label.text = "N/Am"
         label.textAlignment = .center
         label.font = UIFont.chalkboard(fontSize: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    private lazy var likeStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.alignment = .center
+        stack.spacing = 10
+        stack.addArrangedSubview(likeTitle)
+        stack.addArrangedSubview(likeImage)
+        stack.backgroundColor = .clear
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var timeStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.alignment = .center
+        stack.spacing = 10
+        stack.addArrangedSubview(timeTitle)
+        stack.addArrangedSubview(timeImage)
+        stack.backgroundColor = .clear
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var infoStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.alignment = .center
+        stack.spacing = 5
+        stack.addArrangedSubview(likeStack)
+        stack.addArrangedSubview(timeStack)
+        stack.backgroundColor = .clear
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var infoView: UIView = {
+       let container = UIView()
+        container.addSubview(infoStack)
+        container.layer.cornerRadius = 10
+        container.layer.borderWidth = 2
+        container.layer.borderColor = UIColor.recipleasePantone(color: .grayReciplease).cgColor
+        container.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
     
     private lazy var viewStack: UIStackView = {
         let stack = UIStackView()
@@ -125,8 +174,7 @@ class RecipeDetailsMainView: UIView {
         return list
     }()
     
-    
-    lazy var directionsBTN: UIButton = {
+    private lazy var directionsBTN: UIButton = {
         let btn = UIButton()
         btn.titleLabel?.font = UIFont.chalkboard(fontSize: 30)
         btn.setTitle("Get directions", for: .normal)
@@ -135,55 +183,7 @@ class RecipeDetailsMainView: UIView {
         return btn
     }()
     
-    private lazy var likeStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .fill
-        stack.alignment = .center
-        stack.spacing = 10
-        stack.layer.cornerRadius = 20
-        stack.addArrangedSubview(likeTitle)
-        stack.addArrangedSubview(likeImage)
-        stack.backgroundColor = .clear
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    private lazy var timeStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .fill
-        stack.alignment = .center
-        stack.spacing = 10
-        stack.addArrangedSubview(timeTitle)
-        stack.addArrangedSubview(timeImage)
-        stack.backgroundColor = .clear
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    private lazy var infoStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .fill
-        stack.alignment = .center
-        stack.spacing = 5
-        stack.addArrangedSubview(likeStack)
-        stack.addArrangedSubview(timeStack)
-        stack.backgroundColor = .clear
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    private lazy var infoView: UIView = {
-       let container = UIView()
-        container.addSubview(infoStack)
-        container.layer.cornerRadius = 20
-        container.layer.borderWidth = 2
-        container.layer.borderColor = UIColor.recipleasePantone(color: .grayReciplease).cgColor
-        container.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
-        container.translatesAutoresizingMaskIntoConstraints = false
-        return container
-    }()
+  
     private func configureSubviews() {
         addSubview(recipeTitle)
         addSubview(recipeImage)

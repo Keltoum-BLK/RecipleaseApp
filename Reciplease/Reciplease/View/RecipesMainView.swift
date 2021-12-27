@@ -14,6 +14,7 @@ class RecipesMainView: UIView {
         super.init(frame: frame)
         configureSubviews()
         addTabViewConstraints()
+  
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,13 +31,13 @@ class RecipesMainView: UIView {
 
     
     func addTabViewConstraints() {
-        recipesTabView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.75).isActive = true
+        recipesTabView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.91).isActive = true
         recipesTabView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
     }
     
     func configureSubviews() {
         addSubview(recipesTabView)
-        backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
+        backgroundColor = .recipleasePantone(color: .whiteReciplease)
     }
     
 }

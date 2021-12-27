@@ -23,6 +23,10 @@ class SearchingVC: UIViewController {
         searchMainView.ingredientsTabView.delegate = self
         searchMainView.ingredientsTabView.dataSource = self
         searchMainView.ingredientsTabView.register(UITableViewCell.self, forCellReuseIdentifier: ingredientCellIdentifier)
+        self.edgesForExtendedLayout = UIRectEdge()
+        self.extendedLayoutIncludesOpaqueBars = false
+       
+       
         // Do any additional setup after loading the view.
     }
     
