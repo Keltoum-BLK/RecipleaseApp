@@ -221,7 +221,7 @@ extension RecipeDetailsMainView {
         
         infoStack.centerXAnchor.constraint(equalTo: infoView.centerXAnchor).isActive = true
         infoStack.centerYAnchor.constraint(equalTo: infoView.centerYAnchor).isActive = true
-        infoView.topAnchor.constraint(equalTo: topAnchor, constant: 100).isActive = true
+        infoView.centerYAnchor.constraint(equalTo: recipeImage.centerYAnchor, constant: -50).isActive = true
         infoView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         infoView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = true
         infoView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
@@ -229,8 +229,8 @@ extension RecipeDetailsMainView {
         
         ingredientsTitle.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.9).isActive = true
         ingredientsList.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.9).isActive = true
-        directionsBTN.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        directionsBTN.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.9).isActive = true
+        directionsBTN.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        directionsBTN.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.8).isActive = true
         directionsBTN.centerXAnchor.constraint(equalTo: viewStack.centerXAnchor).isActive = true
     }
 }
