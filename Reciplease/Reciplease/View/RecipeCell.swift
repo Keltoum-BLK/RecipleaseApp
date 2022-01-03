@@ -176,11 +176,11 @@ extension RecipeCell {
     }
 
     private func labelsConstraints(){
-        titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 40).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 30).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
 
-        ingredientsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 70).isActive = true
+        ingredientsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 60).isActive = true
         ingredientsLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
         ingredientsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
 

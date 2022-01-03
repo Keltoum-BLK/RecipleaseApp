@@ -36,7 +36,8 @@ class TabBarController: UITabBarController {
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             let tabBarItemAppearance = UITabBarItemAppearance()
-            tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
+            tabBarItemAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
+            tabBarItemAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
             tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any]
             tabBarItemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any]
             appearance.stackedLayoutAppearance = tabBarItemAppearance

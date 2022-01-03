@@ -145,7 +145,7 @@ class RecipeDetailsMainView: UIView {
         stack.axis = .vertical
         stack.distribution = .fill
         stack.alignment = .center
-        stack.spacing = 5
+        stack.spacing = 10
         stack.addArrangedSubview(recipeTitle)
         stack.addArrangedSubview(ingredientsTitle)
         stack.addArrangedSubview(ingredientsList)
@@ -216,7 +216,7 @@ extension RecipeDetailsMainView {
         viewStack.topAnchor.constraint(equalTo: recipeImage.bottomAnchor, constant: -35).isActive = true
         viewStack.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewStack.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.97).isActive = true
-        viewStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.49).isActive = true
+        viewStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.48).isActive = true
         
         infoStack.centerXAnchor.constraint(equalTo: infoView.centerXAnchor).isActive = true
         infoStack.centerYAnchor.constraint(equalTo: infoView.centerYAnchor).isActive = true
@@ -225,11 +225,11 @@ extension RecipeDetailsMainView {
         infoView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = true
         infoView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
         
+        ingredientsTitle.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.95).isActive = true
+        ingredientsList.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.95).isActive = true
         
-        ingredientsTitle.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.9).isActive = true
-        ingredientsList.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.9).isActive = true
         directionsBTN.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        directionsBTN.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.8).isActive = true
+        directionsBTN.widthAnchor.constraint(equalTo: viewStack.widthAnchor, multiplier: 0.7).isActive = true
         directionsBTN.centerXAnchor.constraint(equalTo: viewStack.centerXAnchor).isActive = true
     }
 }
