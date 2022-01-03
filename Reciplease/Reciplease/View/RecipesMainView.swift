@@ -31,8 +31,11 @@ class RecipesMainView: UIView {
 
     
     func addTabViewConstraints() {
-        recipesTabView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.94).isActive = true
-        recipesTabView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+        recipesTabView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        recipesTabView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+        recipesTabView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
+        recipesTabView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+        recipesTabView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
     }
     
     func configureSubviews() {

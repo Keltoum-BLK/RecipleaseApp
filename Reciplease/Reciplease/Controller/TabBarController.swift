@@ -11,13 +11,6 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 15.0, *) {
-            let appearance = UITabBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
-            tabBar.standardAppearance = appearance
-            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
-        }
         setupVCs()
     }
     
@@ -30,11 +23,11 @@ class TabBarController: UITabBarController {
             present(welcomeVC, animated: true)
         }
     }
-
+    
     func setupVCs() {
         viewControllers = [createNavController(for: SearchingVC(), title: NSLocalizedString("Searching", comment: "")), createNavController(for: FavoriteVC(), title: NSLocalizedString("Favorites", comment: ""))]
         self.setViewControllers(viewControllers, animated: false)
-    
+        
         setUpTabBar()
     }
     
@@ -43,6 +36,7 @@ class TabBarController: UITabBarController {
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             let tabBarItemAppearance = UITabBarItemAppearance()
+            tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
             tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any]
             tabBarItemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any]
             appearance.stackedLayoutAppearance = tabBarItemAppearance
@@ -68,16 +62,21 @@ class TabBarController: UITabBarController {
     }
     
     fileprivate func createNavController(for rootViewController: UIViewController, title: String) -> UIViewController {
+        if #available(iOS 15.0, *) {
+            let navigationBarAppearance = UINavigationBarAppearance()
+            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+            navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any, NSAttributedString.Key.foregroundColor: UIColor.recipleasePantone(color: .whiteReciplease)]
+            navigationBarAppearance.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
+        }
+        
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.navigationItem.backButtonTitle = "Back"
-        navController.navigationItem.backBarButtonItem?.tintColor = .recipleasePantone(color: .whiteReciplease)
-        
         rootViewController.navigationItem.title = "Reciplease"
         navController.navigationBar.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any, NSAttributedString.Key.foregroundColor: UIColor(.white)]
-    
-       
+        
         return navController
     }
     

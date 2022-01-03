@@ -19,8 +19,6 @@ class FavoriteVC: UIViewController {
         recipesMainView.recipesTabView.delegate = self
         recipesMainView.recipesTabView.dataSource = self
         recipesMainView.recipesTabView.register(RecipeCell.self, forCellReuseIdentifier: RecipeCell.identifier)
-        recipesMainView.recipesTabView.rowHeight = 200
-        recipesMainView.recipesTabView.estimatedRowHeight = UITableView.automaticDimension
     }
 
     override func viewDidLayoutSubviews() {
@@ -33,12 +31,16 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemonArray.count
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = recipesMainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
-        cell.title.text = pokemonArray[indexPath.row].uppercased()
+        cell.titleLabel.text = pokemonArray[indexPath.row].uppercased()
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipeDetailsVC = RecipeDetailsVC()

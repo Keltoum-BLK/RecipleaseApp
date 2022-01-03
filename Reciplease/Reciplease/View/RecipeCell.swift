@@ -27,30 +27,34 @@ class RecipeCell: UITableViewCell {
    
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundImage.addBlackGradientLayerInBackground(frame: backgroundImage.frame, colors: [UIColor.clear, UIColor.recipleasePantone(color: .chalkBoardBackground)])
+        DispatchQueue.main.async {
+            self.backgroundImage.addBlackGradientLayerInBackground(frame: self.backgroundImage.bounds, colors: [UIColor.clear, UIColor.recipleasePantone(color: .chalkBoardBackground)])
+        }
     }
     
     // MARK: - Subviews
-    lazy var title: UILabel = {
+    lazy var titleLabel: UILabel = {
         let text = UILabel()
         text.textColor = .recipleasePantone(color: .whiteReciplease)
         text.font = UIFont.chalkboard(fontSize: 25)
+        text.numberOfLines = 2
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
     
-    lazy var ingredients: UILabel = {
+    lazy var ingredientsLabel: UILabel = {
         let text = UILabel()
         text.textColor = .recipleasePantone(color: .grayReciplease)
         text.text = "tomatoe, salad, cheese, chicken"
         text.font = UIFont.chalkboard(fontSize: 20)
+        text.numberOfLines = 2
         text.translatesAutoresizingMaskIntoConstraints = false 
         return text
     }()
     
     lazy var backgroundImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "RecipeCellImage")
+        image.image = UIImage(named: "RecipeImage")
         image.contentMode = .scaleToFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -146,9 +150,9 @@ class RecipeCell: UITableViewCell {
 
     
     private func configureSubViews() {
-        let subviews = [backgroundImage, infoView, title, ingredients]
+        let subviews = [backgroundImage, infoView, titleLabel, ingredientsLabel]
         for view in subviews {
-            addSubview(view)
+            contentView.addSubview(view)
         }
     }
 
@@ -158,27 +162,28 @@ extension RecipeCell {
     private func setInfoViewConstraints() {
         infoStack.centerXAnchor.constraint(equalTo: infoView.centerXAnchor).isActive = true
         infoStack.centerYAnchor.constraint(equalTo: infoView.centerYAnchor).isActive = true
-        infoView.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor).isActive = true
+        infoView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         infoView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         infoView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = true
         infoView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
     }
-    
-    private func imageConstraints() {
-        backgroundImage.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        backgroundImage.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-    }
-    
-    private func labelsConstraints(){
-        title.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 40).isActive = true
-        title.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        title.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
-        
-        ingredients.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: 70).isActive = true
-        ingredients.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        ingredients.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9).isActive = true
-        
-    }
-    
-}
 
+    private func imageConstraints() {
+        backgroundImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        backgroundImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        backgroundImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        backgroundImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+    }
+
+    private func labelsConstraints(){
+        titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 40).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
+
+        ingredientsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 70).isActive = true
+        ingredientsLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
+        ingredientsLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.9).isActive = true
+
+    }
+
+}

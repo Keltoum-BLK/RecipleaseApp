@@ -32,7 +32,7 @@ class RecipeDetailsMainView: UIView {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        recipeImage.addBlackGradientLayerInBackground(frame: recipeImage.frame, colors: [UIColor(.clear), UIColor.recipleasePantone(color: .chalkBoardBackground)])
+        recipeImage.addBlackGradientLayerInBackground(frame: recipeImage.bounds, colors: [UIColor(.clear), UIColor.recipleasePantone(color: .chalkBoardBackground)])
     }
     
     //MARK: Subviews
@@ -47,8 +47,8 @@ class RecipeDetailsMainView: UIView {
     
     lazy var recipeImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "RecipeCellImage")
-        image.contentMode = .scaleAspectFill
+        image.image = UIImage(named: "RecipeImage")
+        image.contentMode = .scaleToFill
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -208,7 +208,7 @@ extension RecipeDetailsMainView {
     //MARK: Constraints
     private func setUpContraints() {
         recipeImage.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        recipeImage.topAnchor.constraint(equalTo: topAnchor, constant: 55).isActive = true
+        recipeImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         recipeImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35).isActive = true
         recipeImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         recipeImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
