@@ -12,10 +12,10 @@ class CoreOnboarding {
     static let shared = CoreOnboarding()
     
     func isNewUser() -> Bool {
-        return !UserDefaults.standard.bool(forKey: "isNewUser")
+        return !UserDefaults.standard.bool(forKey: Constants.shared.newUser)
     }
     
     func setIsNotNewUser() {
-        UserDefaults.standard.set(true, forKey: "isNewUser")
+        UserDefaults.standard.set(true, forKey: Constants.shared.newUser)
     }
 }
