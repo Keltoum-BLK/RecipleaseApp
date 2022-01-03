@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecipesVC: UIViewController {
+class FavoriteVC: UIViewController {
     
 
     private let recipesMainView = RecipesMainView()
@@ -29,7 +29,7 @@ class RecipesVC: UIViewController {
     }
 }
 
-extension RecipesVC: UITableViewDelegate, UITableViewDataSource {
+extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemonArray.count
     }

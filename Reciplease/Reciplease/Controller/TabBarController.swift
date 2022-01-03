@@ -32,7 +32,7 @@ class TabBarController: UITabBarController {
     }
 
     func setupVCs() {
-        viewControllers = [createNavController(for: SearchingVC(), title: NSLocalizedString("Searching", comment: "")), createNavController(for: RecipesVC(), title: NSLocalizedString("Favorites", comment: ""))]
+        viewControllers = [createNavController(for: SearchingVC(), title: NSLocalizedString("Searching", comment: "")), createNavController(for: FavoriteVC(), title: NSLocalizedString("Favorites", comment: ""))]
         self.setViewControllers(viewControllers, animated: false)
     
         setUpTabBar()
