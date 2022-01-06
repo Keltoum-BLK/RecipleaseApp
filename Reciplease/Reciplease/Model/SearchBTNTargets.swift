@@ -12,17 +12,16 @@ class SearchBTNTargets {
     
     static let shared = SearchBTNTargets()
     
-    func addIngredient(ingredient: String, list: [String]) -> [String]{
-        var array = list
-        array =  ingredient.split(separator: ",").map { "\($0)" }
-        return array
-        }
-   
+    func addIngredient(ingredient: String) -> [String] {
+        return  ingredient.split(separator: ",").map { String($0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)) }
+    }
+    
     
     func clearIngredientList(list: [String]) -> [String] {
         var array = list
         array.removeAll()
         return array
+        
     }
     
 }

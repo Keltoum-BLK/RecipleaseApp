@@ -74,7 +74,7 @@ extension SearchingVC: SearchMainViewDelegate {
         print("add it")
         view.endEditing(true)
         guard let text = searchMainView.addIngredientTextField.text else { return }
-        ingredientArray = SearchBTNTargets.shared.addIngredient(ingredient: text, list: ingredientArray)
+        ingredientArray = SearchBTNTargets.shared.addIngredient(ingredient: text)
         searchMainView.addIngredientTextField.text = nil 
         searchMainView.ingredientsTabView.reloadData()
     }
