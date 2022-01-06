@@ -9,12 +9,11 @@ import UIKit
 
 class SearchingVC: UIViewController {
     //MARK: Properties
-    private var ingredientArray = ["potatoes", "tomatoes", "plum", "red wine"]
+   var ingredientArray = [String]()
     
     //MARK: UI Properties
     private let searchMainView = SearchMainView()
-    
-    let ingredientCellIdentifier = "ingredientCell"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +21,7 @@ class SearchingVC: UIViewController {
         searchMainView.delegate = self
         searchMainView.ingredientsTabView.delegate = self
         searchMainView.ingredientsTabView.dataSource = self
-        searchMainView.ingredientsTabView.register(UITableViewCell.self, forCellReuseIdentifier: ingredientCellIdentifier)
-        
+        navigationItem.backButtonTitle = "Back"
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,8 +39,9 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = searchMainView.ingredientsTabView.dequeueReusableCell(withIdentifier: "ingredientCell", for: indexPath) 
-        cell.textLabel?.text = ingredientArray[indexPath.row]
+        let cell = UITableViewCell()
+        let item = ingredientArray[indexPath.row]
+        cell.textLabel?.text = item
         cell.textLabel?.font = UIFont.chalkduster(fontSize: 20)
         cell.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
         cell.textLabel?.textColor = UIColor.recipleasePantone(color: .whiteReciplease)
@@ -61,16 +60,23 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
 extension SearchingVC: SearchMainViewDelegate {
     //Methods SearchMainViewDelegate
     func clearIngredientList() {
+        ingredientArray = SearchBTNTargets.shared.clearIngredientList(list: ingredientArray)
+        searchMainView.ingredientsTabView.reloadData()
         print("cleared")
     }
     
     func searchRecipes() {
         print("search")
+        navigationController?.pushViewController(FavoriteVC(), animated: true)
     }
     
     func addIngredient() {
-        
-        print("add ingredient")
+        print("add it")
+        view.endEditing(true)
+        guard let text = searchMainView.addIngredientTextField.text else { return }
+        ingredientArray = SearchBTNTargets.shared.addIngredient(ingredient: text, list: ingredientArray)
+        searchMainView.addIngredientTextField.text = nil 
+        searchMainView.ingredientsTabView.reloadData()
     }
     
 }

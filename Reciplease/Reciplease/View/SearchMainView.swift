@@ -16,7 +16,11 @@ import UIKit
 class SearchMainView: UIView {
     //Delegate
     weak var delegate: SearchMainViewDelegate?
-   
+    var ingredient = String()
+    var elements: [String] {
+        return ingredient.split(separator: ",").map {
+            "\($0)" }
+    }
     //Inits 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,6 +68,7 @@ class SearchMainView: UIView {
     
     lazy var addIngredientTextField: UITextField = {
         let textField = UITextField()
+        textField.text = ingredient
         textField.textColor = .black
         textField.keyboardType = .twitter
         textField.font = UIFont.chalkboard(fontSize: 20)
@@ -194,13 +199,13 @@ extension SearchMainView {
         
         //set table view's constraints
         ingredientsTabView.topAnchor.constraint(equalTo: headerTabView.bottomAnchor, constant: 0).isActive = true
-        ingredientsTabView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45 ).isActive = true
+        ingredientsTabView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.42 ).isActive = true
         ingredientsTabView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         ingredientsTabView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     //
    private func setSearchBTNContraints() {
-        searchBTN.topAnchor.constraint(equalTo: ingredientsTabView.bottomAnchor, constant: 10).isActive = true
+        searchBTN.topAnchor.constraint(equalTo: ingredientsTabView.bottomAnchor, constant: 15).isActive = true
         searchBTN.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.08 ).isActive = true
         searchBTN.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
         searchBTN.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true

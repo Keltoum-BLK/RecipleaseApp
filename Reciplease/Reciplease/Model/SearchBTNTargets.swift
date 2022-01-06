@@ -10,15 +10,19 @@ import Foundation
 
 class SearchBTNTargets {
     
+    static let shared = SearchBTNTargets()
+    
+    func addIngredient(ingredient: String, list: [String]) -> [String]{
+        var array = list
+        array =  ingredient.split(separator: ",").map { "\($0)" }
+        return array
+        }
    
-    lazy var  ingredientsList = [String]()
     
-    func addIngredient(ingredient: String, list: [String]){
-        
-    }
-    
-    func clearIngredientList() {
-        
+    func clearIngredientList(list: [String]) -> [String] {
+        var array = list
+        array.removeAll()
+        return array
     }
     
 }

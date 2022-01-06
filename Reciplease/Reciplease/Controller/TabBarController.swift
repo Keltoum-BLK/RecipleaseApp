@@ -12,6 +12,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVCs()
+    
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,7 +54,8 @@ class TabBarController: UITabBarController {
         //set the title color
         tabBar.tintColor = .white
         tabBar.barTintColor = .lightGray
-        
+        tabBar.itemWidth = 30
+        tabBar.itemPositioning = .centered
         //position of elements in tab bar
         tabBar.itemPositioning = .fill
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
