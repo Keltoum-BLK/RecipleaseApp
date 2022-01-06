@@ -10,8 +10,9 @@ import UIKit
 class RecipeDetailsVC: UIViewController {
 
    lazy var recipedetailsView = RecipeDetailsMainView()
+    lazy var recipesFavorites = [Recipe]()
+    var favoriteRecipe: Recipe?
     
- 
     override func viewDidLoad() {
         super.viewDidLoad()
         recipedetailsView.delegate = self 
@@ -27,7 +28,6 @@ class RecipeDetailsVC: UIViewController {
     @objc func addFav(){
         print("add it")
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
-        
     }
 
 }

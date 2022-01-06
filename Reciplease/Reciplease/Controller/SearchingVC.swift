@@ -60,7 +60,7 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
 extension SearchingVC: SearchMainViewDelegate {
     //Methods SearchMainViewDelegate
     func clearIngredientList() {
-        ingredientArray = SearchBTNTargets.shared.clearIngredientList(list: ingredientArray)
+        ingredientArray = BTNActions.shared.clearIngredientList(list: ingredientArray)
         searchMainView.ingredientsTabView.reloadData()
         print("cleared")
     }
@@ -74,7 +74,7 @@ extension SearchingVC: SearchMainViewDelegate {
         print("add it")
         view.endEditing(true)
         guard let text = searchMainView.addIngredientTextField.text else { return }
-        ingredientArray = SearchBTNTargets.shared.addIngredient(ingredient: text)
+        ingredientArray = BTNActions.shared.addIngredient(ingredient: text)
         searchMainView.addIngredientTextField.text = nil 
         searchMainView.ingredientsTabView.reloadData()
     }

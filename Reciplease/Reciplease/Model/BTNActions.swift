@@ -8,9 +8,9 @@
 import Foundation
 
 
-class SearchBTNTargets {
+class BTNActions {
     
-    static let shared = SearchBTNTargets()
+    static let shared = BTNActions()
     
     func addIngredient(ingredient: String) -> [String] {
         return  ingredient.split(separator: ",").map { String($0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)) }
@@ -22,6 +22,12 @@ class SearchBTNTargets {
         array.removeAll()
         return array
         
+    }
+    
+    func searchRecipes(ingredient: [String]) -> [Recipe] {
+        let hits = [Recipe]()
+        //Get Recipes  here
+        return hits
     }
     
 }

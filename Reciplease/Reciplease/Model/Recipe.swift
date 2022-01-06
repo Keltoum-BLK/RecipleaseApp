@@ -7,6 +7,24 @@
 
 import Foundation
 
-struct Recipe {
+struct Recipe: Decodable {
+    var label: String
+    var image: String
+    var url: Url
+    var ingredientLines : IngredientLines
+    var time: Time
+    
+    
+    struct Url: Decodable {
+        var url: String
+    }
+    
+    struct IngredientLines: Decodable {
+        var ingredientLines: [String]
+    }
+    
+    struct Time: Decodable {
+        var time: Double
+    }
     
 }

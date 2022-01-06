@@ -34,7 +34,7 @@ class RecipeWebView: UIView, WKNavigationDelegate {
     private func configureSubviews() {
         backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
         webPage.navigationDelegate = self
-        guard let url = URL(string: "https://www.google.com") else { return }
+        guard let url = URL(string: "http://www.bbcgoodfood.com/recipes/1813668/creamy-lemon-and-cabbage-pasta-with-garlic-crumbs") else { return }
         webPage.load(URLRequest(url: url))
         addSubview(webPage)
     }
