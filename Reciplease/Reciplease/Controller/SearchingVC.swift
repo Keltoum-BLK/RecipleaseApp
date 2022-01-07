@@ -70,10 +70,11 @@ extension SearchingVC: SearchMainViewDelegate {
         print("search")
         EdamamApiService.shared.getTheHits(ingredients: ingredientArray) { result in
             switch result {
-            case .success(let hits):
-                let recipesVC = FavoriteVC()
-                guard let recipesHits = hits.hits else { return }
-                recipesVC.recipeSearch = recipesHits
+            case .success(let recipes):
+                guard let hits = recipes.hits else { return }
+                hits.forEach { recipe in
+                    print("=>", recipe.recipe?.label ?? "no mas")
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }

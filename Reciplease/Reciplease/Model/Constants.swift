@@ -7,9 +7,7 @@
 
 import Foundation
 
-class Constants {
+struct Constants {
     
-    static let shared = Constants()
-    
-    let newUser = "isNewUser"
+    static let newUser = "isNewUser"
 }

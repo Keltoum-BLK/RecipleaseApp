@@ -9,13 +9,11 @@ import Foundation
 
 class CoreOnboarding {
     
-    static let shared = CoreOnboarding()
-    
-    func isNewUser() -> Bool {
-        return !UserDefaults.standard.bool(forKey: Constants.shared.newUser)
+    static func isNewUser() -> Bool {
+        return !UserDefaults.standard.bool(forKey: Constants.newUser)
     }
     
-    func setIsNotNewUser() {
-        UserDefaults.standard.set(true, forKey: Constants.shared.newUser)
+    static func setIsNotNewUser() {
+        UserDefaults.standard.set(true, forKey: Constants.newUser)
     }
 }
