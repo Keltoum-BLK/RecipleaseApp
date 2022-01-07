@@ -11,8 +11,8 @@ class FavoriteVC: UIViewController {
     
 
     private let recipesMainView = RecipesMainView()
-    let recipeSearch = ["Garlic Bread", "Aoili Pasta", "Garlic Bagel", "Aoili Gnocchi", "salameche"]
-    let recipeFavorites = [Recipe]()
+    var recipeSearch = [Recipe]()
+    var recipeFavorites = [Recipe]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +39,14 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = recipesMainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
-        cell.titleLabel.text = recipeSearch[indexPath.row].uppercased()
+        cell.titleLabel.text = recipeSearch[indexPath.row].label?.uppercased()
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipeDetailsVC = RecipeDetailsVC()
-        recipeDetailsVC.recipedetailsView.recipeTitle.text = recipeSearch[indexPath.row].uppercased()
+        recipeDetailsVC.recipedetailsView.recipeTitle.text = recipeSearch[indexPath.row].label?.uppercased()
         navigationItem.backButtonTitle = "Back"
         navigationItem.backBarButtonItem?.tintColor = .white
         navigationController?.pushViewController(recipeDetailsVC, animated: true)

@@ -165,11 +165,9 @@ class RecipeDetailsMainView: UIView {
         return label
     }()
     
-    lazy var ingredientsList: UITextView = {
-        let list = UITextView()
+    lazy var ingredientsList: UITableView = {
+        let list = UITableView()
         list.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
-        list.font = UIFont.chalkboard(fontSize: 20)
-        list.textColor = .recipleasePantone(color: .whiteReciplease)
         list.translatesAutoresizingMaskIntoConstraints = false
         return list
     }()

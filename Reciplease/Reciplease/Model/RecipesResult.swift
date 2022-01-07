@@ -13,4 +13,14 @@ struct RecipeResults: Decodable {
     enum CodingKeys: String,CodingKey {
         case hits = "hits"
     }
+  
+}
+struct Recipe: Decodable {
+    var label: String?
+    var image: String?
+    var url: String?
+    var yield: Double?
+    var ingredientLines : [String]?
+    var time: Int?
+   
 }

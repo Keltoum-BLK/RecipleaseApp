@@ -41,6 +41,7 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let item = ingredientArray[indexPath.row]
+        cell.selectionStyle = .none
         cell.textLabel?.text = item
         cell.textLabel?.font = UIFont.chalkduster(fontSize: 20)
         cell.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
@@ -67,6 +68,16 @@ extension SearchingVC: SearchMainViewDelegate {
     
     func searchRecipes() {
         print("search")
+        EdamamApiService.shared.getTheHits(ingredients: ingredientArray) { result in
+            switch result {
+            case .success(let hits):
+                let recipesVC = FavoriteVC()
+                guard let recipesHits = hits.hits else { return }
+                recipesVC.recipeSearch = recipesHits
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         navigationController?.pushViewController(FavoriteVC(), animated: true)
     }
     
