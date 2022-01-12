@@ -41,6 +41,7 @@
 		B9F099632774C37500DED4F0 /* RecipeWebPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F099622774C37500DED4F0 /* RecipeWebPageVC.swift */; };
 		B9F834832767815C008A29E7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B9F834822767815C008A29E7 /* Alamofire */; };
 		B9F834852767818E008A29E7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F834842767818E008A29E7 /* WelcomeViewController.swift */; };
+		B9F919C4278F2E3800D96B33 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F919C3278F2E3800D96B33 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		B9F099602774C35100DED4F0 /* RecipeWebView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecipeWebView .swift"; sourceTree = "<group>"; };
 		B9F099622774C37500DED4F0 /* RecipeWebPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeWebPageVC.swift; sourceTree = "<group>"; };
 		B9F834842767818E008A29E7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		B9F919C3278F2E3800D96B33 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +174,6 @@
 				B9F83487276781A4008A29E7 /* View */,
 				B9F83488276781AA008A29E7 /* Controller */,
 				B96CA270275A265900E552D7 /* Info.plist */,
-				B96CA268275A265900E552D7 /* Reciplease.xcdatamodeld */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
@@ -197,6 +198,7 @@
 		B9F834862767819E008A29E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B9F919C0278F2DC800D96B33 /* CoreData */,
 				B931F253276CF83A003B175A /* BTNActions.swift */,
 				B9D4B1412787606D0079A909 /* RecipesResult.swift */,
 				B97631D4278356E700016E35 /* Constants.swift */,
@@ -263,6 +265,15 @@
 				B9A1DD4D2788534100D17151 /* SecretApiKey.swift */,
 			);
 			path = Secret;
+			sourceTree = "<group>";
+		};
+		B9F919C0278F2DC800D96B33 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B96CA268275A265900E552D7 /* Reciplease.xcdatamodeld */,
+				B9F919C3278F2E3800D96B33 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,6 +417,7 @@
 				B96CA26A275A265900E552D7 /* Reciplease.xcdatamodeld in Sources */,
 				B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */,
 				B9AED1D72768E51000E80985 /* FavoriteVC.swift in Sources */,
+				B9F919C4278F2E3800D96B33 /* CoreDataStack.swift in Sources */,
 				B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */,
 				B97EAA6C2779AF5600BAF7A8 /* UIView + Extension.swift in Sources */,
 				B9AEAB2727736E8800B75D49 /* UIImageView + Extension.swift in Sources */,

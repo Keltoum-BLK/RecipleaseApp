@@ -51,20 +51,22 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ingredientsList = recipeSearch[indexPath.row].recipe?.createIngredientList(ingredients: recipeSearch[indexPath.row].recipe?.ingredients)
        
-        
         let cell = recipesMainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
         cell.titleLabel.text = recipeSearch[indexPath.row].recipe?.label?.uppercased()
         cell.backgroundImage.downloaded(from: recipeSearch[indexPath.row].recipe?.image ?? "no image")
         cell.timeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
         cell.likeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
-        cell.ingredientsLabel.text = ingredientsList?.joined(separator: ",")
+        cell.ingredientsLabel.text = ingredientsList?.joined(separator: ", ")
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipeDetailsVC = RecipeDetailsVC()
-//        recipeDetailsVC.recipedetailsView.recipeTitle.text = recipeSearch[indexPath.row].label?.uppercased()
+        let recipeDetailsVC = RecipeDetailsVC(ingredientArray: recipeSearch[indexPath.row].recipe?.ingredientLines ?? ["no info"], url: recipeSearch[indexPath.row].recipe?.url ?? "https://www.youtube.com/watch?v=rUYxOtOUmfw")
+        recipeDetailsVC.recipedetailsView.recipeTitle.text = recipeSearch[indexPath.row].recipe?.label?.uppercased()
+        recipeDetailsVC.recipedetailsView.recipeImage.downloaded(from: recipeSearch[indexPath.row].recipe?.image ?? "no image")
+        recipeDetailsVC.recipedetailsView.likeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
+        recipeDetailsVC.recipedetailsView.timeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
         navigationItem.backButtonTitle = "Back"
         navigationItem.backBarButtonItem?.tintColor = .white
         navigationController?.pushViewController(recipeDetailsVC, animated: true)

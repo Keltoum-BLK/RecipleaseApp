@@ -11,7 +11,7 @@ import WebKit
 
 class RecipeWebView: UIView, WKNavigationDelegate {
     
-    private var webPage: WKWebView = {
+    var webPage: WKWebView = {
         let webView = WKWebView()
         webView.allowsBackForwardNavigationGestures = true
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,17 +34,15 @@ class RecipeWebView: UIView, WKNavigationDelegate {
     private func configureSubviews() {
         backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
         webPage.navigationDelegate = self
-        guard let url = URL(string: "http://www.bbcgoodfood.com/recipes/1813668/creamy-lemon-and-cabbage-pasta-with-garlic-crumbs") else { return }
-        webPage.load(URLRequest(url: url))
         addSubview(webPage)
     }
     
     private func setUpContraints() {
        
-        webPage.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
-        webPage.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        webPage.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        webPage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9).isActive = true
+        webPage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        webPage.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
+        webPage.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+        webPage.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
         webPage.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
     }
     

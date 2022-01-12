@@ -40,7 +40,8 @@ class RecipeDetailsMainView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.chalkboard(fontSize: 30)
+        label.font = UIFont.chalkboard(fontSize: 25)
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

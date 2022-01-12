@@ -26,6 +26,7 @@ struct Recipe: Decodable {
 }
 
 struct RecipeData: Decodable {
+    var uri: String?
     var label: String?
     var image: String?
     var url: String?
@@ -35,6 +36,7 @@ struct RecipeData: Decodable {
     var ingredients: [IngredientsData]?
     
     enum CodingKeys: String, CodingKey {
+        case uri
         case label
         case image
         case url

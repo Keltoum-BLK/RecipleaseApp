@@ -69,9 +69,9 @@ extension SearchingVC: SearchMainViewDelegate {
             switch result {
             case .success(let recipes):
                 guard let hits = recipes.hits else { return }
-//                hits.forEach { recipe in
-//                    print("=>", recipe.recipe?.label ?? "no mas")
-//                }
+                hits.forEach { recipe in
+                    print("=>", recipe.recipe?.url ?? "no mas")
+                }
                 let recipesSearchVC = FavoriteVC(recipesArray: hits)
                 self.navigationController?.pushViewController(recipesSearchVC, animated: true)
             case .failure(let error):
