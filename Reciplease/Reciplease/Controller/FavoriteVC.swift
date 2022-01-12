@@ -12,7 +12,7 @@ class FavoriteVC: UIViewController {
 
     private let recipesMainView = RecipesMainView()
     var recipeSearch = [Recipe]()
-    var recipeFavorites = [Recipe]()
+    var recipeFavorites = ["pizza", "garlic bread"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,18 @@ class FavoriteVC: UIViewController {
         super.viewDidLayoutSubviews()
       
     }
+    
+    init(){
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init(recipesArray: [Recipe]) {
+        recipeSearch = recipesArray
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 }
 
 extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
@@ -33,12 +45,19 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
         return recipeSearch.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 200
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let ingredientsList = recipeSearch[indexPath.row].recipe?.createIngredientList(ingredients: recipeSearch[indexPath.row].recipe?.ingredients)
+       
+        
         let cell = recipesMainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
-//        cell.titleLabel.text = recipeSearch[indexPath.row].label?.uppercased()
+        cell.titleLabel.text = recipeSearch[indexPath.row].recipe?.label?.uppercased()
+        cell.backgroundImage.downloaded(from: recipeSearch[indexPath.row].recipe?.image ?? "no image")
+        cell.timeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
+        cell.likeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
+        cell.ingredientsLabel.text = ingredientsList?.joined(separator: ",")
         return cell
     }
     

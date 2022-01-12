@@ -32,3 +32,18 @@ class BTNActions {
     
 }
 
+struct Tools {
+    
+    
+    static func getDoubleToString(number : Double?)-> (String) {
+        //convert a Int? to String
+        // unwrapped the optional with a guard let syntax
+        guard let fullNumber = number  else { return "N/A"}
+        let numberValue = Int(fullNumber)
+        //convert a Int? to String
+        let ID = String(numberValue)
+        
+        return ID
+    }
+}
+

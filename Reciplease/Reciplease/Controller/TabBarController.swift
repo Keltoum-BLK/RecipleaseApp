@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if CoreOnboarding.shared.isNewUser() {
+        if CoreOnboarding.isNewUser() {
             let welcomeVC = WelcomeViewController()
             welcomeVC.modalPresentationStyle = .formSheet
             welcomeVC.modalTransitionStyle = .coverVertical

@@ -10,7 +10,7 @@ import UIKit
 class RecipeCell: UITableViewCell {
 
     static let identifier = "recipeCell"
-    
+    let searchVC = SearchingVC()
     // MARK: - Initializer
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,7 +28,7 @@ class RecipeCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         DispatchQueue.main.async {
-            self.backgroundImage.addBlackGradientLayerInBackground(frame: self.backgroundImage.bounds, colors: [UIColor.clear, UIColor.recipleasePantone(color: .chalkBoardBackground)])
+            self.backgroundImage.addBlackGradientLayerInBackground(frame: self.backgroundImage.bounds, colors: [UIColor.clear, UIColor.black])
         }
     }
     
@@ -37,7 +37,7 @@ class RecipeCell: UITableViewCell {
         let text = UILabel()
         text.textColor = .recipleasePantone(color: .whiteReciplease)
         text.font = UIFont.chalkboard(fontSize: 25)
-        text.numberOfLines = 2
+        text.numberOfLines = 1
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -47,7 +47,7 @@ class RecipeCell: UITableViewCell {
         text.textColor = .recipleasePantone(color: .grayReciplease)
         text.text = "tomatoe, salad, cheese, chicken"
         text.font = UIFont.chalkboard(fontSize: 20)
-        text.numberOfLines = 2
+        text.numberOfLines = 1
         text.translatesAutoresizingMaskIntoConstraints = false 
         return text
     }()
@@ -162,7 +162,7 @@ extension RecipeCell {
     private func setInfoViewConstraints() {
         infoStack.centerXAnchor.constraint(equalTo: infoView.centerXAnchor).isActive = true
         infoStack.centerYAnchor.constraint(equalTo: infoView.centerYAnchor).isActive = true
-        infoView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        infoView.centerYAnchor.constraint(equalTo: centerYAnchor,constant: -10).isActive = true
         infoView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         infoView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2).isActive = true
         infoView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true

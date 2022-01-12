@@ -10,11 +10,10 @@ import UIKit
 class SearchingVC: UIViewController {
     //MARK: Properties
    var ingredientArray = [String]()
-    
+    var recipeSearch = [Recipe]()
     //MARK: UI Properties
     private let searchMainView = SearchMainView()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = searchMainView
@@ -27,8 +26,6 @@ class SearchingVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
-    
-    
 }
 
 extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
@@ -72,14 +69,16 @@ extension SearchingVC: SearchMainViewDelegate {
             switch result {
             case .success(let recipes):
                 guard let hits = recipes.hits else { return }
-                hits.forEach { recipe in
-                    print("=>", recipe.recipe?.label ?? "no mas")
-                }
+//                hits.forEach { recipe in
+//                    print("=>", recipe.recipe?.label ?? "no mas")
+//                }
+                let recipesSearchVC = FavoriteVC(recipesArray: hits)
+                self.navigationController?.pushViewController(recipesSearchVC, animated: true)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-        navigationController?.pushViewController(FavoriteVC(), animated: true)
+       
     }
     
     func addIngredient() {

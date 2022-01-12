@@ -9,11 +9,14 @@ import Foundation
 
 struct RecipeResults: Decodable {
     var hits: [Recipe]?
-
+    
+    
     enum CodingKeys: String, CodingKey {
         case hits = "hits"
+       
     }
 }
+
 struct Recipe: Decodable {
     var recipe: RecipeData?
     
@@ -28,14 +31,38 @@ struct RecipeData: Decodable {
     var url: String?
     var yield: Double?
     var ingredientLines: [String]?
-    var time: Double?
-   
+    var totalTime: Double?
+    var ingredients: [IngredientsData]?
+    
     enum CodingKeys: String, CodingKey {
         case label
         case image
         case url
         case yield
         case ingredientLines
-        case time
+        case totalTime
+        case ingredients
     }
+    
+    func createIngredientList(ingredients : [IngredientsData]?) -> [String] {
+        var list = [String]()
+        ingredients?.forEach { ingredient in
+            list.append(ingredient.food ?? "NA")
+            
+        }
+        return list
+    }
+    
 }
+
+struct IngredientsData: Decodable {
+    var food: String?
+    
+  
+    enum CodingKeys: String, CodingKey {
+        case food
+      
+    }
+    
+}
+

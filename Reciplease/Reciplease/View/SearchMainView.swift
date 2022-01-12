@@ -10,17 +10,20 @@ protocol SearchMainViewDelegate: AnyObject {
     func clearIngredientList()
     func searchRecipes()
 }
-
 import UIKit
 
 class SearchMainView: UIView {
     //Delegate
     weak var delegate: SearchMainViewDelegate?
+  
+   
+    //Properties
     var ingredient = String()
     var elements: [String] {
         return ingredient.split(separator: ",").map {
             "\($0)" }
     }
+    
     //Inits 
     override init(frame: CGRect) {
         super.init(frame: frame)
