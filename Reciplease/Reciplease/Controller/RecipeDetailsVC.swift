@@ -43,7 +43,12 @@ class RecipeDetailsVC: UIViewController {
     
     @objc func addFav(){
         print("add it")
+       
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
+    }
+    
+    private func saveRecipe(recipe: Recipe) {
+        
     }
     
 }

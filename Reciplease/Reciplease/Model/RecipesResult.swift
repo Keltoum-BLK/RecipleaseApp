@@ -60,10 +60,8 @@ struct RecipeData: Decodable {
 struct IngredientsData: Decodable {
     var food: String?
     
-  
     enum CodingKeys: String, CodingKey {
         case food
-      
     }
     
 }
