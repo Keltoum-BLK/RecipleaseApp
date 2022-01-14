@@ -10,9 +10,10 @@ import UIKit
 class RecipeDetailsVC: UIViewController {
     
     lazy var recipedetailsView = RecipeDetailsMainView()
-    lazy var recipesFavorites = [Recipe]()
+    lazy var recipesFavorites = [RecipeData]()
     var ingredientsList = [String]()
-    var favoriteRecipe: Recipe?
+    var favoriteRecipe: RecipeData?
+    let recipeUnwrapped = RecipeData()
     var recipeUrl = "https://www.marmiton.org/"
     
     override func viewDidLoad() {
@@ -43,12 +44,26 @@ class RecipeDetailsVC: UIViewController {
     
     @objc func addFav(){
         print("add it")
-       
+        recipesFavorites.append(favoriteRecipe ?? recipeUnwrapped)
+        saveRecipe(favorite: favoriteRecipe ?? recipeUnwrapped)
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
     }
     
-    private func saveRecipe(recipe: Recipe) {
-        
+    private func saveRecipe(favorite: RecipeData) {
+        let recipeFav = RecipeFavorites(context: CoreDataStack.sharedInstance.viewContext)
+        recipeFav.ingredients = favorite.ingredients as NSObject?
+        recipeFav.ingredientLines = favorite.ingredientLines
+        recipeFav.yield = favorite.yield ?? 1.0
+        recipeFav.totalTime = favorite.totalTime ?? 1.0
+        recipeFav.label = favorite.label
+        recipeFav.url = favorite.url
+        recipeFav.image = favorite.image
+        do {
+            try CoreDataStack.sharedInstance.viewContext.save()
+        }
+        catch {
+            print("We were unable to save \(recipeFav)")
+        }
     }
     
 }

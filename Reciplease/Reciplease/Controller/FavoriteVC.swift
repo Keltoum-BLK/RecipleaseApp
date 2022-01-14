@@ -67,6 +67,7 @@ extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
         recipeDetailsVC.recipedetailsView.recipeImage.downloaded(from: recipeSearch[indexPath.row].recipe?.image ?? "no image")
         recipeDetailsVC.recipedetailsView.likeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
         recipeDetailsVC.recipedetailsView.timeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
+        recipeDetailsVC.favoriteRecipe = recipeSearch[indexPath.row].recipe
         navigationItem.backButtonTitle = "Back"
         navigationItem.backBarButtonItem?.tintColor = .white
         navigationController?.pushViewController(recipeDetailsVC, animated: true)
