@@ -12,13 +12,16 @@ class EdamamApiService {
     
     static let shared = EdamamApiService()
     
+  
     
     func getTheHits(ingredients : [String], completion: @escaping (Result<RecipeResults, APIError>)-> Void) {
-        let ingredientsList = ingredients.joined(separator: ",")
+        
+        let ingredientsList = ingredients.map({$0.replacingOccurrences(of: " ", with: "%20")}).joined(separator: ",")
         
         AF.request("https://api.edamam.com/api/recipes/v2?type=public&app_id=\(SecretApiKey.shared.edamamID)&app_key=\(SecretApiKey.shared.edamamKey)&time=10-60&imageSize=REGULAR&q=\(ingredientsList)")
             .validate(statusCode: 200..<300)
             .responseData { response in
+                print(response.response?.statusCode)
                 switch response.result {
                     case .success(let hits):
                     

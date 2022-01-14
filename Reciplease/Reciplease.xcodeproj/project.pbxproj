@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B91AC92A2791E95200510D89 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91AC9292791E95200510D89 /* CoreDataHelper.swift */; };
 		B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931F24F276CD8B9003B175A /* UITextField + Extension.swift */; };
 		B931F254276CF83A003B175A /* BTNActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931F253276CF83A003B175A /* BTNActions.swift */; };
 		B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CA25F275A265900E552D7 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 		B97631D5278356E700016E35 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97631D4278356E700016E35 /* Constants.swift */; };
 		B97631D727835A2100016E35 /* EdamamApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97631D627835A2100016E35 /* EdamamApiService.swift */; };
 		B978EB442769ECE9008E00A8 /* RecipeDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */; };
+		B97A66A82791DB0800596AB0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97A66A72791DB0800596AB0 /* String.swift */; };
 		B97D17F0278762DE00F1F091 /* RecipesJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = B97D17EF278762DE00F1F091 /* RecipesJSON.json */; };
 		B97EAA6C2779AF5600BAF7A8 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */; };
 		B99091CB27907F3A00297DF4 /* RecipeFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99091CA27907F3A00297DF4 /* RecipeFavorites.swift */; };
@@ -62,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B91AC9292791E95200510D89 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		B931F24F276CD8B9003B175A /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		B931F253276CF83A003B175A /* BTNActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTNActions.swift; sourceTree = "<group>"; };
 		B96CA25C275A265900E552D7 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +83,7 @@
 		B97631D4278356E700016E35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B97631D627835A2100016E35 /* EdamamApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamApiService.swift; sourceTree = "<group>"; };
 		B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsVC.swift; sourceTree = "<group>"; };
+		B97A66A72791DB0800596AB0 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		B97D17EF278762DE00F1F091 /* RecipesJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecipesJSON.json; sourceTree = "<group>"; };
 		B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		B99091CA27907F3A00297DF4 /* RecipeFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFavorites.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 				B931F24F276CD8B9003B175A /* UITextField + Extension.swift */,
 				B9AEAB2627736E8800B75D49 /* UIImageView + Extension.swift */,
 				B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */,
+				B97A66A72791DB0800596AB0 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			children = (
 				B96CA268275A265900E552D7 /* Reciplease.xcdatamodeld */,
 				B99091CA27907F3A00297DF4 /* RecipeFavorites.swift */,
+				B91AC9292791E95200510D89 /* CoreDataHelper.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 			files = (
 				B96CA26A275A265900E552D7 /* Reciplease.xcdatamodeld in Sources */,
 				B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */,
+				B91AC92A2791E95200510D89 /* CoreDataHelper.swift in Sources */,
 				B9AED1D72768E51000E80985 /* FavoriteVC.swift in Sources */,
 				B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */,
 				B97EAA6C2779AF5600BAF7A8 /* UIView + Extension.swift in Sources */,
@@ -440,6 +447,7 @@
 				B9F834852767818E008A29E7 /* WelcomeViewController.swift in Sources */,
 				B9AED1DF276911B900E80985 /* RecipeCell.swift in Sources */,
 				B9AED1D32768E40900E80985 /* WelcomeMainView.swift in Sources */,
+				B97A66A82791DB0800596AB0 /* String.swift in Sources */,
 				B9AED1DD27690C2B00E80985 /* RecipesMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

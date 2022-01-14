@@ -11,7 +11,7 @@ import CoreData
 class RecipeDetailsVC: UIViewController {
     
     lazy var recipedetailsView = RecipeDetailsMainView()
-    lazy var recipesFavorites = [RecipeData]()
+    lazy var recipesFavorites = [RecipeFavorites]()
     var ingredientsList = [String]()
     var favoriteRecipe: RecipeData?
     let recipeUnwrapped = RecipeData()
@@ -47,23 +47,33 @@ class RecipeDetailsVC: UIViewController {
     @objc func addFav(){
         print("add it")
         saveRecipe(favorite: favoriteRecipe ?? recipeUnwrapped)
-        let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
-        guard (try? context.fetch(request)) != nil else { return }
-        
+        let request =  NSFetchRequest<RecipeFavorites>(entityName: "RecipeFavorites")
+        request.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                for r in results as [NSManagedObject] {
+                    if let recipeLabel = r.value(forKey: "label") as? String {
+                        print(recipeLabel)
+                    }
+                }
+            }
+        } catch {
+            
+        }
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
     }
     
     private func saveRecipe(favorite: RecipeData) {
-        let recipeFav = RecipeFavorites(context: context)
-        if recipeFav.ingredients == favorite.ingredients as NSObject?,
-        recipeFav.ingredientLines == favorite.ingredientLines,
-        recipeFav.yield == favorite.yield ?? 1.0,
-        recipeFav.totalTime == favorite.totalTime ?? 1.0,
-        recipeFav.label == favorite.label,
-        recipeFav.url == favorite.url,
-          recipeFav.image == favorite.image {
-            recipesFavorites.append(favorite)
-       }
+        let recipeFav = NSEntityDescription.insertNewObject(forEntityName: "RecipeFavorites", into: context)
+        recipeFav.setValue(favorite.label, forKey: "label")
+        recipeFav.setValue(favorite.yield, forKey: "yield")
+        recipeFav.setValue(favorite.url, forKey: "url")
+        recipeFav.setValue(favorite.totalTime, forKey: "totalTime")
+        recipeFav.setValue(favorite.image, forKey: "image")
+        recipeFav.setValue(favorite.ingredients, forKey: "ingredients")
+        recipeFav.setValue(favorite.ingredientLines, forKey: "ingredientLines")
         do {
             try context.save()
         }

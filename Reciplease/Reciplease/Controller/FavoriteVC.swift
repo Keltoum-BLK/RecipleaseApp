@@ -11,8 +11,8 @@ class FavoriteVC: UIViewController {
     
 
     private let recipesMainView = RecipesMainView()
-    var recipeSearch = [Recipe]()
-    var recipeFavorites = ["pizza", "garlic bread"]
+    private var recipeSearch = [Recipe]()
+    private var recipeFavorites = [RecipeData]() 
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,8 @@ class FavoriteVC: UIViewController {
     }
     
     init(recipesArray: [Recipe]) {
-        recipeSearch = recipesArray
         super.init(nibName: nil, bundle: nil)
+        recipeSearch = recipesArray
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
