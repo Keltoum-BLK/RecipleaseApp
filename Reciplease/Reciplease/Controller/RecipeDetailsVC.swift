@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class RecipeDetailsVC: UIViewController {
     
@@ -15,6 +16,7 @@ class RecipeDetailsVC: UIViewController {
     var favoriteRecipe: RecipeData?
     let recipeUnwrapped = RecipeData()
     var recipeUrl = "https://www.marmiton.org/"
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,30 +46,32 @@ class RecipeDetailsVC: UIViewController {
     
     @objc func addFav(){
         print("add it")
-        recipesFavorites.append(favoriteRecipe ?? recipeUnwrapped)
         saveRecipe(favorite: favoriteRecipe ?? recipeUnwrapped)
+        let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
+        guard (try? context.fetch(request)) != nil else { return }
+        
         navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
     }
     
     private func saveRecipe(favorite: RecipeData) {
-        let recipeFav = RecipeFavorites(context: CoreDataStack.sharedInstance.viewContext)
-        recipeFav.ingredients = favorite.ingredients as NSObject?
-        recipeFav.ingredientLines = favorite.ingredientLines
-        recipeFav.yield = favorite.yield ?? 1.0
-        recipeFav.totalTime = favorite.totalTime ?? 1.0
-        recipeFav.label = favorite.label
-        recipeFav.url = favorite.url
-        recipeFav.image = favorite.image
+        let recipeFav = RecipeFavorites(context: context)
+        if recipeFav.ingredients == favorite.ingredients as NSObject?,
+        recipeFav.ingredientLines == favorite.ingredientLines,
+        recipeFav.yield == favorite.yield ?? 1.0,
+        recipeFav.totalTime == favorite.totalTime ?? 1.0,
+        recipeFav.label == favorite.label,
+        recipeFav.url == favorite.url,
+          recipeFav.image == favorite.image {
+            recipesFavorites.append(favorite)
+       }
         do {
-            try CoreDataStack.sharedInstance.viewContext.save()
+            try context.save()
         }
         catch {
             print("We were unable to save \(recipeFav)")
         }
     }
-    
 }
-
 extension RecipeDetailsVC: RecipeDetailsDelegate {
     
     //MARK: Methods RecipePageWeb
@@ -78,10 +82,6 @@ extension RecipeDetailsVC: RecipeDetailsDelegate {
         navigationController?.pushViewController(recipeWeb, animated: true)
         print("pushed")
     }
-    
-    
-    
-    
 }
 
 extension RecipeDetailsVC: UITableViewDelegate, UITableViewDataSource {
