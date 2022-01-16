@@ -66,15 +66,17 @@ class RecipeDetailsVC: UIViewController {
     }
     
     private func saveRecipe(favorite: RecipeData) {
-        let recipeFav = NSEntityDescription.insertNewObject(forEntityName: "RecipeFavorites", into: context)
-        recipeFav.setValue(favorite.label, forKey: "label")
-        recipeFav.setValue(favorite.yield, forKey: "yield")
-        recipeFav.setValue(favorite.url, forKey: "url")
-        recipeFav.setValue(favorite.totalTime, forKey: "totalTime")
-        recipeFav.setValue(favorite.image, forKey: "image")
-        recipeFav.setValue(favorite.ingredients, forKey: "ingredients")
-        recipeFav.setValue(favorite.ingredientLines, forKey: "ingredientLines")
+        let recipeFav = RecipeFavorites(context: context)
+       
+        
         do {
+            recipeFav.ingredients = favorite.ingredients as? [IngredientCData]
+                   recipeFav.ingredientLines = favorite.ingredientLines
+                   recipeFav.yield = favorite.yield ?? 1.0
+                   recipeFav.totalTime = favorite.totalTime ?? 1.0
+                   recipeFav.label = favorite.label
+                   recipeFav.url = favorite.url
+                   recipeFav.image = favorite.image
             try context.save()
         }
         catch {
