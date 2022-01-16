@@ -16,7 +16,7 @@ class RecipeDetailsVC: UIViewController {
     var favoriteRecipe: RecipeData?
     let recipeUnwrapped = RecipeData()
     var recipeUrl = "https://www.marmiton.org/"
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let context = CoreDataHelper.shared.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()

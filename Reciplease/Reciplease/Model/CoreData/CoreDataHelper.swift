@@ -33,6 +33,16 @@ final class CoreDataHelper {
     }
     
     // MARK: - Core
+    
+    func saveObject(_ object: NSManagedObject, _ entityName: String) {
+        var recipe = NSEntityDescription.insertNewObject(forEntityName: entityName, into: viewContext)
+        recipe = object
+        do {
+            try viewContext.save()
+        } catch {
+            print("we are unable to save \(recipe)")
+        }
+    }
         
     func getObject<T: NSManagedObject>(predicate: NSPredicate? = nil) -> [T]? {
         
