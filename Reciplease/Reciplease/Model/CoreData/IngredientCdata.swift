@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class IngredientCData: NSObject {
+class IngredientCData: NSSecureUnarchiveFromDataTransformer {
     
     var food: String
     

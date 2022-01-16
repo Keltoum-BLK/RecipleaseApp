@@ -7,19 +7,17 @@
 
 import UIKit
 
-class FavoriteVC: UIViewController {
+class RecipesListViewController: UIViewController {
     
 
     private let recipesMainView = RecipesMainView()
     private var recipeSearch = [Recipe]()
-    private var recipeFavorites = [RecipeData]() 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view = recipesMainView
         recipesMainView.recipesTabView.delegate = self
         recipesMainView.recipesTabView.dataSource = self
-        recipesMainView.recipesTabView.register(RecipeCell.self, forCellReuseIdentifier: RecipeCell.identifier)
     }
 
     override func viewDidLayoutSubviews() {
@@ -40,7 +38,7 @@ class FavoriteVC: UIViewController {
     }
 }
 
-extension FavoriteVC: UITableViewDelegate, UITableViewDataSource {
+extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeSearch.count
     }

@@ -26,6 +26,7 @@ class RecipesMainView: UIView {
        let tabView = UITableView()
         tabView.translatesAutoresizingMaskIntoConstraints = false
         tabView.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
+        tabView.register(RecipeCell.self, forCellReuseIdentifier: RecipeCell.identifier)
         return tabView
     }()
 

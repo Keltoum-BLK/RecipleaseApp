@@ -14,9 +14,9 @@ class RecipeDetailsVC: UIViewController {
     lazy var recipesFavorites = [RecipeFavorites]()
     var ingredientsList = [String]()
     var favoriteRecipe: RecipeData?
-    let recipeUnwrapped = RecipeData()
+  
     var recipeUrl = "https://www.marmiton.org/"
-    let context = CoreDataHelper.shared.viewContext
+    let context = CoreDataStack.shared.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,8 @@ class RecipeDetailsVC: UIViewController {
     
     @objc func addFav(){
         print("add it")
-        saveRecipe(favorite: favoriteRecipe ?? recipeUnwrapped)
+        guard let recipe = favoriteRecipe else { return }
+        saveRecipe(favorite: recipe)
         let request =  NSFetchRequest<RecipeFavorites>(entityName: "RecipeFavorites")
         request.returnsObjectsAsFaults = false
         do {
@@ -67,8 +68,6 @@ class RecipeDetailsVC: UIViewController {
     
     private func saveRecipe(favorite: RecipeData) {
         let recipeFav = RecipeFavorites(context: context)
-       
-        
         do {
             recipeFav.ingredients = favorite.ingredients as? [IngredientCData]
                    recipeFav.ingredientLines = favorite.ingredientLines

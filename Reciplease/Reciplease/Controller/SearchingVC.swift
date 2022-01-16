@@ -72,7 +72,7 @@ extension SearchingVC: SearchMainViewDelegate {
 //                hits.forEach { recipe in
 //                    print("=>", recipe.recipe?.url ?? "no mas")
 //                }
-                let recipesSearchVC = FavoriteVC(recipesArray: hits)
+                let recipesSearchVC = RecipesListViewController(recipesArray: hits)
                 self.navigationController?.pushViewController(recipesSearchVC, animated: true)
             case .failure(let error):
                 print(error.localizedDescription)
