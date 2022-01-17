@@ -7,13 +7,14 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class CoreDataManager {
     
     // MARK: - Properties
     
-    let coreDataStack: CoreDataStack
-    let managedObjectContext: NSManagedObjectContext
+    static let sharedContext = CoreDataManager()
+    let managedObjectContext = CoreDataStack.shared.viewContext
     
     var favoriteRecipe: [RecipeFavorites] {
         let request: NSFetchRequest = RecipeFavorites.fetchRequest()
@@ -24,27 +25,21 @@ class CoreDataManager {
         }
     }
     
-    // MARK: - Initialization
-    
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
-        self.managedObjectContext = coreDataStack.viewContext
-    }
     
     // MARK: - Methods
     
     // method to add recipe in Favorites
-    func addRecipe(title: String, totalTime: Double, ingredients: [IngredientCData], yield: Double, image: String, url: String, ingredientsLines: [String]) {
+    func addRecipe(title: String, totalTime: Double, ingredients: String, yield: Double, image: String, url: String, ingredientsLines: [String]) {
         
         let entity = RecipeFavorites(context: managedObjectContext)
         entity.label = title
         entity.totalTime = totalTime
         entity.image = image
-        
+        entity.ingredientLines = ingredientsLines
         entity.yield = yield
         entity.url = url
     
-        coreDataStack.saveContext()
+        CoreDataStack.shared.saveContext()
     }
     
     //Utilisation : addRecipe(title: recipeTitle.text!, totalTime: recipeTime.text!, ingredients: [], yield: recipeYield.text!, image: "\(recipe!.image)", uri: "\(recipe!.uri)", url: "\(recipe!.url)")
@@ -58,12 +53,13 @@ class CoreDataManager {
                 managedObjectContext.delete(object)
             }
         }
+        CoreDataStack.shared.saveContext()
     }
     
     // method to check if recipe is already in Favorites
-    func checkIfRecipeIsAlreadySaved(recipeUri: String) -> Bool {
+    func checkIfRecipeIsAlreadySaved(recipeUrl: String) -> Bool {
         let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
-        request.predicate = NSPredicate(format: "uri == %@", recipeUri)
+        request.predicate = NSPredicate(format: "url == %@", recipeUrl)
         guard let recipes = try? managedObjectContext.fetch(request) else { return false}
         if recipes.isEmpty { return false }
         return true

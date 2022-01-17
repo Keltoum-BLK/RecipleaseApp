@@ -26,9 +26,8 @@ class RecipeDetailsVC: UIViewController {
         view = recipedetailsView
         title = "Reciplease"
         navigationItem.backButtonTitle = "Back"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFav))
-        navigationItem.rightBarButtonItem?.tintColor = .recipleasePantone(color: .goldReciplease)
-        // Do any additional setup after loading the view.
+        starFillOrNot()
+       
     }
     init (){
         super.init(nibName: nil, bundle: nil)
@@ -47,39 +46,28 @@ class RecipeDetailsVC: UIViewController {
     @objc func addFav(){
         print("add it")
         guard let recipe = favoriteRecipe else { return }
-        saveRecipe(favorite: recipe)
-        let request =  NSFetchRequest<RecipeFavorites>(entityName: "RecipeFavorites")
-        request.returnsObjectsAsFaults = false
-        do {
-            let results = try context.fetch(request)
+        if !CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: recipe.url ?? "no url") {
+            CoreDataManager.sharedContext.addRecipe(title: recipe.label ?? "no label",
+                                                    totalTime: recipe.totalTime ?? 1.0,
+                                                    ingredients: recipe.createIngredientList(ingredients: recipe.ingredients).joined(separator: " , "),
+                                                    yield: recipe.yield ?? 1.0,
+                                                    image: recipe.image ?? "no image",
+                                                    url: recipe.url ?? "no url",
+                                                    ingredientsLines: recipe.ingredientLines ?? ["no ingredientLines"])
             
-            if results.count > 0 {
-                for r in results as [NSManagedObject] {
-                    if let recipeLabel = r.value(forKey: "label") as? String {
-                        print(recipeLabel)
-                    }
-                }
-            }
-        } catch {
-            
+        } else {
+            //implement Alert here
+            print("=> OUpps" )
         }
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
     }
-    
-    private func saveRecipe(favorite: RecipeData) {
-        let recipeFav = RecipeFavorites(context: context)
-        do {
-            recipeFav.ingredients = favorite.ingredients as? [IngredientCData]
-                   recipeFav.ingredientLines = favorite.ingredientLines
-                   recipeFav.yield = favorite.yield ?? 1.0
-                   recipeFav.totalTime = favorite.totalTime ?? 1.0
-                   recipeFav.label = favorite.label
-                   recipeFav.url = favorite.url
-                   recipeFav.image = favorite.image
-            try context.save()
-        }
-        catch {
-            print("We were unable to save \(recipeFav)")
+
+    func starFillOrNot() {
+        if !CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: favoriteRecipe?.url ?? "no url") {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: nil)
+            navigationItem.rightBarButtonItem?.tintColor = .recipleasePantone(color: .goldReciplease)
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFav))
+            navigationItem.rightBarButtonItem?.tintColor = .recipleasePantone(color: .goldReciplease)
         }
     }
 }

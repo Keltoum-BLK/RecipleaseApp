@@ -52,7 +52,6 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
             searchMainView.ingredientsTabView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
-    
 }
 
 extension SearchingVC: SearchMainViewDelegate {
@@ -69,16 +68,12 @@ extension SearchingVC: SearchMainViewDelegate {
             switch result {
             case .success(let recipes):
                 guard let hits = recipes.hits else { return }
-//                hits.forEach { recipe in
-//                    print("=>", recipe.recipe?.url ?? "no mas")
-//                }
                 let recipesSearchVC = RecipesListViewController(recipesArray: hits)
                 self.navigationController?.pushViewController(recipesSearchVC, animated: true)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-       
     }
     
     func addIngredient() {
@@ -89,5 +84,4 @@ extension SearchingVC: SearchMainViewDelegate {
         searchMainView.addIngredientTextField.text = nil 
         searchMainView.ingredientsTabView.reloadData()
     }
-    
 }
