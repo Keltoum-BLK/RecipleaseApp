@@ -12,7 +12,6 @@ import SwiftUI
 class AlertManager {
     static let sharedAlert = AlertManager()
 
-    
     func alertWhenErrorAppear(title: String, message: String, vc: UIViewController){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Continue", style: .default, handler: nil)

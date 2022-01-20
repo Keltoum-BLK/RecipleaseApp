@@ -222,10 +222,10 @@
 				B931F253276CF83A003B175A /* BTNActions.swift */,
 				B9D4B1412787606D0079A909 /* RecipesResult.swift */,
 				B97631D4278356E700016E35 /* Constants.swift */,
+				B901C0792799AEC70097D2EC /* AlertManager.swift */,
 				B94753662771EE03009E850A /* Onboarding */,
 				B9F8348B276781D9008A29E7 /* Secret */,
 				B9F8348A276781CE008A29E7 /* Network */,
-				B901C0792799AEC70097D2EC /* AlertManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

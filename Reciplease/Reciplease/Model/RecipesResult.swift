@@ -9,11 +9,9 @@ import Foundation
 
 struct RecipeResults: Decodable {
     var hits: [Recipe]?
-    
-    
+
     enum CodingKeys: String, CodingKey {
         case hits = "hits"
-       
     }
 }
 
@@ -54,7 +52,6 @@ struct RecipeData: Decodable {
         }
         return list
     }
-    
 }
 
 struct IngredientsData: Decodable {
@@ -63,6 +60,5 @@ struct IngredientsData: Decodable {
     enum CodingKeys: String, CodingKey {
         case food
     }
-    
 }
 

@@ -167,12 +167,7 @@ class SearchMainView: UIView {
     }
     
     @objc private func addIngredientBTNAction() {
-        let forbiddenCharacters = ["(?.=[0-9])"]
-//        if  {
             delegate?.addIngredient()
-//        } else {
-//            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Error appeared" , message: "Please enter your ingredients in english, or enter more ingredients, or new ingredients", vc: SearchingVC())
-//        }
     }
     @objc private func clearIngredientList() {
         delegate?.clearIngredientList()

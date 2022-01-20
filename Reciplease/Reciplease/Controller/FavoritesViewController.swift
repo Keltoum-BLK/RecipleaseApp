@@ -81,7 +81,7 @@ class FavoritesViewController: UIViewController {
         func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == UITableViewCell.EditingStyle.delete {
                 favoriteRecipe.remove(at: indexPath.row)
-                
+                CoreDataManager.sharedContext.removeRecipe(recipeUrl: favoriteRecipe[indexPath.row].url ?? "no url")
                 mainView.recipesTabView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             }
         }
