@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FileProvider
 
 //MARK: Error Manager
 enum APIError: Error {
@@ -26,3 +27,4 @@ enum APIError: Error {
         }
     }
 }
+

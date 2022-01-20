@@ -167,7 +167,12 @@ class SearchMainView: UIView {
     }
     
     @objc private func addIngredientBTNAction() {
-        delegate?.addIngredient()
+        let forbiddenCharacters = ["(?.=[0-9])"]
+//        if  {
+            delegate?.addIngredient()
+//        } else {
+//            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Error appeared" , message: "Please enter your ingredients in english, or enter more ingredients, or new ingredients", vc: SearchingVC())
+//        }
     }
     @objc private func clearIngredientList() {
         delegate?.clearIngredientList()
@@ -179,6 +184,7 @@ class SearchMainView: UIView {
 }
 //MARK: Constraints
 extension SearchMainView {
+
 
     private func setTitleContainerConstraints() {
         addIngredientContainer.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true

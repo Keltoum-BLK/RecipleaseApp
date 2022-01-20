@@ -13,18 +13,27 @@ class CoreDataManager {
     
     // MARK: - Properties
     
-    static let sharedContext = CoreDataManager()
+    static let sharedContext = CoreDataManager(coreDataStack: CoreDataStack.shared)
     let managedObjectContext = CoreDataStack.shared.viewContext
+    
+    let coreDataStack: CoreDataStack
+    let managedObjContext: NSManagedObjectContext
     
     var favoriteRecipe: [RecipeFavorites] {
         let request: NSFetchRequest = RecipeFavorites.fetchRequest()
         do {
-           return try managedObjectContext.fetch(request)
+            return try managedObjectContext.fetch(request)
         } catch {
             return []
         }
     }
+    // MARK: - Initialization
     
+    
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
+        self.managedObjContext = coreDataStack.mainContext
+    }
     
     // MARK: - Methods
     
@@ -38,7 +47,7 @@ class CoreDataManager {
         entity.ingredientLines = ingredientsLines
         entity.yield = yield
         entity.url = url
-    
+        
         CoreDataStack.shared.saveContext()
     }
     

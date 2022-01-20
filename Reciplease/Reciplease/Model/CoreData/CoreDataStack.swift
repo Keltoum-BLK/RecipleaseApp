@@ -28,6 +28,10 @@ final class CoreDataStack {
         return container
     }()
     
+    var mainContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }

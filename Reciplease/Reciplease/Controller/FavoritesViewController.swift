@@ -77,4 +77,12 @@ class FavoritesViewController: UIViewController {
             navigationItem.backBarButtonItem?.tintColor = .white
             navigationController?.pushViewController(recipeDetailsVC, animated: true)
         }
+        
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == UITableViewCell.EditingStyle.delete {
+                favoriteRecipe.remove(at: indexPath.row)
+                
+                mainView.recipesTabView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            }
+        }
 }

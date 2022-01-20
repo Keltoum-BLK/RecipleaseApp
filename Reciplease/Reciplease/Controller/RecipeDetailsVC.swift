@@ -9,13 +9,20 @@ import UIKit
 import CoreData
 
 class RecipeDetailsVC: UIViewController {
-    
-    lazy var recipedetailsView = RecipeDetailsMainView()
+    //MARK: Properties
+    lazy var star:  UIBarButtonItem = {
+        let star = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFav))
+        star.tintColor = .recipleasePantone(color: .goldReciplease)
+        return star
+    }()
     lazy var recipesFavorites = [RecipeFavorites]()
     var ingredientsList = [String]()
     var favoriteRecipe: RecipeData?
-  
     var recipeUrl = "https://www.marmiton.org/"
+    //MainView Properties
+    lazy var recipedetailsView = RecipeDetailsMainView()
+
+    //MARK: CoreDataContext Properties
     let context = CoreDataStack.shared.viewContext
     
     override func viewDidLoad() {
@@ -26,9 +33,10 @@ class RecipeDetailsVC: UIViewController {
         view = recipedetailsView
         title = "Reciplease"
         navigationItem.backButtonTitle = "Back"
-        starFillOrNot()
-       
+        navigationItem.rightBarButtonItem = star
+        
     }
+    
     init (){
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,6 +55,8 @@ class RecipeDetailsVC: UIViewController {
         print("add it")
         guard let recipe = favoriteRecipe else { return }
         if !CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: recipe.url ?? "no url") {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: nil)
+            navigationItem.rightBarButtonItem?.tintColor = .recipleasePantone(color: .goldReciplease)
             CoreDataManager.sharedContext.addRecipe(title: recipe.label ?? "no label",
                                                     totalTime: recipe.totalTime ?? 1.0,
                                                     ingredients: recipe.createIngredientList(ingredients: recipe.ingredients).joined(separator: " , "),
@@ -57,17 +67,8 @@ class RecipeDetailsVC: UIViewController {
             
         } else {
             //implement Alert here
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star")
             print("=> OUpps" )
-        }
-    }
-
-    func starFillOrNot() {
-        if !CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: favoriteRecipe?.url ?? "no url") {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: nil)
-            navigationItem.rightBarButtonItem?.tintColor = .recipleasePantone(color: .goldReciplease)
-        } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFav))
-            navigationItem.rightBarButtonItem?.tintColor = .recipleasePantone(color: .goldReciplease)
         }
     }
 }
