@@ -14,7 +14,7 @@ class CoreDataManager {
     // MARK: - Properties
     
     static let sharedContext = CoreDataManager(coreDataStack: CoreDataStack.shared)
-    let managedObjectContext = CoreDataStack.shared.viewContext
+    let managedObjectContext = CoreDataStack.shared.mainContext
     
     let coreDataStack: CoreDataStack
     let managedObjContext: NSManagedObjectContext

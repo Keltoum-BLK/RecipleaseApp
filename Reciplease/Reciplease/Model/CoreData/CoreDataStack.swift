@@ -11,11 +11,9 @@ import CoreData
 final class CoreDataStack {
     
     // MARK: - Singleton
-    
     static let shared: CoreDataStack = CoreDataStack()
     
     // MARK: - Properties
-    
     lazy var persistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: "Reciplease")
@@ -31,21 +29,14 @@ final class CoreDataStack {
     var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
-    
-    var viewContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }
-    
-    
+
     func saveContext() {
         do {
-            try viewContext.save()
+            try mainContext.save()
         }
         catch {
             print(error.localizedDescription)
         }
     }
-    
-    
 }
     

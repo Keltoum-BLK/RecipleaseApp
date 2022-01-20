@@ -23,7 +23,7 @@ class RecipeDetailsVC: UIViewController {
     lazy var recipedetailsView = RecipeDetailsMainView()
 
     //MARK: CoreDataContext Properties
-    let context = CoreDataStack.shared.viewContext
+    let context = CoreDataStack.shared.mainContext
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -35,7 +35,7 @@ class FavoritesViewController: UIViewController {
             let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
             
             do {
-                favoriteRecipe = try CoreDataStack.shared.viewContext.fetch(request)
+                favoriteRecipe = try CoreDataStack.shared.mainContext.fetch(request)
                 mainView.recipesTabView.reloadData()
             } catch {
                 favoriteRecipe = []
@@ -82,7 +82,7 @@ class FavoritesViewController: UIViewController {
             if editingStyle == UITableViewCell.EditingStyle.delete {
                 favoriteRecipe.remove(at: indexPath.row)
                 CoreDataManager.sharedContext.removeRecipe(recipeUrl: favoriteRecipe[indexPath.row].url ?? "no url")
-                mainView.recipesTabView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+                mainView.recipesTabView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
             }
         }
 }
