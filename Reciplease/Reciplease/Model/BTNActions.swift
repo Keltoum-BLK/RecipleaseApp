@@ -42,5 +42,10 @@ struct Tools {
         
         return ID
     }
+    
+   static func notDuplicateIngredients(ingredients: [String]) -> [String] {
+        let notDuplicate = Array(Set(ingredients))
+        return notDuplicate
+    }
 }
 

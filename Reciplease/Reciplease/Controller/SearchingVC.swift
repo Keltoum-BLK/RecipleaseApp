@@ -90,9 +90,15 @@ extension SearchingVC: SearchMainViewDelegate {
     func addIngredient() {
         print("add it")
         view.endEditing(true)
-        guard let text = searchMainView.addIngredientTextField.text else { return }
-        ingredientArray = BTNActions.shared.addIngredient(ingredient: text)
-        searchMainView.addIngredientTextField.text = nil 
-        searchMainView.ingredientsTabView.reloadData()
+        if searchMainView.addIngredientTextField.text != "" {
+            guard let text = searchMainView.addIngredientTextField.text else { return }
+            let ingredients = BTNActions.shared.addIngredient(ingredient: text)
+            ingredientArray = Tools.notDuplicateIngredients(ingredients: ingredients)
+            searchMainView.addIngredientTextField.text = nil
+            searchMainView.ingredientsTabView.reloadData()
+        } else {
+            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You can't add nothing. \n Please enter ingredients before", vc: self)
+        }
+        
     }
 }

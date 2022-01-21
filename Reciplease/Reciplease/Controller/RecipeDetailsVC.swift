@@ -54,8 +54,7 @@ class RecipeDetailsVC: UIViewController {
         print("add it")
         guard let recipe = favoriteRecipe else { return }
         if !CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: recipe.url ?? "no url") {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: nil)
-            navigationItem.rightBarButtonItem?.tintColor = .recipleasePantone(color: .goldReciplease)
+            star.image = UIImage(systemName: "star.fill")
             CoreDataManager.sharedContext.addRecipe(title: recipe.label ?? "no label",
                                                     totalTime: recipe.totalTime ?? 1.0,
                                                     ingredients: recipe.createIngredientList(ingredients: recipe.ingredients).joined(separator: " , "),
@@ -66,7 +65,7 @@ class RecipeDetailsVC: UIViewController {
             
         } else {
             //implement Alert here
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star")
+            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You have already added the recipe", vc: self)
             print("=> OUpps" )
         }
     }
