@@ -14,7 +14,6 @@ class RecipesMainView: UIView {
         super.init(frame: frame)
         configureSubviews()
         addTabViewConstraints()
-  
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,7 +37,7 @@ class RecipesMainView: UIView {
         recipesTabView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
         recipesTabView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
     }
-    
+
     func configureSubviews() {
         addSubview(recipesTabView)
         backgroundColor = .recipleasePantone(color: .chalkBoardBackground)

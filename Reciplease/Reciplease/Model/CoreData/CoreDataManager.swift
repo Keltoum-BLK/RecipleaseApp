@@ -51,18 +51,22 @@ class CoreDataManager {
         CoreDataStack.shared.saveContext()
     }
     
-    //Utilisation : addRecipe(title: recipeTitle.text!, totalTime: recipeTime.text!, ingredients: [], yield: recipeYield.text!, image: "\(recipe!.image)", uri: "\(recipe!.uri)", url: "\(recipe!.url)")
-    
     // method to remove recipe in Favorites
-    func removeRecipe(recipeUrl: String) {
-        let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
-        request.predicate = NSPredicate(format: "url == %@", recipeUrl)
-        if let result = try? managedObjectContext.fetch(request) {
-            for object in result {
-                managedObjectContext.delete(object)
-            }
+    func removeRecipe(indexPath : IndexPath, array : [RecipeFavorites]) {
+//        let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
+//        request.predicate = NSPredicate(format: "url == %@", recipeUrl)
+//        if let result = try? managedObjectContext.fetch(request) {
+//            for object in result {
+//                managedObjectContext.delete(object)
+//            }
+//        }
+        managedObjectContext.delete(array[indexPath.row])
+        do {
+            try managedObjectContext.save()
+            print("We remove the recipe.")
+        } catch {
+            debugPrint("Could not remove \(error.localizedDescription)")
         }
-        CoreDataStack.shared.saveContext()
     }
     
     // method to check if recipe is already in Favorites

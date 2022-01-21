@@ -34,7 +34,6 @@ class RecipeDetailsVC: UIViewController {
         title = "Reciplease"
         navigationItem.backButtonTitle = "Back"
         navigationItem.rightBarButtonItem = star
-        
     }
     
     init (){

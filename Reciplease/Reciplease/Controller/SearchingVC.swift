@@ -49,7 +49,7 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             ingredientArray.remove(at: indexPath.row)
-            searchMainView.ingredientsTabView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            searchMainView.ingredientsTabView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }

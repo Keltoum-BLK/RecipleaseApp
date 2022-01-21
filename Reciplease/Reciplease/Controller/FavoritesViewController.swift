@@ -13,15 +13,18 @@ class FavoritesViewController: UIViewController {
     //MARK: Properties
         private let mainView = RecipesMainView()
         private var favoriteRecipe = [RecipeFavorites]()
-        
+        lazy var refreshBTN:  UIBarButtonItem = {
+        let btn = UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(refresh))
+        btn.tintColor = .recipleasePantone(color: .whiteReciplease)
+        return btn
+    }()
         //MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
-            // Do any additional setup after loading the view.
             self.view = mainView
             mainView.recipesTabView.delegate = self
             mainView.recipesTabView.dataSource = self
-            
+            navigationItem.rightBarButtonItem = refreshBTN
            
         }
         
@@ -39,11 +42,18 @@ class FavoritesViewController: UIViewController {
                 mainView.recipesTabView.reloadData()
             } catch {
                 favoriteRecipe = []
-                fatalError()
+//                fatalError()
             }
         }
+    
+    @objc func refresh() {
+        if favoriteRecipe.isEmpty {
+            favoriteRecipe = []
+        } else {
+        mainView.recipesTabView.reloadData()
+        }
     }
-
+}
     extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -79,10 +89,11 @@ class FavoritesViewController: UIViewController {
         }
         
         func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            print(favoriteRecipe.count)
             if editingStyle == UITableViewCell.EditingStyle.delete {
+                CoreDataManager.sharedContext.removeRecipe(indexPath: indexPath, array: favoriteRecipe)
                 favoriteRecipe.remove(at: indexPath.row)
-                CoreDataManager.sharedContext.removeRecipe(recipeUrl: favoriteRecipe[indexPath.row].url ?? "no url")
-                mainView.recipesTabView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+                mainView.recipesTabView.deleteRows(at: [indexPath], with: .fade)
             }
         }
 }
