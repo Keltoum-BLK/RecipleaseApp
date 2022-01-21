@@ -8,9 +8,9 @@
 import UIKit
 
 class RecipeWebPageVC: UIViewController {
-    
+    //MARK: property
     let recipeWebPage = RecipeWebView()
-    
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view = recipeWebPage

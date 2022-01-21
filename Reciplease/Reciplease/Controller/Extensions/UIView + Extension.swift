@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 
 extension UIView{
-    // For insert layer in Foreground
-    
+    //MARK: methods to add Gradient Layer
     // For insert layer in background
     func addBlackGradientLayerInBackground(frame: CGRect, colors:[UIColor]){
         let gradient = CAGradientLayer()

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//MARK: Properties to Parse and Get Data
 struct RecipeResults: Decodable {
     var hits: [Recipe]?
 
@@ -43,7 +43,7 @@ struct RecipeData: Decodable {
         case totalTime
         case ingredients
     }
-    
+    //MARK: Method to convert array of object values to string array
     func createIngredientList(ingredients : [IngredientsData]?) -> [String] {
         var list = [String]()
         ingredients?.forEach { ingredient in

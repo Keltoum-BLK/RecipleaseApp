@@ -199,7 +199,6 @@ class RecipeDetailsMainView: UIView {
     @objc private func getDirections() {
         delegate?.nextView()
     }
-  
 }
 
 extension RecipeDetailsMainView {

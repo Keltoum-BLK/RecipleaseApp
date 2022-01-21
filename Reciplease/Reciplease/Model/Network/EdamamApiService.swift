@@ -9,10 +9,10 @@ import Foundation
 import Alamofire
 
 class EdamamApiService {
-    
+    //MARK: Class property
     static let shared = EdamamApiService()
    
-    
+    //MARK: Methods
     func getTheHits(ingredients : [String], completion: @escaping (Result<RecipeResults, APIError>)-> Void) {
        
         let ingredientsList = ingredients.map({$0.replacingOccurrences(of: " ", with: "%20")}).joined(separator: ",")
@@ -26,7 +26,6 @@ class EdamamApiService {
                         switch response.response?.statusCode {
                             case 200:
                                 guard let recipes = try? JSONDecoder().decode(RecipeResults.self, from: hits) else {
-                                completion(.failure(.decoding))
                                 return
                                 }
                                 completion(.success(recipes))

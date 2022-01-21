@@ -33,7 +33,8 @@ class FavoritesViewController: UIViewController {
             loadSavedRecipes()
             print("FavoriteVC")
         }
-        
+    //MARK: Methods 
+        //Load FavoriteRecipe Array in the app launch
         private func loadSavedRecipes() {
             let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
             
@@ -45,7 +46,7 @@ class FavoritesViewController: UIViewController {
                 fatalError()
             }
         }
-    
+    //add remove all element in the favoriteRecipes Array
     @objc func goToTheTrash() {
         if !favoriteRecipe.isEmpty {
         CoreDataManager.sharedContext.removeAllRecipes(array: favoriteRecipe)
@@ -56,6 +57,7 @@ class FavoritesViewController: UIViewController {
         }
     }
 }
+//MARK: TABLEVIEW METHODS 
     extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

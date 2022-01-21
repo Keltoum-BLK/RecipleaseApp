@@ -20,7 +20,7 @@ class RecipesMainView: UIView {
         super.init(coder: aDecoder)
         configureSubviews()
     }
-    
+    //MARK: UI Property
     lazy var recipesTabView: UITableView = {
        let tabView = UITableView()
         tabView.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,7 @@ class RecipesMainView: UIView {
         return tabView
     }()
 
-    
+    //MARK: Methods 
     func addTabViewConstraints() {
         recipesTabView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         recipesTabView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true

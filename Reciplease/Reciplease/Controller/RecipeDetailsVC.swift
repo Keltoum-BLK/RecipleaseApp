@@ -35,7 +35,7 @@ class RecipeDetailsVC: UIViewController {
         navigationItem.backButtonTitle = "Back"
         navigationItem.rightBarButtonItem = star
     }
-    
+    //MARK: Inits
     init (){
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,7 +49,7 @@ class RecipeDetailsVC: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    //MARK: Methods
     @objc func addFav(){
         print("add it")
         guard let recipe = favoriteRecipe else { return }
@@ -84,8 +84,7 @@ extension RecipeDetailsVC: RecipeDetailsDelegate {
 }
 
 extension RecipeDetailsVC: UITableViewDelegate, UITableViewDataSource {
-    
-    
+    //MARK: TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         ingredientsList.count
     }

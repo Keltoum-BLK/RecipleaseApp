@@ -8,7 +8,7 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVCs()
@@ -24,16 +24,14 @@ class TabBarController: UITabBarController {
             present(welcomeVC, animated: true)
         }
     }
-    
+    //MARK: Methods
     func setupVCs() {
         viewControllers = [createNavController(for: SearchingVC(), title: NSLocalizedString("Searching", comment: "")), createNavController(for: FavoritesViewController(), title: NSLocalizedString("Favorites", comment: ""))]
         self.setViewControllers(viewControllers, animated: false)
-        
         setUpTabBar()
     }
     
     func setUpTabBar() {
-        
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             let tabBarItemAppearance = UITabBarItemAppearance()
@@ -72,14 +70,12 @@ class TabBarController: UITabBarController {
             navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any, NSAttributedString.Key.foregroundColor: UIColor.recipleasePantone(color: .whiteReciplease)]
             navigationBarAppearance.backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
         }
-        
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.navigationItem.backButtonTitle = "Back"
         rootViewController.navigationItem.title = "Reciplease"
         navController.navigationBar.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
         navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any, NSAttributedString.Key.foregroundColor: UIColor(.white)]
-        
         return navController
     }
 }

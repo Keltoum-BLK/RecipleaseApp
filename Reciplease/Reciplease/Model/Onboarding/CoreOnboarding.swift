@@ -8,7 +8,7 @@
 import Foundation
 
 class CoreOnboarding {
-    
+    //MARK: Class methods
     static func isNewUser() -> Bool {
         return !UserDefaults.standard.bool(forKey: Constants.newUser)
     }

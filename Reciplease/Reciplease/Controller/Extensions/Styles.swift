@@ -6,6 +6,7 @@
 //
 import UIKit
 public extension UIFont {
+    //MARK: methods to setUp Font
     class func chalkduster(fontSize: CGFloat) -> UIFont {
            return UIFont(name: "chalkduster", size: fontSize) ?? UIFont.systemFont(ofSize: fontSize, weight: .heavy)
        }
@@ -17,7 +18,7 @@ public extension UIFont {
 }
 
 public extension UIColor {
-
+    //MARK: methods to setUp Font 
     enum RecipleaseColors {
         case greenReciplease, chalkBoardBackground, whiteReciplease, grayReciplease, goldReciplease
             public func rgb() -> (CGFloat, CGFloat, CGFloat) {

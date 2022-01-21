@@ -68,7 +68,7 @@ class CoreDataManager {
         //            }
         //        }
     }
-    
+    //Remove all recipe in the array 
     func removeAllRecipes(array : [RecipeFavorites]) {
         for recipe in array {
             managedObjectContext.delete(recipe)
@@ -78,13 +78,13 @@ class CoreDataManager {
             } catch {
                 debugPrint("Could not remove \(error.localizedDescription)")
             }
-        //        let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
-        //        request.predicate = NSPredicate(format: "url == %@", recipeUrl)
-        //        if let result = try? managedObjectContext.fetch(request) {
-        //            for object in result {
-        //                managedObjectContext.delete(object)
-        //            }
-        //        }
+            //        let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
+            //        request.predicate = NSPredicate(format: "url == %@", recipeUrl)
+            //        if let result = try? managedObjectContext.fetch(request) {
+            //            for object in result {
+            //                managedObjectContext.delete(object)
+            //            }
+            //        }
         }
     }
     // method to check if recipe is already in Favorites

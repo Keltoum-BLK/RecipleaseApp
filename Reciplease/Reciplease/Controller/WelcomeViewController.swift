@@ -65,7 +65,7 @@ class WelcomeViewController: UIViewController {
         super.viewWillLayoutSubviews()
         setupLayout()
     }
-    
+    //MARK: Methods 
     func setupLayout() {
         view.addSubview(welcomeContainer)
         view.addSubview(descApp)

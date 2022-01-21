@@ -13,7 +13,7 @@ class SearchingVC: UIViewController {
     var recipeSearch = [Recipe]()
     //MARK: UI Properties
     private let searchMainView = SearchMainView()
-
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = searchMainView
@@ -29,8 +29,7 @@ class SearchingVC: UIViewController {
 }
 
 extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
-    
-    
+    //MARK: TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         ingredientArray.count
     }
@@ -55,7 +54,7 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SearchingVC: SearchMainViewDelegate {
-    //Methods SearchMainViewDelegate
+    //MARK: Methods SearchMainViewDelegate
     func clearIngredientList() {
         ingredientArray = BTNActions.shared.clearIngredientList(list: ingredientArray)
         searchMainView.ingredientsTabView.reloadData()

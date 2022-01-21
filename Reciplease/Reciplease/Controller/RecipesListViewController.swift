@@ -9,10 +9,10 @@ import UIKit
 
 class RecipesListViewController: UIViewController {
     
-
+    //MARK: Properties
     private let recipesMainView = RecipesMainView()
     private var recipeSearch = [Recipe]()
-
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view = recipesMainView
@@ -24,7 +24,7 @@ class RecipesListViewController: UIViewController {
         super.viewDidLayoutSubviews()
       
     }
-    
+    //MARK: Inits
     init(){
         super.init(nibName: nil, bundle: nil)
     }
@@ -39,6 +39,7 @@ class RecipesListViewController: UIViewController {
 }
 
 extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource {
+    //MARK: TableView methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeSearch.count
     }
@@ -57,7 +58,6 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.ingredientsLabel.text = ingredientsList?.joined(separator: ", ")
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipeDetailsVC = RecipeDetailsVC(ingredientArray: recipeSearch[indexPath.row].recipe?.ingredientLines ?? ["no info"], url: recipeSearch[indexPath.row].recipe?.url ?? "https://www.youtube.com/watch?v=rUYxOtOUmfw")
