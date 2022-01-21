@@ -14,7 +14,7 @@ class FavoritesViewController: UIViewController {
         private let mainView = RecipesMainView()
         private var favoriteRecipe = [RecipeFavorites]()
         lazy var refreshBTN:  UIBarButtonItem = {
-        let btn = UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(refresh))
+        let btn = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(goToTheTrash))
         btn.tintColor = .recipleasePantone(color: .whiteReciplease)
         return btn
     }()
@@ -42,15 +42,17 @@ class FavoritesViewController: UIViewController {
                 mainView.recipesTabView.reloadData()
             } catch {
                 favoriteRecipe = []
-//                fatalError()
+                fatalError()
             }
         }
     
-    @objc func refresh() {
-        if favoriteRecipe.isEmpty {
-            favoriteRecipe = []
-        } else {
+    @objc func goToTheTrash() {
+        if !favoriteRecipe.isEmpty {
+        CoreDataManager.sharedContext.removeAllRecipes(array: favoriteRecipe)
+        favoriteRecipe.removeAll()
         mainView.recipesTabView.reloadData()
+        } else {
+            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You have already deleted your favorites", vc: self)
         }
     }
 }
