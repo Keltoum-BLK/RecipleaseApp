@@ -66,6 +66,7 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         recipeDetailsVC.recipedetailsView.likeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
         recipeDetailsVC.recipedetailsView.timeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
         recipeDetailsVC.favoriteRecipe = recipeSearch[indexPath.row].recipe
+        recipeDetailsVC.test = recipeSearch[indexPath.row].recipe?.url ?? "" 
         navigationItem.backButtonTitle = "Back"
         navigationItem.backBarButtonItem?.tintColor = .white
         navigationController?.pushViewController(recipeDetailsVC, animated: true)

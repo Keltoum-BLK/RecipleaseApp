@@ -26,6 +26,7 @@
 		B97631D5278356E700016E35 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97631D4278356E700016E35 /* Constants.swift */; };
 		B97631D727835A2100016E35 /* EdamamApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97631D627835A2100016E35 /* EdamamApiService.swift */; };
 		B978EB442769ECE9008E00A8 /* RecipeDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */; };
+		B97C275E279D6F35004C5CC1 /* AlamofireTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C275D279D6F35004C5CC1 /* AlamofireTest.swift */; };
 		B97D17F0278762DE00F1F091 /* RecipesJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = B97D17EF278762DE00F1F091 /* RecipesJSON.json */; };
 		B97EAA6C2779AF5600BAF7A8 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */; };
 		B99091CB27907F3A00297DF4 /* RecipeFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99091CA27907F3A00297DF4 /* RecipeFavorites.swift */; };
@@ -90,6 +91,7 @@
 		B97631D4278356E700016E35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B97631D627835A2100016E35 /* EdamamApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamApiService.swift; sourceTree = "<group>"; };
 		B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsVC.swift; sourceTree = "<group>"; };
+		B97C275D279D6F35004C5CC1 /* AlamofireTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireTest.swift; sourceTree = "<group>"; };
 		B97D17EF278762DE00F1F091 /* RecipesJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecipesJSON.json; sourceTree = "<group>"; };
 		B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		B99091CA27907F3A00297DF4 /* RecipeFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFavorites.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			children = (
 				B97D17EF278762DE00F1F091 /* RecipesJSON.json */,
 				B96CA279275A265A00E552D7 /* RecipleaseTests.swift */,
+				B97C275D279D6F35004C5CC1 /* AlamofireTest.swift */,
 			);
 			path = RecipleaseTests;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97C275E279D6F35004C5CC1 /* AlamofireTest.swift in Sources */,
 				B96CA27A275A265A00E552D7 /* RecipleaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

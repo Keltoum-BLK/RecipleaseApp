@@ -11,14 +11,14 @@ import CoreData
 class RecipeDetailsVC: UIViewController {
     //MARK: Properties
     lazy var star:  UIBarButtonItem = {
-        let star = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFav))
+        let star = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFavorite))
         star.tintColor = .recipleasePantone(color: .goldReciplease)
         return star
     }()
-    lazy var recipesFavorites = [RecipeFavorites]()
     var ingredientsList = [String]()
     var favoriteRecipe: RecipeData?
     var recipeUrl = "https://www.marmiton.org/"
+    var test = ""
     //MainView Properties
     lazy var recipedetailsView = RecipeDetailsMainView()
 
@@ -34,7 +34,11 @@ class RecipeDetailsVC: UIViewController {
         title = "Reciplease"
         navigationItem.backButtonTitle = "Back"
         navigationItem.rightBarButtonItem = star
+        if CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: test) {
+            star.image = UIImage(systemName: "star.fill")
+        }
     }
+    
     //MARK: Inits
     init (){
         super.init(nibName: nil, bundle: nil)
@@ -50,14 +54,26 @@ class RecipeDetailsVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: Methods
-    @objc func addFav(){
+    @objc func addFavorite(){
         print("add it")
         guard let recipe = favoriteRecipe else { return }
+        print(recipe.ingredients)
+        var ingredients = ""
+        recipe.ingredients?.forEach { ingredient in
+            if ingredient.food != recipe.ingredients?.last?.food {
+                print(ingredient.food)
+                ingredients.append(ingredient.food ?? "nyay")
+                ingredients.append(",")
+            } else {
+                ingredients.append(ingredient.food ?? "nyay")
+            }
+        }
+        print(ingredients)
         if !CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: recipe.url ?? "no url") {
             star.image = UIImage(systemName: "star.fill")
             CoreDataManager.sharedContext.addRecipe(title: recipe.label ?? "no label",
                                                     totalTime: recipe.totalTime ?? 1.0,
-                                                    ingredients: recipe.createIngredientList(ingredients: recipe.ingredients).joined(separator: " , "),
+                                                    ingredients: ingredients,
                                                     yield: recipe.yield ?? 1.0,
                                                     image: recipe.image ?? "no image",
                                                     url: recipe.url ?? "no url",
@@ -98,6 +114,5 @@ extension RecipeDetailsVC: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.textColor = UIColor.recipleasePantone(color: .whiteReciplease)
         return cell
     }
-    
 }
 

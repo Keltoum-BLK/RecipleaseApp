@@ -68,14 +68,14 @@ class FavoritesViewController: UIViewController {
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let list = favoriteRecipe[indexPath.row].createIngredientList(ingredients: favoriteRecipe[indexPath.row].ingredients)
-            
+//            let list = favoriteRecipe[indexPath.row].createIngredientList(ingredients: favoriteRecipe[indexPath.row].ingredients)
+            print(favoriteRecipe[indexPath.row].ingredients)
             let cell = mainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
             cell.titleLabel.text = favoriteRecipe[indexPath.row].label?.uppercased()
             cell.backgroundImage.downloaded(from: favoriteRecipe[indexPath.row].image ?? "no image")
             cell.timeTitle.text = Tools.getDoubleToString(number: favoriteRecipe[indexPath.row].totalTime)
             cell.likeTitle.text = Tools.getDoubleToString(number: favoriteRecipe[indexPath.row].yield)
-            cell.ingredientsLabel.text = list.joined(separator: ", ")
+            cell.ingredientsLabel.text = favoriteRecipe[indexPath.row].ingredients
            
             return cell
         }
@@ -87,6 +87,7 @@ class FavoritesViewController: UIViewController {
             recipeDetailsVC.recipedetailsView.recipeImage.downloaded(from: favoriteRecipe[indexPath.row].image ?? "no image")
             recipeDetailsVC.recipedetailsView.likeTitle.text = Tools.getDoubleToString(number: favoriteRecipe[indexPath.row].yield)
             recipeDetailsVC.recipedetailsView.timeTitle.text = Tools.getDoubleToString(number: favoriteRecipe[indexPath.row].totalTime)
+            recipeDetailsVC.test = favoriteRecipe[indexPath.row].url ?? ""
             navigationItem.backButtonTitle = "Back"
             navigationItem.backBarButtonItem?.tintColor = .white
             navigationController?.pushViewController(recipeDetailsVC, animated: true)
