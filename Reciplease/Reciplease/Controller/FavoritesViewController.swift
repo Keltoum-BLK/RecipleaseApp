@@ -67,20 +67,16 @@ class FavoritesViewController: UIViewController {
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//            let list = favoriteRecipe[indexPath.row].createIngredientList(ingredients: favoriteRecipe[indexPath.row].ingredients)
-            print(recipesAddedToFavorite[indexPath.row].ingredients ?? "no info")
             let cell = mainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
             cell.titleLabel.text = recipesAddedToFavorite[indexPath.row].label?.uppercased()
             cell.backgroundImage.downloaded(from: recipesAddedToFavorite[indexPath.row].image ?? "no image")
             cell.timeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].totalTime)
             cell.likeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].yield)
             cell.ingredientsLabel.text = recipesAddedToFavorite[indexPath.row].ingredients
-           
             return cell
         }
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print(indexPath.row)
             let recipeDetailsVC = RecipeDetailsVC()
             recipeDetailsVC.recipedetailsView.recipeTitle.text = recipesAddedToFavorite[indexPath.row].label?.uppercased()
             recipeDetailsVC.recipedetailsView.recipeImage.downloaded(from: recipesAddedToFavorite[indexPath.row].image ?? "no image")

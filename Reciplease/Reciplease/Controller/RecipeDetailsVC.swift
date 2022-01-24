@@ -40,7 +40,6 @@ class RecipeDetailsVC: UIViewController {
     
     //MARK: Methods
     @objc func addFavorite(){
-        print("add it")
         BTNActions.shared.addFavorite(recipe: recipe, ingredients: ingredients, star: star, vc: self)
     }
     
@@ -58,7 +57,6 @@ extension RecipeDetailsVC: RecipeDetailsDelegate {
         guard let url = URL(string: recipeUrl) else { return }
         recipeWeb.recipeWebPage.webPage.load(URLRequest(url: url))
         navigationController?.pushViewController(recipeWeb, animated: true)
-        print("pushed")
     }
 }
 

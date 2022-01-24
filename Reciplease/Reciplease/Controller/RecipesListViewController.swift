@@ -28,7 +28,7 @@ class RecipesListViewController: UIViewController {
     init(){
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     init(recipesArray: [Recipe]) {
         super.init(nibName: nil, bundle: nil)
         recipeSearch = recipesArray
@@ -49,7 +49,7 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ingredientsList = recipeSearch[indexPath.row].recipe?.createIngredientList(ingredients: recipeSearch[indexPath.row].recipe?.ingredients)
-       
+        
         let cell = recipesMainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
         cell.titleLabel.text = recipeSearch[indexPath.row].recipe?.label?.uppercased()
         cell.backgroundImage.downloaded(from: recipeSearch[indexPath.row].recipe?.image ?? "no image")
