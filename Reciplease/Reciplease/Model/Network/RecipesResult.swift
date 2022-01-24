@@ -16,14 +16,14 @@ struct RecipeResults: Decodable {
 }
 
 struct Recipe: Decodable {
-    var recipe: RecipeData?
+    var recipe: RecipeDetails?
     
     enum CodingKeys: String, CodingKey {
         case recipe
     }
 }
 
-struct RecipeData: Decodable {
+struct RecipeDetails: Decodable {
     var uri: String?
     var label: String?
     var image: String?

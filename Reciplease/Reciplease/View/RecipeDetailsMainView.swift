@@ -182,7 +182,6 @@ class RecipeDetailsMainView: UIView {
         return btn
     }()
     
-  
     private func configureSubviews() {
         addSubview(recipeTitle)
         addSubview(recipeImage)

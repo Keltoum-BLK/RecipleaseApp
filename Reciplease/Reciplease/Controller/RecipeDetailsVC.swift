@@ -16,9 +16,10 @@ class RecipeDetailsVC: UIViewController {
         return star
     }()
     var ingredientsList = [String]()
-    var favoriteRecipe: RecipeData?
-    var recipeUrl = "https://www.marmiton.org/"
-    var test = ""
+    var recipe: RecipeDetails?
+    var recipeUrl = ""
+    var fillTheStar = ""
+    private let ingredients = ""
     //MainView Properties
     lazy var recipedetailsView = RecipeDetailsMainView()
 
@@ -34,55 +35,18 @@ class RecipeDetailsVC: UIViewController {
         title = "Reciplease"
         navigationItem.backButtonTitle = "Back"
         navigationItem.rightBarButtonItem = star
-        if CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: test) {
-            star.image = UIImage(systemName: "star.fill")
-        }
+        recipeAddStarFill(fillTheStar: fillTheStar)
     }
     
-    //MARK: Inits
-    init (){
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    init(ingredientArray: [String], url: String) {
-        ingredientsList = ingredientArray
-        recipeUrl = url
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     //MARK: Methods
     @objc func addFavorite(){
         print("add it")
-        guard let recipe = favoriteRecipe else { return }
-        print(recipe.ingredients)
-        var ingredients = ""
-        recipe.ingredients?.forEach { ingredient in
-            if ingredient.food != recipe.ingredients?.last?.food {
-                print(ingredient.food)
-                ingredients.append(ingredient.food ?? "nyay")
-                ingredients.append(",")
-            } else {
-                ingredients.append(ingredient.food ?? "nyay")
-            }
-        }
-        print(ingredients)
-        if !CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: recipe.url ?? "no url") {
+        BTNActions.shared.addFavorite(recipe: recipe, ingredients: ingredients, star: star, vc: self)
+    }
+    
+    func recipeAddStarFill(fillTheStar: String) {
+        if CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: fillTheStar) {
             star.image = UIImage(systemName: "star.fill")
-            CoreDataManager.sharedContext.addRecipe(title: recipe.label ?? "no label",
-                                                    totalTime: recipe.totalTime ?? 1.0,
-                                                    ingredients: ingredients,
-                                                    yield: recipe.yield ?? 1.0,
-                                                    image: recipe.image ?? "no image",
-                                                    url: recipe.url ?? "no url",
-                                                    ingredientsLines: recipe.ingredientLines ?? ["no ingredientLines"])
-            
-        } else {
-            //implement Alert here
-            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You have already added the recipe", vc: self)
-            print("=> OUpps" )
         }
     }
 }

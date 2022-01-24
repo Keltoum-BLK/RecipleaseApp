@@ -10,12 +10,4 @@ import CoreData
 
 class RecipeFavorites: NSManagedObject {
  
-   //MARK: Method to convert object array to string array
-    func createIngredientList(ingredients : [IngredientCData]?) -> [String] {
-        var list = [String]()
-        ingredients?.forEach { ingredient in
-            list.append(ingredient.food )
-        }
-        return list
-    }
 }

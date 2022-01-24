@@ -8,11 +8,14 @@
 import UIKit
 
 class SearchingVC: UIViewController {
+    
     //MARK: Properties
    var ingredientArray = [String]()
     var recipeSearch = [Recipe]()
+    
     //MARK: UI Properties
     private let searchMainView = SearchMainView()
+    
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,18 +85,16 @@ extension SearchingVC: SearchMainViewDelegate {
             }
         }
         } else {
-            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Error Appeared", message: "You need to add ingredient to launch the research.", vc: self)
+            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Error appeared", message: "You need to add ingredient to launch the research.", vc: self)
         }
-        
     }
-    
     func addIngredient() {
         print("add it")
         view.endEditing(true)
         if searchMainView.addIngredientTextField.text != "" {
             guard let text = searchMainView.addIngredientTextField.text else { return }
             let ingredients = BTNActions.shared.addIngredient(ingredient: text)
-            ingredientArray = Tools.notDuplicateIngredients(ingredients: ingredients)
+            ingredientArray = Tool.notDuplicateIngredients(ingredients: ingredients)
             searchMainView.addIngredientTextField.text = nil
             searchMainView.ingredientsTabView.reloadData()
         } else {

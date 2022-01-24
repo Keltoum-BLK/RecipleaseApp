@@ -12,8 +12,8 @@ class FavoritesViewController: UIViewController {
 
     //MARK: Properties
         private let mainView = RecipesMainView()
-        private var favoriteRecipe = [RecipeFavorites]()
-        lazy var refreshBTN:  UIBarButtonItem = {
+        private var recipesAddedToFavorite = [RecipeFavorites]()
+        lazy var resetBTN:  UIBarButtonItem = {
         let btn = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(goToTheTrash))
         btn.tintColor = .recipleasePantone(color: .whiteReciplease)
         return btn
@@ -24,8 +24,7 @@ class FavoritesViewController: UIViewController {
             self.view = mainView
             mainView.recipesTabView.delegate = self
             mainView.recipesTabView.dataSource = self
-            navigationItem.rightBarButtonItem = refreshBTN
-           
+            navigationItem.rightBarButtonItem = resetBTN
         }
         
         override func viewDidAppear(_ animated: Bool) {
@@ -39,18 +38,18 @@ class FavoritesViewController: UIViewController {
             let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
             
             do {
-                favoriteRecipe = try CoreDataStack.shared.mainContext.fetch(request)
+                recipesAddedToFavorite = try CoreDataStack.shared.mainContext.fetch(request)
                 mainView.recipesTabView.reloadData()
             } catch {
-                favoriteRecipe = []
+                recipesAddedToFavorite = []
                 fatalError()
             }
         }
     //add remove all element in the favoriteRecipes Array
     @objc func goToTheTrash() {
-        if !favoriteRecipe.isEmpty {
-        CoreDataManager.sharedContext.removeAllRecipes(array: favoriteRecipe)
-        favoriteRecipe.removeAll()
+        if !recipesAddedToFavorite.isEmpty {
+        CoreDataManager.sharedContext.removeAllRecipes(array: recipesAddedToFavorite)
+            recipesAddedToFavorite.removeAll()
         mainView.recipesTabView.reloadData()
         } else {
             AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You have already deleted your favorites", vc: self)
@@ -64,40 +63,41 @@ class FavoritesViewController: UIViewController {
             return 200
         }
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return favoriteRecipe.count
+            return recipesAddedToFavorite.count
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //            let list = favoriteRecipe[indexPath.row].createIngredientList(ingredients: favoriteRecipe[indexPath.row].ingredients)
-            print(favoriteRecipe[indexPath.row].ingredients)
+            print(recipesAddedToFavorite[indexPath.row].ingredients ?? "no info")
             let cell = mainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
-            cell.titleLabel.text = favoriteRecipe[indexPath.row].label?.uppercased()
-            cell.backgroundImage.downloaded(from: favoriteRecipe[indexPath.row].image ?? "no image")
-            cell.timeTitle.text = Tools.getDoubleToString(number: favoriteRecipe[indexPath.row].totalTime)
-            cell.likeTitle.text = Tools.getDoubleToString(number: favoriteRecipe[indexPath.row].yield)
-            cell.ingredientsLabel.text = favoriteRecipe[indexPath.row].ingredients
+            cell.titleLabel.text = recipesAddedToFavorite[indexPath.row].label?.uppercased()
+            cell.backgroundImage.downloaded(from: recipesAddedToFavorite[indexPath.row].image ?? "no image")
+            cell.timeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].totalTime)
+            cell.likeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].yield)
+            cell.ingredientsLabel.text = recipesAddedToFavorite[indexPath.row].ingredients
            
             return cell
         }
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             print(indexPath.row)
-            let recipeDetailsVC = RecipeDetailsVC(ingredientArray: favoriteRecipe[indexPath.row].ingredientLines ?? ["no info"], url: favoriteRecipe[indexPath.row].url ?? "https://www.youtube.com/watch?v=rUYxOtOUmfw")
-            recipeDetailsVC.recipedetailsView.recipeTitle.text = favoriteRecipe[indexPath.row].label?.uppercased()
-            recipeDetailsVC.recipedetailsView.recipeImage.downloaded(from: favoriteRecipe[indexPath.row].image ?? "no image")
-            recipeDetailsVC.recipedetailsView.likeTitle.text = Tools.getDoubleToString(number: favoriteRecipe[indexPath.row].yield)
-            recipeDetailsVC.recipedetailsView.timeTitle.text = Tools.getDoubleToString(number: favoriteRecipe[indexPath.row].totalTime)
-            recipeDetailsVC.test = favoriteRecipe[indexPath.row].url ?? ""
+            let recipeDetailsVC = RecipeDetailsVC()
+            recipeDetailsVC.recipedetailsView.recipeTitle.text = recipesAddedToFavorite[indexPath.row].label?.uppercased()
+            recipeDetailsVC.recipedetailsView.recipeImage.downloaded(from: recipesAddedToFavorite[indexPath.row].image ?? "no image")
+            recipeDetailsVC.recipedetailsView.likeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].yield)
+            recipeDetailsVC.recipedetailsView.timeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].totalTime)
+            recipeDetailsVC.ingredientsList = recipesAddedToFavorite[indexPath.row].ingredientLines ?? ["no info"]
+            recipeDetailsVC.recipeUrl = recipesAddedToFavorite[indexPath.row].url ?? "no url"
+            recipeDetailsVC.fillTheStar = recipesAddedToFavorite[indexPath.row].url ?? ""
             navigationItem.backButtonTitle = "Back"
             navigationItem.backBarButtonItem?.tintColor = .white
             navigationController?.pushViewController(recipeDetailsVC, animated: true)
         }
         
         func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            print(favoriteRecipe.count)
             if editingStyle == UITableViewCell.EditingStyle.delete {
-                CoreDataManager.sharedContext.removeRecipe(indexPath: indexPath, array: favoriteRecipe)
-                favoriteRecipe.remove(at: indexPath.row)
+                CoreDataManager.sharedContext.removeRecipe(indexPath: indexPath, array: recipesAddedToFavorite)
+                recipesAddedToFavorite.remove(at: indexPath.row)
                 mainView.recipesTabView.deleteRows(at: [indexPath], with: .fade)
             }
         }

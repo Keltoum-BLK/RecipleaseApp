@@ -53,20 +53,22 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = recipesMainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
         cell.titleLabel.text = recipeSearch[indexPath.row].recipe?.label?.uppercased()
         cell.backgroundImage.downloaded(from: recipeSearch[indexPath.row].recipe?.image ?? "no image")
-        cell.timeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
-        cell.likeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
+        cell.timeTitle.text = Tool.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
+        cell.likeTitle.text = Tool.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
         cell.ingredientsLabel.text = ingredientsList?.joined(separator: ", ")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipeDetailsVC = RecipeDetailsVC(ingredientArray: recipeSearch[indexPath.row].recipe?.ingredientLines ?? ["no info"], url: recipeSearch[indexPath.row].recipe?.url ?? "https://www.youtube.com/watch?v=rUYxOtOUmfw")
+        let recipeDetailsVC = RecipeDetailsVC()
         recipeDetailsVC.recipedetailsView.recipeTitle.text = recipeSearch[indexPath.row].recipe?.label?.uppercased()
         recipeDetailsVC.recipedetailsView.recipeImage.downloaded(from: recipeSearch[indexPath.row].recipe?.image ?? "no image")
-        recipeDetailsVC.recipedetailsView.likeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
-        recipeDetailsVC.recipedetailsView.timeTitle.text = Tools.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
-        recipeDetailsVC.favoriteRecipe = recipeSearch[indexPath.row].recipe
-        recipeDetailsVC.test = recipeSearch[indexPath.row].recipe?.url ?? "" 
+        recipeDetailsVC.recipedetailsView.likeTitle.text = Tool.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.yield)
+        recipeDetailsVC.recipedetailsView.timeTitle.text = Tool.getDoubleToString(number: recipeSearch[indexPath.row].recipe?.totalTime)
+        recipeDetailsVC.ingredientsList = recipeSearch[indexPath.row].recipe?.ingredientLines ?? ["no info"]
+        recipeDetailsVC.recipeUrl = recipeSearch[indexPath.row].recipe?.url ?? "no url"
+        recipeDetailsVC.recipe = recipeSearch[indexPath.row].recipe
+        recipeDetailsVC.fillTheStar = recipeSearch[indexPath.row].recipe?.url ?? "" 
         navigationItem.backButtonTitle = "Back"
         navigationItem.backBarButtonItem?.tintColor = .white
         navigationController?.pushViewController(recipeDetailsVC, animated: true)

@@ -139,7 +139,7 @@ class SearchMainView: UIView {
         return ingredients
     }()
     
-    private lazy var searchBTN: UIButton = {
+    lazy var searchBTN: UIButton = {
         let btn = UIButton(type: .custom)
         btn.backgroundColor = UIColor.recipleasePantone(color: .greenReciplease)
         btn.titleLabel?.font = UIFont.chalkduster(fontSize: 30)
