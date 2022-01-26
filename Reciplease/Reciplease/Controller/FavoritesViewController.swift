@@ -18,6 +18,9 @@ class FavoritesViewController: UIViewController {
         btn.tintColor = .recipleasePantone(color: .whiteReciplease)
         return btn
     }()
+    //MARK: CoreDataContext Properties
+    let coreDataManager = CoreDataManager(managedObjectContext: CoreDataStack.shared.mainContext)
+    
         //MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -48,7 +51,7 @@ class FavoritesViewController: UIViewController {
     //add remove all element in the favoriteRecipes Array
     @objc func goToTheTrash() {
         if !recipesAddedToFavorite.isEmpty {
-        CoreDataManager.sharedContext.removeAllRecipes(array: recipesAddedToFavorite)
+            coreDataManager.removeAllRecipes(array: recipesAddedToFavorite)
             recipesAddedToFavorite.removeAll()
         mainView.recipesTabView.reloadData()
         } else {
@@ -92,7 +95,7 @@ class FavoritesViewController: UIViewController {
         
         func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == UITableViewCell.EditingStyle.delete {
-                CoreDataManager.sharedContext.removeRecipe(indexPath: indexPath, array: recipesAddedToFavorite)
+                coreDataManager.removeRecipe(indexPath: indexPath, array: recipesAddedToFavorite)
                 recipesAddedToFavorite.remove(at: indexPath.row)
                 mainView.recipesTabView.deleteRows(at: [indexPath], with: .fade)
             }

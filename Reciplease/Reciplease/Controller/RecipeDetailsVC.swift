@@ -24,7 +24,7 @@ class RecipeDetailsVC: UIViewController {
     lazy var recipedetailsView = RecipeDetailsMainView()
 
     //MARK: CoreDataContext Properties
-    let context = CoreDataStack.shared.mainContext
+    let coreDataManager = CoreDataManager(managedObjectContext: CoreDataStack.shared.mainContext)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class RecipeDetailsVC: UIViewController {
     }
     
     func recipeAddStarFill(fillTheStar: String) {
-        if CoreDataManager.sharedContext.checkIfRecipeIsAlreadySaved(recipeUrl: fillTheStar) {
+        if coreDataManager.checkIfRecipeIsAlreadySaved(recipeUrl: fillTheStar) {
             star.image = UIImage(systemName: "star.fill")
         }
     }

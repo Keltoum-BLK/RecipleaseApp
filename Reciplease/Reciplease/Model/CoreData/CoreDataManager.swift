@@ -13,11 +13,9 @@ class CoreDataManager {
     
     // MARK: - Properties
     
-    static let sharedContext = CoreDataManager()
-    let managedObjectContext = CoreDataStack.shared.mainContext
-    
-//    let coreDataStack: CoreDataStack
-//    let managedObjContext: NSManagedObjectContext
+//    static let sharedContext = CoreDataManager()
+//    let managedObjectContext = CoreDataStack.shared.mainContext
+    let managedObjectContext: NSManagedObjectContext
     
     var favoriteRecipe: [RecipeFavorites] {
         let request: NSFetchRequest = RecipeFavorites.fetchRequest()
@@ -30,28 +28,24 @@ class CoreDataManager {
     // MARK: - Initialization
     
     
-//    init(coreDataStack: CoreDataStack) {
-//        self.coreDataStack = coreDataStack
-//        self.managedObjContext = coreDataStack.mainContext
-//    }
+    init(managedObjectContext: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+        self.managedObjectContext = managedObjectContext
+    }
     
     // MARK: - Methods
-    
-    // method to add recipe in Favorites
-    func addRecipe(title: String, totalTime: Double, ingredients: String, yield: Double, image: String, url: String, ingredientsLines: [String]) {
+    func addRecipe(recipe: RecipeDetails) {
         
         let entity = RecipeFavorites(context: managedObjectContext)
-        entity.label = title
-        entity.totalTime = totalTime
-        entity.image = image
-        entity.ingredientLines = ingredientsLines
-        entity.ingredients = ingredients
-        entity.yield = yield
-        entity.url = url
+        entity.label = recipe.label
+        entity.totalTime = recipe.totalTime ?? 1.0
+        entity.image = recipe.image
+        entity.ingredientLines = recipe.ingredientLines
+        entity.ingredients = recipe.createIngredientList(ingredients: recipe.ingredients).joined(separator: ",")
+        entity.yield = recipe.yield ?? 1.0
+        entity.url = recipe.url
         
         CoreDataStack.shared.saveContext()
     }
-    
     // method to remove recipe in Favorites
     func removeRecipe(indexPath : IndexPath, array : [RecipeFavorites]) {
         managedObjectContext.delete(array[indexPath.row])
