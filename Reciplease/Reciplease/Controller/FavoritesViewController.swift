@@ -73,8 +73,8 @@ class FavoritesViewController: UIViewController {
             let cell = mainView.recipesTabView.dequeueReusableCell(withIdentifier: RecipeCell.identifier, for: indexPath) as! RecipeCell
             cell.titleLabel.text = recipesAddedToFavorite[indexPath.row].label?.uppercased()
             cell.backgroundImage.downloaded(from: recipesAddedToFavorite[indexPath.row].image ?? "no image")
-            cell.timeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].totalTime)
-            cell.likeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].yield)
+            cell.timeTitle.text = Tool.shared.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].totalTime)
+            cell.likeTitle.text = Tool.shared.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].yield)
             cell.ingredientsLabel.text = recipesAddedToFavorite[indexPath.row].ingredients
             return cell
         }
@@ -83,8 +83,8 @@ class FavoritesViewController: UIViewController {
             let recipeDetailsVC = RecipeDetailsVC()
             recipeDetailsVC.recipedetailsView.recipeTitle.text = recipesAddedToFavorite[indexPath.row].label?.uppercased()
             recipeDetailsVC.recipedetailsView.recipeImage.downloaded(from: recipesAddedToFavorite[indexPath.row].image ?? "no image")
-            recipeDetailsVC.recipedetailsView.likeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].yield)
-            recipeDetailsVC.recipedetailsView.timeTitle.text = Tool.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].totalTime)
+            recipeDetailsVC.recipedetailsView.likeTitle.text = Tool.shared.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].yield)
+            recipeDetailsVC.recipedetailsView.timeTitle.text = Tool.shared.getDoubleToString(number: recipesAddedToFavorite[indexPath.row].totalTime)
             recipeDetailsVC.ingredientsList = recipesAddedToFavorite[indexPath.row].ingredientLines ?? ["no info"]
             recipeDetailsVC.recipeUrl = recipesAddedToFavorite[indexPath.row].url ?? "no url"
             recipeDetailsVC.fillTheStar = recipesAddedToFavorite[indexPath.row].url ?? ""

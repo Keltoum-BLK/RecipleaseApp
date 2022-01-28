@@ -14,17 +14,27 @@ class BTNActions {
     static let shared = BTNActions()
    
     //MARK: Methods to Search buttons
-    func addIngredient(ingredient: String) -> [String] {
+    func addIngredient(ingredient: String, vc: UIViewController) -> [String] {
+        if ingredient != "" {
         return  ingredient.split(separator: ",").map { String($0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)) }
+        } else {
+            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You can't add nothing. \n Please enter ingredients before", vc: vc)
+            return []
+        }
     }
     
     //MARK: CoreDataContext Properties
     let coreDataManager = CoreDataManager(managedObjectContext: CoreDataStack.shared.mainContext)
     
-    func clearIngredientList(list: [String]) -> [String] {
+    func clearIngredientList(list: [String], vc : UIViewController) -> [String] {
+        if !list.isEmpty {
         var array = list
         array.removeAll()
         return array
+        } else {
+            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Attention", message: "You have already clear your list.", vc: vc)
+            return list
+        }
     }
     
     func searchRecipes(ingredientArray: [String], navigationController: UINavigationController, vc: UIViewController) {

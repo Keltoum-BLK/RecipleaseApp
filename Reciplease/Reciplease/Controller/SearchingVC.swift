@@ -59,7 +59,7 @@ extension SearchingVC: UITableViewDelegate, UITableViewDataSource {
 extension SearchingVC: SearchMainViewDelegate {
     //MARK: Methods SearchMainViewDelegate
     func clearIngredientList() {
-        ingredientArray = BTNActions.shared.clearIngredientList(list: ingredientArray)
+        ingredientArray = BTNActions.shared.clearIngredientList(list: ingredientArray, vc: self)
         searchMainView.ingredientsTabView.reloadData()
     }
     
@@ -69,15 +69,13 @@ extension SearchingVC: SearchMainViewDelegate {
     }
     func addIngredient() {
         view.endEditing(true)
-        if searchMainView.addIngredientTextField.text != "" {
+
             guard let text = searchMainView.addIngredientTextField.text else { return }
-            let ingredients = BTNActions.shared.addIngredient(ingredient: text)
-            ingredientArray = Tool.notDuplicateIngredients(ingredients: ingredients)
+            let ingredients = BTNActions.shared.addIngredient(ingredient: text, vc: self)
+            ingredientArray = Tool.shared.notDuplicateIngredients(ingredients: ingredients)
             searchMainView.addIngredientTextField.text = nil
             searchMainView.ingredientsTabView.reloadData()
-        } else {
-            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You can't add nothing. \n Please enter ingredients before", vc: self)
-        }
+
         
     }
 }

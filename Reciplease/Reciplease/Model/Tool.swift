@@ -7,8 +7,10 @@
 
 import Foundation
 struct Tool {
+    //MARK: Singleton
+    static let shared = Tool()
     //Convert Double to String Value
-    static func getDoubleToString(number : Double?)-> (String) {
+    func getDoubleToString(number : Double?)-> (String) {
         //convert a Int? to String
         // unwrapped the optional with a guard let syntax
         guard let fullNumber = number  else { return "N/A"}
@@ -19,12 +21,12 @@ struct Tool {
         return ID
     }
     
-   static func notDuplicateIngredients(ingredients: [String]) -> [String] {
+   func notDuplicateIngredients(ingredients: [String]) -> [String] {
         let notDuplicate = Array(Set(ingredients))
         return notDuplicate
     }
     
-    static func listOfIngredients(recipe: RecipeDetails, ingredients: String) -> String {
+    func listOfIngredients(recipe: RecipeDetails, ingredients: String) -> String {
         var list = ingredients
         recipe.ingredients?.forEach({ ingredient in
             if ingredient.food != recipe.ingredients?.last?.food {
