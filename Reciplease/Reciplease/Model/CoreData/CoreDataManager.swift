@@ -47,8 +47,8 @@ class CoreDataManager {
         CoreDataStack.shared.saveContext()
     }
     // method to remove recipe in Favorites
-    func removeRecipe(indexPath : IndexPath, array : [RecipeFavorites]) {
-        managedObjectContext.delete(array[indexPath.row])
+    func removeRecipe(row : Int, array : [RecipeFavorites]) {
+        managedObjectContext.delete(array[row])
         do {
             try managedObjectContext.save()
             print("We remove the recipe.")

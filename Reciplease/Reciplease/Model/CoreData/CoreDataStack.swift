@@ -11,25 +11,20 @@ import CoreData
 class CoreDataStack {
     
     // MARK: - Singleton
-    static let shared: CoreDataStack = CoreDataStack()
-    
-    // MARK: - Properties
-    lazy var persistentContainer: NSPersistentContainer = {
-        let description = NSPersistentStoreDescription()
-        description.type = NSSQLiteStoreType
-        let container = NSPersistentContainer(name: "Reciplease")
-        container.loadPersistentStores(completionHandler: { (description, error) in
-            
+    static let shared: CoreDataStack = CoreDataStack(modelName: "Reciplease")
+    var persistentContainer: NSPersistentContainer
+    // MARK: - Init
+    init(modelName: String) {
+        persistentContainer = NSPersistentContainer(name: modelName)
+        persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             guard let unwrappedError = error else { return }
-            
             fatalError("Unresolved error \(unwrappedError.localizedDescription)")
         })
-        return container
-    }()
-    
+    }
     var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
+
 //MARK: Method to save
     func saveContext() {
         do {

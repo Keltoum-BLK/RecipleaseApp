@@ -95,7 +95,7 @@ class FavoritesViewController: UIViewController {
         
         func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == UITableViewCell.EditingStyle.delete {
-                coreDataManager.removeRecipe(indexPath: indexPath, array: recipesAddedToFavorite)
+                coreDataManager.removeRecipe(row: indexPath.row, array: recipesAddedToFavorite)
                 recipesAddedToFavorite.remove(at: indexPath.row)
                 mainView.recipesTabView.deleteRows(at: [indexPath], with: .fade)
             }

@@ -15,7 +15,8 @@
 		B9469C3D2794AFD200CA6B8A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9469C3C2794AFD200CA6B8A /* FavoritesViewController.swift */; };
 		B9649C8327A1C77300AE01D7 /* AlamofireTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C275D279D6F35004C5CC1 /* AlamofireTest.swift */; };
 		B9649C8527A1C78600AE01D7 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9649C8427A1C78600AE01D7 /* TestCoreDataStack.swift */; };
-		B9649C8727A1C7EB00AE01D7 /* RecipeFavoritesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9649C8627A1C7EB00AE01D7 /* RecipeFavoritesTests.swift */; };
+		B9649C8727A1C7EB00AE01D7 /* MockRecipeFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9649C8627A1C7EB00AE01D7 /* MockRecipeFavorites.swift */; };
+		B96BB45727A3F2AA00779450 /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96BB45627A3F2AA00779450 /* FavoriteService.swift */; };
 		B96CA260275A265900E552D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CA25F275A265900E552D7 /* AppDelegate.swift */; };
 		B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CA261275A265900E552D7 /* SceneDelegate.swift */; };
 		B96CA26A275A265900E552D7 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B96CA268275A265900E552D7 /* Reciplease.xcdatamodeld */; };
@@ -77,7 +78,8 @@
 		B9469C392794AD5600CA6B8A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B9469C3C2794AFD200CA6B8A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		B9649C8427A1C78600AE01D7 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
-		B9649C8627A1C7EB00AE01D7 /* RecipeFavoritesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFavoritesTests.swift; sourceTree = "<group>"; };
+		B9649C8627A1C7EB00AE01D7 /* MockRecipeFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecipeFavorites.swift; sourceTree = "<group>"; };
+		B96BB45627A3F2AA00779450 /* FavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteService.swift; sourceTree = "<group>"; };
 		B96CA25C275A265900E552D7 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B96CA25F275A265900E552D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B96CA261275A265900E552D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,7 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				B9649C8427A1C78600AE01D7 /* TestCoreDataStack.swift */,
-				B9649C8627A1C7EB00AE01D7 /* RecipeFavoritesTests.swift */,
+				B96BB45627A3F2AA00779450 /* FavoriteService.swift */,
+				B9649C8627A1C7EB00AE01D7 /* MockRecipeFavorites.swift */,
 			);
 			path = CoreDataTests;
 			sourceTree = "<group>";
@@ -502,9 +505,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9649C8727A1C7EB00AE01D7 /* RecipeFavoritesTests.swift in Sources */,
+				B9649C8727A1C7EB00AE01D7 /* MockRecipeFavorites.swift in Sources */,
 				B96CA27A275A265A00E552D7 /* RecipleaseTests.swift in Sources */,
 				B9649C8527A1C78600AE01D7 /* TestCoreDataStack.swift in Sources */,
+				B96BB45727A3F2AA00779450 /* FavoriteService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +676,7 @@
 				INFOPLIST_FILE = Reciplease/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -699,6 +704,7 @@
 				INFOPLIST_FILE = Reciplease/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

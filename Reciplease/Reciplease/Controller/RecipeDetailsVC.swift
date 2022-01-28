@@ -9,12 +9,13 @@ import UIKit
 import CoreData
 
 class RecipeDetailsVC: UIViewController {
-    //MARK: Properties
+    //MARK: UI Properties
     lazy var star:  UIBarButtonItem = {
         let star = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(addFavorite))
         star.tintColor = .recipleasePantone(color: .goldReciplease)
         return star
     }()
+    //MARK: Properties
     var ingredientsList = [String]()
     var recipe: RecipeDetails?
     var recipeUrl = ""
