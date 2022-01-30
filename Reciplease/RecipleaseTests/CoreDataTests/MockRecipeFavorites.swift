@@ -21,7 +21,7 @@ class MockRecipeFavorites: XCTestCase {
     }
     private var recipe1 = RecipeDetails(label: "Chocolate Pie",
                                        image: "",
-                                       url: "",
+                                       url: "www.marmitton.org",
                                        yield: 1.0,
                                        ingredientLines: [],
                                        totalTime: 2.0,
@@ -51,34 +51,51 @@ class MockRecipeFavorites: XCTestCase {
         XCTAssertTrue(recipe1.label == "Chocolate Pie")
     }
     
-    func test_remove_a_recipe() {
+    func test_fetch_recipes() {
         //Given
-//        favoriteService.addRecipe(recipe: recipe1)
-//        favoriteService.addRecipe(recipe: recipe2)
-        let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
-        do {
-            listOfFavorite = try coreDataStack.mainContext.fetch(request)
-        } catch {
-            listOfFavorite = []
-            fatalError()
-        }
+        favoriteService.addRecipe(recipe: recipe1)
+        favoriteService.addRecipe(recipe: recipe2)
         //When
-//        favoriteService.removeRecipe(row: 1, array: listOfFavorite)
+        listOfFavorite =  favoriteService.fetchFavorites(favoriteRecipe: self.listOfFavorite)
         for  i in listOfFavorite {
-            print(i)
+            print(i.label ?? "no label")
         }
         //Then
-//        XCTAssertTrue(listOfFavorite.count == 1)
-//        XCTAssertTrue(listOfFavorite.first?.label == recipe2.label)
-        
+        XCTAssertTrue(listOfFavorite.count == 2)
+        XCTAssertTrue(listOfFavorite[1].label == recipe1.label)
+    }
+    
+    func test_remove_recipe() {
+        favoriteService.addRecipe(recipe: recipe1)
+        favoriteService.addRecipe(recipe: recipe2)
+        listOfFavorite =  favoriteService.fetchFavorites(favoriteRecipe: self.listOfFavorite)
+        //When
+        listOfFavorite = favoriteService.removeRecipe(row: 1, array: listOfFavorite)
+        for  i in listOfFavorite {
+            print(i.label ?? "no label")
+        }
+        //Then
+        XCTAssertTrue(listOfFavorite.count == 1)
+        XCTAssertTrue(listOfFavorite[0].label == recipe2.label)
     }
     
     func test_remove_all_recipes() {
-        
+        favoriteService.addRecipe(recipe: recipe1)
+        favoriteService.addRecipe(recipe: recipe2)
+        listOfFavorite =  favoriteService.fetchFavorites(favoriteRecipe: self.listOfFavorite)
+        //When
+        listOfFavorite = favoriteService.removeAllRecipes(array: listOfFavorite)
+        //Then
+        XCTAssertTrue(listOfFavorite.isEmpty)
     }
     
     func test_check_recipe_already_added() {
-        
+        favoriteService.addRecipe(recipe: recipe1)
+        favoriteService.addRecipe(recipe: recipe2)
+        listOfFavorite =  favoriteService.fetchFavorites(favoriteRecipe: self.listOfFavorite)
+        //When
+        let alreadySaved = favoriteService.checkIfRecipeIsAlreadySaved(recipeUrl: recipe1.url ?? "no url")
+        //Then
+        XCTAssertTrue(alreadySaved == true)
     }
-
 }

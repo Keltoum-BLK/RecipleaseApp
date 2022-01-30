@@ -33,7 +33,20 @@ final class TestCoreDataStack: CoreDataStack{
         var mainContext: NSManagedObjectContext {
                   return persistentContainer.viewContext
               }
+        func saveContext() {
+            do {
+                try mainContext.save()
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
     }
-    
-   
+}
+public extension NSManagedObject {
+    convenience init(context: NSManagedObjectContext) {
+        let name = String(describing: type(of: self))
+        let entity = NSEntityDescription.entity(forEntityName: name, in: context)!
+        self.init(entity: entity, insertInto: context)
+    }
 }

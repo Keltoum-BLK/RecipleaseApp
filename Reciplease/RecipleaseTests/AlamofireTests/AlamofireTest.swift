@@ -9,11 +9,8 @@ import Foundation
 import Alamofire
 
 enum NetworkRequestError: Error {
-
     case statusCode(Int)
-
     case serializationError(Error?)
-
 }
 
 protocol NetworkRequest {
@@ -34,9 +31,7 @@ class AlamofireNetworkRequest: NetworkRequest {
 struct FakeNetworkRequest: NetworkRequest {
 
    var data: Data?
-
    var response: HTTPURLResponse?
-
    var error: Error?
     
 func get<DataType: Codable>(_ url: URL, with: [String: Any], completion: @escaping (DataType?, Error?) -> Void) {

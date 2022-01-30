@@ -38,15 +38,8 @@ class FavoritesViewController: UIViewController {
     //MARK: Methods 
         //Load FavoriteRecipe Array in the app launch
         private func loadSavedRecipes() {
-            let request: NSFetchRequest<RecipeFavorites> = RecipeFavorites.fetchRequest()
-            
-            do {
-                recipesAddedToFavorite = try CoreDataStack.shared.mainContext.fetch(request)
-                mainView.recipesTabView.reloadData()
-            } catch {
-                recipesAddedToFavorite = []
-                fatalError()
-            }
+            recipesAddedToFavorite = coreDataManager.fetchFavorites(favoriteRecipe: self.recipesAddedToFavorite)
+            mainView.recipesTabView.reloadData()
         }
     //add remove all element in the favoriteRecipes Array
     @objc func goToTheTrash() {
@@ -55,7 +48,7 @@ class FavoritesViewController: UIViewController {
             recipesAddedToFavorite.removeAll()
         mainView.recipesTabView.reloadData()
         } else {
-            AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You have already deleted your favorites", vc: self)
+            AlertManager.sharedAlert.alertEventAppear(title: "Error detected ⛔️", message: "You have already deleted your favorites", vc: self)
         }
     }
 }

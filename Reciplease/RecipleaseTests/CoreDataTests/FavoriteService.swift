@@ -14,6 +14,8 @@ class FavoriteService {
     private let coreDataStack: CoreDataStack
     private let managedObjectContext: NSManagedObjectContext
     
+    
+    
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
         self.managedObjectContext = coreDataStack.mainContext    }
@@ -33,7 +35,18 @@ class FavoriteService {
         coreDataStack.saveContext()
     }
     
-    func removeRecipe(row : Int, array : [RecipeFavorites]) {
+    func fetchFavorites(favoriteRecipe: [RecipeFavorites]) -> [RecipeFavorites] {
+            let request: NSFetchRequest = RecipeFavorites.fetchRequest()
+            do {
+                var listOfFavorite = favoriteRecipe
+              listOfFavorite = try managedObjectContext.fetch(request)
+                return listOfFavorite
+            } catch {
+                return []
+            }
+    }
+    
+    func removeRecipe(row : Int, array : [RecipeFavorites]) -> [RecipeFavorites]{
         coreDataStack.mainContext.delete(array[row])
         var list = array
         list.remove(at: row)
@@ -43,11 +56,14 @@ class FavoriteService {
         } catch {
             debugPrint("Could not remove \(error.localizedDescription)")
         }
+        return list
     }
     //Remove all recipe in the array
-    func removeAllRecipes(array : [RecipeFavorites]) {
+    func removeAllRecipes(array : [RecipeFavorites]) -> [RecipeFavorites] {
+        var list = array
         for recipe in array {
             coreDataStack.mainContext.delete(recipe)
+            list.removeAll()
             do {
                 try   coreDataStack.mainContext.save()
                 print("We remove the recipe.")
@@ -55,6 +71,7 @@ class FavoriteService {
                 debugPrint("Could not remove \(error.localizedDescription)")
             }
         }
+        return list
     }
     // method to check if recipe is already in Favorites
     func checkIfRecipeIsAlreadySaved(recipeUrl: String) -> Bool {

@@ -18,6 +18,7 @@ class RecipleaseTests: XCTestCase {
     private var ingredient2 = IngredientsData(food: "banana")
     private var recipe1 = RecipeDetails(uri: "", label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [IngredientsData(food: "Banana"), IngredientsData(food: "chocolate")])
     private var ingredientsList: String = ""
+    private var starButton = UIBarButtonItem()
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -91,7 +92,7 @@ class RecipleaseTests: XCTestCase {
         //when
         btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc )
         //then
-        XCTAssert( btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertWhenErrorAppear(title: "Error appeared", message: "You need to add ingredient to launch the research.", vc: vc))
+        XCTAssert( btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertEventAppear(title: "Error appeared", message: "You need to add ingredient to launch the research.", vc: vc))
     }
     func test_Given_AnAlert_WhenYou_Have_EmptyValueInTextField_ThenResultAnAlert() {
         //given
@@ -101,7 +102,7 @@ class RecipleaseTests: XCTestCase {
         //when
         btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc )
         //then
-        XCTAssert( btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertWhenErrorAppear(title: "Oups", message: "You can't add nothing. \n Please enter ingredients before", vc: vc))
+        XCTAssert( btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertEventAppear(title: "Oups", message: "You can't add nothing. \n Please enter ingredients before", vc: vc))
     }
     
     func test_Given_AnAlert_WhenYou_Have_ClearTheIngredientsList_ThenResultAnAlert() {
@@ -113,6 +114,15 @@ class RecipleaseTests: XCTestCase {
         var ingredientsArray = btnAction.clearIngredientList(list: array, vc: vc)
         ingredientsArray = btnAction.clearIngredientList(list: array, vc: vc)
         //then
-        XCTAssert( btnAction.searchRecipes(ingredientArray: ingredientsArray, navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertWhenErrorAppear(title: "Attention", message: "You have already clear your list.", vc: vc))
+        XCTAssert( btnAction.searchRecipes(ingredientArray: ingredientsArray, navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertEventAppear(title: "Attention", message: "You have already clear your list.", vc: vc))
+    }
+    
+    func test_When_You_Add_Recipe_In_favorite_Then_PopAlertAppear() {
+        //Given
+        let vc = SearchingVC()
+        //When
+        btnAction.addFavorite(recipe: recipe1, ingredients: ingredientsList, star: starButton, vc: vc)
+        //Then
+        XCTAssert( btnAction.addFavorite(recipe: recipe1, ingredients: ingredientsList, star: starButton, vc: vc) == AlertManager.sharedAlert.alertEventAppear(title: "Attention", message: "You have already clear your list.", vc: vc))
     }
 }

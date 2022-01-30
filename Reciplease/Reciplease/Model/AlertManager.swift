@@ -12,7 +12,7 @@ import SwiftUI
 class AlertManager {
     static let sharedAlert = AlertManager()
 //MARK: Method to manage Alert 
-    func alertWhenErrorAppear(title: String, message: String, vc: UIViewController){
+    func alertEventAppear(title: String, message: String, vc: UIViewController){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Continue", style: .default, handler: nil)
         alert.addAction(ok)
