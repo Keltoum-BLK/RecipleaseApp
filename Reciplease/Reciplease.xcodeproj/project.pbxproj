@@ -11,9 +11,11 @@
 		B91AC92A2791E95200510D89 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91AC9292791E95200510D89 /* CoreDataStack.swift */; };
 		B931F250276CD8B9003B175A /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931F24F276CD8B9003B175A /* UITextField + Extension.swift */; };
 		B931F254276CF83A003B175A /* BTNActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B931F253276CF83A003B175A /* BTNActions.swift */; };
+		B93557D327A84F6E004C515A /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93557D227A84F6E004C515A /* MockURLProtocol.swift */; };
+		B93557D527A85356004C515A /* MockEdamamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93557D427A85356004C515A /* MockEdamamService.swift */; };
 		B9469C3A2794AD5600CA6B8A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9469C392794AD5600CA6B8A /* CoreDataManager.swift */; };
 		B9469C3D2794AFD200CA6B8A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9469C3C2794AFD200CA6B8A /* FavoritesViewController.swift */; };
-		B9649C8327A1C77300AE01D7 /* AlamofireTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C275D279D6F35004C5CC1 /* AlamofireTest.swift */; };
+		B9649C8327A1C77300AE01D7 /* MockAlamofireTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C275D279D6F35004C5CC1 /* MockAlamofireTest.swift */; };
 		B9649C8527A1C78600AE01D7 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9649C8427A1C78600AE01D7 /* TestCoreDataStack.swift */; };
 		B9649C8727A1C7EB00AE01D7 /* MockRecipeFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9649C8627A1C7EB00AE01D7 /* MockRecipeFavorites.swift */; };
 		B96BB45727A3F2AA00779450 /* FavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96BB45627A3F2AA00779450 /* FavoriteService.swift */; };
@@ -75,6 +77,8 @@
 		B91AC9292791E95200510D89 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B931F24F276CD8B9003B175A /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		B931F253276CF83A003B175A /* BTNActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTNActions.swift; sourceTree = "<group>"; };
+		B93557D227A84F6E004C515A /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		B93557D427A85356004C515A /* MockEdamamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEdamamService.swift; sourceTree = "<group>"; };
 		B9469C392794AD5600CA6B8A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B9469C3C2794AFD200CA6B8A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		B9649C8427A1C78600AE01D7 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
@@ -96,7 +100,7 @@
 		B97631D4278356E700016E35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B97631D627835A2100016E35 /* EdamamApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamApiService.swift; sourceTree = "<group>"; };
 		B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsVC.swift; sourceTree = "<group>"; };
-		B97C275D279D6F35004C5CC1 /* AlamofireTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireTest.swift; sourceTree = "<group>"; };
+		B97C275D279D6F35004C5CC1 /* MockAlamofireTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlamofireTest.swift; sourceTree = "<group>"; };
 		B97D17EF278762DE00F1F091 /* RecipesJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecipesJSON.json; sourceTree = "<group>"; };
 		B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		B983737B279EF4B600445C94 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
@@ -176,8 +180,10 @@
 		B9649C8127A1C75200AE01D7 /* AlamofireTests */ = {
 			isa = PBXGroup;
 			children = (
-				B97C275D279D6F35004C5CC1 /* AlamofireTest.swift */,
+				B97C275D279D6F35004C5CC1 /* MockAlamofireTest.swift */,
 				B97D17EF278762DE00F1F091 /* RecipesJSON.json */,
+				B93557D227A84F6E004C515A /* MockURLProtocol.swift */,
+				B93557D427A85356004C515A /* MockEdamamService.swift */,
 			);
 			path = AlamofireTests;
 			sourceTree = "<group>";
@@ -484,7 +490,7 @@
 				B9D4B1422787606D0079A909 /* RecipesResult.swift in Sources */,
 				B9C27A3F276F7DF10009BD92 /* SearchMainView.swift in Sources */,
 				B9AED1D92768E52700E80985 /* SearchingVC.swift in Sources */,
-				B9649C8327A1C77300AE01D7 /* AlamofireTest.swift in Sources */,
+				B9649C8327A1C77300AE01D7 /* MockAlamofireTest.swift in Sources */,
 				B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */,
 				B931F254276CF83A003B175A /* BTNActions.swift in Sources */,
 				B9AED1D12768E00C00E80985 /* TabBarController.swift in Sources */,
@@ -505,8 +511,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B93557D527A85356004C515A /* MockEdamamService.swift in Sources */,
 				B9649C8727A1C7EB00AE01D7 /* MockRecipeFavorites.swift in Sources */,
 				B96CA27A275A265A00E552D7 /* RecipleaseTests.swift in Sources */,
+				B93557D327A84F6E004C515A /* MockURLProtocol.swift in Sources */,
 				B9649C8527A1C78600AE01D7 /* TestCoreDataStack.swift in Sources */,
 				B96BB45727A3F2AA00779450 /* FavoriteService.swift in Sources */,
 			);

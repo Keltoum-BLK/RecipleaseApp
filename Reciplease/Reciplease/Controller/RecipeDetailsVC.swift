@@ -55,9 +55,11 @@ extension RecipeDetailsVC: RecipeDetailsDelegate {
     //MARK: Methods RecipePageWeb
     func nextView() {
         let recipeWeb = RecipeWebPageVC()
-        guard let url = URL(string: recipeUrl) else { return }
-        recipeWeb.recipeWebPage.webPage.load(URLRequest(url: url))
-        navigationController?.pushViewController(recipeWeb, animated: true)
+        DispatchQueue.main.async {
+            guard let url = URL(string: self.recipeUrl) else { return }
+            recipeWeb.recipeWebPage.webPage.load(URLRequest(url: url))
+            self.navigationController?.pushViewController(recipeWeb, animated: true)
+        }
     }
 }
 

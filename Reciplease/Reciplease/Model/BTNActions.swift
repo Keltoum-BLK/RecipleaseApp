@@ -65,9 +65,6 @@ class BTNActions {
     func addFavorite(recipe: RecipeDetails?, ingredients: String, star: UIBarButtonItem, vc: UIViewController){
         guard let recipeAdded = recipe else { return }
         AlertManager.sharedAlert.alertEventAppear(title: "Good New ⭐️" , message: "You add a new recipe to your favorites!", vc: vc)
-        print("=> OUpps" )
-        print(recipeAdded.ingredients as Any)
-        print(ingredients)
         if !coreDataManager.checkIfRecipeIsAlreadySaved(recipeUrl: recipeAdded.url ?? "no url") {
             star.image = UIImage(systemName: "star.fill")
             coreDataManager.addRecipe(recipe: recipeAdded)

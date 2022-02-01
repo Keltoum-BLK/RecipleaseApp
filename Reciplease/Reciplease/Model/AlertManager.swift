@@ -14,17 +14,16 @@ class AlertManager {
 //MARK: Method to manage Alert 
     func alertEventAppear(title: String, message: String, vc: UIViewController){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Continue", style: .default, handler: nil)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         vc.present(alert, animated: true, completion: nil)
     }
     func alertServerAccess(title: String, message: String, vc: UIViewController){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Continue", style: .default, handler: nil)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         vc.present(alert, animated: true, completion: nil)
     }
-
-
+  
 }
 

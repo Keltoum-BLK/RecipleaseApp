@@ -83,46 +83,4 @@ class RecipleaseTests: XCTestCase {
         //then
         XCTAssertTrue(ingredientsArray.count == 3)
     }
-    
-    func test_Given_AnAlert_WhenYou_Have_Empty_Ingredient_Array_ThenResultAnAlert() {
-        //given
-        let nav = UINavigationController()
-        let vc = UIViewController()
-       
-        //when
-        btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc )
-        //then
-        XCTAssert( btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertEventAppear(title: "Error appeared", message: "You need to add ingredient to launch the research.", vc: vc))
-    }
-    func test_Given_AnAlert_WhenYou_Have_EmptyValueInTextField_ThenResultAnAlert() {
-        //given
-        let nav = UINavigationController()
-        let vc = UIViewController()
-       
-        //when
-        btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc )
-        //then
-        XCTAssert( btnAction.searchRecipes(ingredientArray: [], navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertEventAppear(title: "Oups", message: "You can't add nothing. \n Please enter ingredients before", vc: vc))
-    }
-    
-    func test_Given_AnAlert_WhenYou_Have_ClearTheIngredientsList_ThenResultAnAlert() {
-        //given
-        let array = ["banana", "pineapple", "cherry"]
-        let vc = UIViewController()
-        let nav = UINavigationController()
-        //when
-        var ingredientsArray = btnAction.clearIngredientList(list: array, vc: vc)
-        ingredientsArray = btnAction.clearIngredientList(list: array, vc: vc)
-        //then
-        XCTAssert( btnAction.searchRecipes(ingredientArray: ingredientsArray, navigationController: nav, vc: vc ) == AlertManager.sharedAlert.alertEventAppear(title: "Attention", message: "You have already clear your list.", vc: vc))
-    }
-    
-    func test_When_You_Add_Recipe_In_favorite_Then_PopAlertAppear() {
-        //Given
-        let vc = SearchingVC()
-        //When
-        btnAction.addFavorite(recipe: recipe1, ingredients: ingredientsList, star: starButton, vc: vc)
-        //Then
-        XCTAssert( btnAction.addFavorite(recipe: recipe1, ingredients: ingredientsList, star: starButton, vc: vc) == AlertManager.sharedAlert.alertEventAppear(title: "Attention", message: "You have already clear your list.", vc: vc))
-    }
 }
