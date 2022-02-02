@@ -12,7 +12,6 @@ class RecipleaseTests: XCTestCase {
     //MARK: Test Properties
     private var btnAction: BTNActions!
     private var tool: Tool!
-    private var alertManager = AlertManager()
     //MARK: Properties
     private  var  ingredient1 = IngredientsData(food: "chocolate")
     private var ingredient2 = IngredientsData(food: "banana")

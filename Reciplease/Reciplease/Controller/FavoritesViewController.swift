@@ -48,7 +48,7 @@ class FavoritesViewController: UIViewController {
             recipesAddedToFavorite.removeAll()
         mainView.recipesTabView.reloadData()
         } else {
-            AlertManager.sharedAlert.alertEventAppear(title: "Error detected ⛔️", message: "You have already deleted your favorites", vc: self)
+            self.alertEventAppear(title: "Error detected ⛔️", message: "You have already deleted your favorites")
         }
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import UIKit
+import SwiftUI
 
 class BTNActions {
     //MARK: Class properties
@@ -18,7 +19,7 @@ class BTNActions {
         if ingredient != "" {
         return  ingredient.split(separator: ",").map { String($0.capitalized.trimmingCharacters(in: .whitespacesAndNewlines)) }
         } else {
-            AlertManager.sharedAlert.alertEventAppear(title: "Error detected ⛔️", message: "You can't add nothing. \n Please enter ingredients before", vc: vc)
+            vc.alertEventAppear(title: "Error detected ⛔️", message: "You can't add nothing. \n Please enter ingredients before")
             return []
         }
     }
@@ -32,7 +33,7 @@ class BTNActions {
         array.removeAll()
         return array
         } else {
-            AlertManager.sharedAlert.alertEventAppear(title: "Error detected ⛔️", message: "You have already clear your list.", vc: vc)
+            vc.alertEventAppear(title: "Error detected ⛔️", message: "You have already clear your list.")
             return list
         }
     }
@@ -42,6 +43,7 @@ class BTNActions {
         if ingredientArray.count > 0 {
         EdamamApiService.shared.getTheHits(ingredients: ingredientArray) { result in
             switch result {
+                
             case .success(let recipes):
                 DispatchQueue.main.async {
                 guard let hits = recipes.hits else { return }
@@ -49,28 +51,27 @@ class BTNActions {
                 let recipesSearchVC = RecipesListViewController(recipesArray: hits)
                         navigationController.pushViewController(recipesSearchVC, animated: true)
                     } else {
-                        AlertManager.sharedAlert.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.", vc: vc)
+                        vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.")
                     }
                 }
             case .failure(let error):
-                print(error.localizedDescription)
-                AlertManager.sharedAlert.alertServerAccess(title: "Server error detected ⛔️" , message: "We didn't access to your recipes whit error \(error.description).\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.", vc: vc)
+                vc.alertServerAccess(title: "Server error detected ⛔️" , message: "We didn't access to your recipes whit error \(error.description).\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.")
             }
         }
         } else {
-            AlertManager.sharedAlert.alertEventAppear(title: "Error detected ⛔️", message: "You need to add ingredient to launch the research.", vc: vc)
+            vc.alertEventAppear(title: "Error detected ⛔️", message: "You need to add ingredient to launch the research.")
         }
     }
     
     func addFavorite(recipe: RecipeDetails?, ingredients: String, star: UIBarButtonItem, vc: UIViewController){
         guard let recipeAdded = recipe else { return }
-        AlertManager.sharedAlert.alertEventAppear(title: "Good New ⭐️" , message: "You add a new recipe to your favorites!", vc: vc)
+      vc.alertEventAppear(title: "Good New ⭐️" , message: "You add a new recipe to your favorites!")
         if !coreDataManager.checkIfRecipeIsAlreadySaved(recipeUrl: recipeAdded.url ?? "no url") {
             star.image = UIImage(systemName: "star.fill")
             coreDataManager.addRecipe(recipe: recipeAdded)
         } else {
             //implement Alert here
-            AlertManager.sharedAlert.alertEventAppear(title: "Error detected ⛔️", message: "You have already added the recipe.", vc: vc)
+            vc.alertEventAppear(title: "Error detected ⛔️", message: "You have already added the recipe.")
             print("=> OUpps" )
         }
     }

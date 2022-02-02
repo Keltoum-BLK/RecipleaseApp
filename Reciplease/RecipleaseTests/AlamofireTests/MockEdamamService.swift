@@ -12,7 +12,7 @@ import Alamofire
 class MockEdamamService: XCTestCase {
 
     private var sut: EdamamApiService!
-        
+    private var listOfRecipes = [Recipe]()
         override func setUp() {
             super.setUp()
             
@@ -33,7 +33,7 @@ class MockEdamamService: XCTestCase {
             sut = nil
         }
     
-    func testStatusCode200ReturnsStatusCode200() {
+    func testGetRecipes_WhenYouAddIngredients_ThenResultsAnArrayOfRecipes() {
             // given
             MockURLProtocol.responseWithStatusCode(code: 200)
             
@@ -41,10 +41,14 @@ class MockEdamamService: XCTestCase {
             
             // when
         sut.getTheHits(ingredients: ["chocolate", "banana"]) { (result) in
-//            XCTAssertEqual(, 200)
-//            expectation.fulfill()
+            guard case .success(let recipes) = result else {
+                return
+            }
+            guard let listOfRecipes = recipes.hits else { return }
+            XCTAssertNotNil(listOfRecipes)
+           
         }
-            
+            expectation.fulfill()
             // then
             wait(for: [expectation], timeout: 3)
         }
