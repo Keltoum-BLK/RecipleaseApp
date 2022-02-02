@@ -13,6 +13,7 @@ class MockRecipeFavorites: XCTestCase {
     
     var favoriteService : FavoriteService!
     var coreDataStack: CoreDataStack!
+    var btnAction = BTNActions()
     
     override func setUp() {
         super.setUp()
@@ -25,7 +26,7 @@ class MockRecipeFavorites: XCTestCase {
                                        yield: 1.0,
                                        ingredientLines: [],
                                        totalTime: 2.0,
-                                       ingredients: [])
+                                        ingredients: [IngredientsData(food: "banana")])
     private var recipe2 = RecipeDetails(label: "Chicken Pie",
                                        image: "",
                                        url: "",
@@ -42,13 +43,50 @@ class MockRecipeFavorites: XCTestCase {
         coreDataStack = nil
         favoriteService = nil
     }
+    
+    func testAddARecipe_WhenYouTapToTheRecipeBTN_ThenResultsAdd() {
+        //When
+        let starBTN = UIBarButtonItem()
+        let vc = SearchingVC()
+        btnAction.addFavorite(recipe: recipe1, star: starBTN, vc: vc)
+        //Then
+        XCTAssertNotNil(recipe1)
+        
+        XCTAssertEqual(recipe1.label,"Chocolate Pie")
+        XCTAssertEqual(recipe1.url, "www.marmitton.org")
+        XCTAssertEqual(recipe1.ingredientLines, [])
+        XCTAssertNotNil(recipe1.ingredients)
+        XCTAssertEqual(recipe1.totalTime, 2.0)
+        XCTAssertEqual(recipe1.yield, 1.0)
+        XCTAssertEqual(recipe1.image, "")
+    }
+    
+    
+    
+    func testGivenAlert_WhenYouAddARecipe_ThenResultAlert() {
+        //Given
+        let vc = RecipeDetailsVC()
+        //When
+        favoriteService.addRecipe(recipe: recipe1)
+        //Then
+        XCTAssertNotNil(recipe1)
+        XCTAssertTrue( vc.alertEventAppear(title: "Good New ⭐️" , message: "You add a new recipe to your favorites!") ==  vc.alertEventAppear(title: "Good New ⭐️" , message: "You add a new recipe to your favorites!"))
+    }
+    
 
     func test_add_a_recipe() {
         //When
         favoriteService.addRecipe(recipe: recipe1)
         //Then
         XCTAssertNotNil(recipe1)
-        XCTAssertTrue(recipe1.label == "Chocolate Pie")
+        
+        XCTAssertEqual(recipe1.label,"Chocolate Pie")
+        XCTAssertEqual(recipe1.url, "www.marmitton.org")
+        XCTAssertEqual(recipe1.ingredientLines, [])
+        XCTAssertNotNil(recipe1.ingredients)
+        XCTAssertEqual(recipe1.totalTime, 2.0)
+        XCTAssertEqual(recipe1.yield, 1.0)
+        XCTAssertEqual(recipe1.image, "")
     }
     
     func test_fetch_recipes() {
@@ -97,5 +135,17 @@ class MockRecipeFavorites: XCTestCase {
         let alreadySaved = favoriteService.checkIfRecipeIsAlreadySaved(recipeUrl: recipe1.url ?? "no url")
         //Then
         XCTAssertTrue(alreadySaved == true)
+    }
+    
+    func testGivenAlert_WhenYouAlreadyAddRecipe_ThenResultsAlert() {
+        let vc = SearchingVC()
+        favoriteService.addRecipe(recipe: recipe1)
+        favoriteService.addRecipe(recipe: recipe2)
+        favoriteService.addRecipe(recipe: recipe2)
+        listOfFavorite =  favoriteService.fetchFavorites(favoriteRecipe: self.listOfFavorite)
+        //When
+        let alreadySaved = favoriteService.checkIfRecipeIsAlreadySaved(recipeUrl: recipe1.url ?? "no url")
+        //Then
+        XCTAssertEqual(vc.alertEventAppear(title: "Error detected ⛔️", message: "You have already added the recipe.") == vc.alertEventAppear(title: "Error detected ⛔️", message: "You have already added the recipe."), alreadySaved == true)
     }
 }

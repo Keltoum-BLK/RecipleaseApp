@@ -15,9 +15,11 @@ class RecipleaseTests: XCTestCase {
     //MARK: Properties
     private  var  ingredient1 = IngredientsData(food: "chocolate")
     private var ingredient2 = IngredientsData(food: "banana")
-    private var recipe1 = RecipeDetails(uri: "", label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [IngredientsData(food: "Banana"), IngredientsData(food: "chocolate")])
+    private var recipe1 = RecipeDetails(label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [IngredientsData(food: "Banana"), IngredientsData(food: "chocolate")])
     private var ingredientsList: String = ""
     private var starButton = UIBarButtonItem()
+    private var recipeResults = RecipeDetails()
+    
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -34,10 +36,11 @@ class RecipleaseTests: XCTestCase {
         ingredientsList = ""
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
 
-    func test_given_StringArray_when_you_add_ingredientDataArray_thenReturnStringArray() {
+    func testGivenStringArray_WhenYouAddIngredientDataArray_ThenReturnStringArray() {
         //Given
-        let recipe = RecipeDetails(uri: "", label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [IngredientsData(food: "Banana"), IngredientsData(food: "chocolate")])
+        let recipe = RecipeDetails(label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [IngredientsData(food: "Banana"), IngredientsData(food: "chocolate")])
         //When
         let ingredients = tool.listOfIngredients(recipe: recipe, ingredients: ingredientsList)
         //Then
@@ -45,7 +48,7 @@ class RecipleaseTests: XCTestCase {
         XCTAssertTrue(ingredients == "Banana,chocolate")
     }
     
-    func test_given_StringArray_when_you_add_DuplicateData_thenReturnStringArray() {
+    func testGivenStringArray_WhenYouAddDuplicateData_ThenReturnStringArray() {
         //given
         let array = ["banana", "banana", "pineapple", "cherry", "cherry"]
         //when
@@ -63,7 +66,7 @@ class RecipleaseTests: XCTestCase {
         XCTAssertTrue(preparationTime == "10")
     }
     
-    func test_given_StringArray_when_you_removeAll_thenReturnStringArray() {
+    func testGivenStringArray_WhenYouRemoveAll_ThenReturnStringArray() {
         //given
         let array = ["banana", "pineapple", "cherry"]
         let vc = UIViewController()
@@ -73,7 +76,7 @@ class RecipleaseTests: XCTestCase {
         XCTAssertTrue(ingredientsArray.count == 0)
     }
     
-    func test_given_StringValue_when_you_add_toArray_thenReturnStringArray() {
+    func testGivenStringValue_WhenYouAddToArray_ThenReturnStringArray() {
         //given
         let array = "banana, pineapple, cherry"
         let vc = UIViewController()
@@ -81,5 +84,41 @@ class RecipleaseTests: XCTestCase {
         let ingredientsArray = btnAction.addIngredient(ingredient: array, vc: vc)
         //then
         XCTAssertTrue(ingredientsArray.count == 3)
+    }
+    
+    func testGivenAlert_WhenYouHAvelAlreadyClearArray_ThenResultAnAlert() {
+        //given
+        let array = [String]()
+        let vc = SearchingVC()
+        //when
+        let _ = btnAction.clearIngredientList(list: array, vc: vc)
+        //then
+        XCTAssertTrue(vc.alertEventAppear(title: "Error detected ⛔️", message: "You have already clear your list.") == vc.alertEventAppear(title: "Error detected ⛔️", message: "You have already clear your list."))
+    }
+    
+    func testGivenAlert_WhenYouAddNothing_ThenReturnAlert() {
+        //given
+        let array = ""
+        let vc = SearchingVC()
+        //when
+        let _ = btnAction.addIngredient(ingredient: array, vc: vc)
+        //then
+        XCTAssertTrue(vc.alertEventAppear(title: "Error detected ⛔️", message: "You can't add nothing. \n Please enter ingredients before") == vc.alertEventAppear(title: "Error detected ⛔️", message: "You can't add nothing. \n Please enter ingredients before"))
+    }
+    
+    func testGivenAnStringArray_WhenConvert_ThenResultAnArray() {
+        //given
+        let ingredients = [IngredientsData(food: "banana"), IngredientsData(food: "ice cream")]
+        //when
+        let array = recipeResults.createIngredientList(ingredients: ingredients)
+        //then
+        XCTAssertTrue(array == ["banana", "ice cream"])
+    }
+    
+    func testGivenUserIsNotNewUser_WhenAccessToTheSearchVC_ThenResultBool() {
+        //When
+        CoreOnboarding.setIsNotNewUser()
+        //Then
+        XCTAssertTrue(CoreOnboarding.setIsNotNewUser() == UserDefaults.standard.set(true, forKey: Constants.newUser))
     }
 }

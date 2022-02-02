@@ -43,9 +43,8 @@ class EdamamApiService {
                             default:
                                 completion(.failure(.decoding))
                     }
-                    case .failure(let error):
+                    case .failure(_):
                         completion(.failure(.server))
-                        print("We ran into error : \(error.localizedDescription)")
             }
         }
     }

@@ -14,7 +14,6 @@
 		B93557D527A85356004C515A /* MockEdamamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93557D427A85356004C515A /* MockEdamamService.swift */; };
 		B9469C3A2794AD5600CA6B8A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9469C392794AD5600CA6B8A /* CoreDataManager.swift */; };
 		B9469C3D2794AFD200CA6B8A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9469C3C2794AFD200CA6B8A /* FavoritesViewController.swift */; };
-		B9649C8327A1C77300AE01D7 /* MockAlamofireTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C275D279D6F35004C5CC1 /* MockAlamofireTest.swift */; };
 		B9649C8527A1C78600AE01D7 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9649C8427A1C78600AE01D7 /* TestCoreDataStack.swift */; };
 		B9649C8727A1C7EB00AE01D7 /* MockRecipeFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9649C8627A1C7EB00AE01D7 /* MockRecipeFavorites.swift */; };
 		B9650A3027AAC5C20061E4DA /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9650A2F27AAC5C20061E4DA /* UIViewController+Extension.swift */; };
@@ -99,7 +98,6 @@
 		B97631D4278356E700016E35 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B97631D627835A2100016E35 /* EdamamApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamApiService.swift; sourceTree = "<group>"; };
 		B978EB432769ECE9008E00A8 /* RecipeDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsVC.swift; sourceTree = "<group>"; };
-		B97C275D279D6F35004C5CC1 /* MockAlamofireTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlamofireTest.swift; sourceTree = "<group>"; };
 		B97EAA6B2779AF5600BAF7A8 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		B983737B279EF4B600445C94 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		B99091CA27907F3A00297DF4 /* RecipeFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFavorites.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 			children = (
 				B93557D227A84F6E004C515A /* MockURLProtocol.swift */,
 				B93557D427A85356004C515A /* MockEdamamService.swift */,
-				B97C275D279D6F35004C5CC1 /* MockAlamofireTest.swift */,
 			);
 			path = AlamofireTests;
 			sourceTree = "<group>";
@@ -486,7 +483,6 @@
 				B9D4B1422787606D0079A909 /* RecipesResult.swift in Sources */,
 				B9C27A3F276F7DF10009BD92 /* SearchMainView.swift in Sources */,
 				B9AED1D92768E52700E80985 /* SearchingVC.swift in Sources */,
-				B9649C8327A1C77300AE01D7 /* MockAlamofireTest.swift in Sources */,
 				B96CA262275A265900E552D7 /* SceneDelegate.swift in Sources */,
 				B931F254276CF83A003B175A /* BTNActions.swift in Sources */,
 				B9AED1D12768E00C00E80985 /* TabBarController.swift in Sources */,
@@ -680,6 +676,7 @@
 				INFOPLIST_FILE = Reciplease/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -708,6 +705,7 @@
 				INFOPLIST_FILE = Reciplease/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

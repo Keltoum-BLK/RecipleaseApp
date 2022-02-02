@@ -24,7 +24,6 @@ struct Recipe: Decodable {
 }
 
 struct RecipeDetails: Decodable {
-    var uri: String?
     var label: String?
     var image: String?
     var url: String?
@@ -34,7 +33,6 @@ struct RecipeDetails: Decodable {
     var ingredients: [IngredientsData]?
     
     enum CodingKeys: String, CodingKey {
-        case uri
         case label
         case image
         case url
@@ -48,7 +46,6 @@ struct RecipeDetails: Decodable {
         var list = [String]()
         ingredients?.forEach { ingredient in
             list.append(ingredient.food ?? "NA")
-            
         }
         return list
     }

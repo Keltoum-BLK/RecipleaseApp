@@ -13,19 +13,19 @@ class MockEdamamService: XCTestCase {
 
     private var sut: EdamamApiService!
     private var listOfRecipes = [Recipe]()
+    private var manager: Session!
+    private var btnAction: BTNActions!
+    
         override func setUp() {
             super.setUp()
+            let configuration = URLSessionConfiguration.default
+            configuration.protocolClasses = [MockURLProtocol.self]
             
-            let manager: Session = {
-                let configuration: URLSessionConfiguration = {
-                    let configuration = URLSessionConfiguration.default
-                    configuration.protocolClasses = [MockURLProtocol.self]
-                    return configuration
-                }()
-                
-                return Session(configuration: configuration)
-            }()
+            manager = Session(configuration: configuration)
+            
             sut = EdamamApiService(manager: manager)
+            
+            btnAction = BTNActions()
         }
         
         override func tearDown() {
@@ -33,7 +33,7 @@ class MockEdamamService: XCTestCase {
             sut = nil
         }
     
-    func testGetRecipes_WhenYouAddIngredients_ThenResultsAnArrayOfRecipes() {
+    func testGivenRecipes_WhenYouAddIngredients_ThenResultsAnArrayOfRecipes() {
             // given
             MockURLProtocol.responseWithStatusCode(code: 200)
             
@@ -52,4 +52,111 @@ class MockEdamamService: XCTestCase {
             // then
             wait(for: [expectation], timeout: 3)
         }
+    
+    func testGivenRecipe_WhenYouSelectArecipe_ThenResultsRecipeDetails() {
+            // given
+            MockURLProtocol.responseWithStatusCode(code: 200)
+            
+            let expectation = XCTestExpectation(description: "Performs a request")
+            
+            // when
+        sut.getTheHits(ingredients: ["chocolate", "banana"]) { (result) in
+            guard case .success(let recipes) = result else {
+                return
+            }
+            guard let listOfRecipes = recipes.hits else { return }
+            
+            XCTAssertEqual(listOfRecipes[2].recipe?.url, "http://www.marthastewart.com/312870/chocolate-ganache")
+            XCTAssertEqual(listOfRecipes[2].recipe?.label, "Chocolate Ganache")
+            XCTAssertEqual(listOfRecipes[2].recipe?.yield, 4.0)
+            XCTAssertEqual(listOfRecipes[2].recipe?.totalTime, 25.0)
+            XCTAssertEqual(listOfRecipes[2].recipe?.ingredientLines, ["1/4 cup heavy cream", "4 ounces chopped semisweet chocolate"])
+            XCTAssertEqual(listOfRecipes[2].recipe?.image, "https://www.edamam.com/web-img/26c/26ccc1e6017d3455a7d101c937f50826.jpg")
+        }
+            expectation.fulfill()
+            // then
+            wait(for: [expectation], timeout: 3)
+        }
+    
+    
+    func testGivenAlert_WhenYouAddNoIngredients_ThenResultsAlertMessage() {
+            // given
+            MockURLProtocol.responseWithStatusCode(code: 200)
+            let vc = SearchingVC()
+            let expectation = XCTestExpectation(description: "Performs a request")
+            
+            // when
+        sut.getTheHits(ingredients: [""]) { (result) in
+            guard case .success(_) = result else { return }
+            vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.")
+            XCTAssertTrue( vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.") ==  vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients."))
+           
+        }
+            expectation.fulfill()
+            // then
+            wait(for: [expectation], timeout: 3)
+        }
+    
+    func testGivenAlert_WhenYouAddNoWrongLanguageToAddIngredients_ThenResults500AlertMessage() {
+            // given
+        MockURLProtocol.responseWithStatusCode(code: 500)
+            let vc = SearchingVC()
+            let expectation = XCTestExpectation(description: "Performs a request")
+            
+            // when
+        sut.getTheHits(ingredients: ["chocolaté"]) { (result) in
+            guard case .failure(let error) = result else { return }
+            let errorAppeared = error
+            vc.alertServerAccess(title: "Server error detected ⛔️" , message: "We didn't access to your recipes whit error \(error.description).\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.")
+            XCTAssertTrue(vc.alertServerAccess(title: "Server error detected ⛔️" , message: "We didn't access to your recipes whit error \(error.description).\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.") ==  vc.alertServerAccess(title: "Server error detected ⛔️" , message: "We didn't access to your recipes whit error \(error.description).\n Please enter your ingredients in english, or enter more ingredients, or new ingredients."))
+            XCTAssertTrue(errorAppeared == .server)
+        }
+            expectation.fulfill()
+            // then
+            wait(for: [expectation], timeout: 3)
+        }
+    
+    func testGivenAlert_WhenYouAHaveAEmptyRecipes_ThenResultsAlert400Message() {
+            // given
+        MockURLProtocol.responseWithStatusCode(code: 400)
+            let vc = SearchingVC()
+            let expectation = XCTestExpectation(description: "Performs a request")
+            
+            // when
+        sut.getTheHits(ingredients: ["2653084"]) { (result) in
+            guard case .failure(let error) = result else { return }
+            let errorAppeared = error
+            vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.")
+            XCTAssertTrue( vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients./n" + errorAppeared.description) ==  vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients." + errorAppeared.description))
+            XCTAssertTrue(errorAppeared == .network)
+        }
+            expectation.fulfill()
+            // then
+            wait(for: [expectation], timeout: 3)
+        }
+    
+    func testGivenArray_WhenYouAskSearchAction_ThenResultAnArray() {
+        //Given
+        let array = ["banana", "banana", "pineapple", "cherry", "cherry"]
+        let nav = UINavigationController()
+        let vc = SearchingVC()
+        let nextVC = RecipesListViewController()
+        //When
+        btnAction.searchRecipes(ingredientArray: array, navigationController: nav, vc: vc)
+        
+        //Then
+        XCTAssertNotNil(nextVC)
+    }
+    
+    func testGivenAlert_WhenYouAskSearchActionWithEmptyArray_ThenAlert() {
+        //Given
+        let array = [String]()
+        let nav = UINavigationController()
+        let vc = SearchingVC()
+        //When
+        btnAction.searchRecipes(ingredientArray: array, navigationController: nav, vc: vc)
+        //Then
+        XCTAssertTrue( vc.alertEventAppear(title: "Error detected ⛔️", message: "You need to add ingredient to launch the research.") == vc.alertEventAppear(title: "Error detected ⛔️", message: "You need to add ingredient to launch the research."))
+        XCTAssertTrue(array.isEmpty)
+    }
 }

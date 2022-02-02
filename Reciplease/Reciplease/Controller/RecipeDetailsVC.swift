@@ -41,7 +41,7 @@ class RecipeDetailsVC: UIViewController {
     
     //MARK: Methods
     @objc func addFavorite(){
-        BTNActions.shared.addFavorite(recipe: recipe, ingredients: ingredients, star: star, vc: self)
+        BTNActions.shared.addFavorite(recipe: recipe, star: star, vc: self)
     }
     
     func recipeAddStarFill(fillTheStar: String) {

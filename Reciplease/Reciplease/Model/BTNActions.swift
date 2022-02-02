@@ -13,6 +13,9 @@ import SwiftUI
 class BTNActions {
     //MARK: Class properties
     static let shared = BTNActions()
+    
+    //MARK: CoreDataContext Properties
+    let coreDataManager = CoreDataManager(managedObjectContext: CoreDataStack.shared.mainContext)
    
     //MARK: Methods to Search buttons
     func addIngredient(ingredient: String, vc: UIViewController) -> [String] {
@@ -23,9 +26,6 @@ class BTNActions {
             return []
         }
     }
-    
-    //MARK: CoreDataContext Properties
-    let coreDataManager = CoreDataManager(managedObjectContext: CoreDataStack.shared.mainContext)
     
     func clearIngredientList(list: [String], vc : UIViewController) -> [String] {
         if !list.isEmpty {
@@ -51,7 +51,7 @@ class BTNActions {
                 let recipesSearchVC = RecipesListViewController(recipesArray: hits)
                         navigationController.pushViewController(recipesSearchVC, animated: true)
                     } else {
-                        vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients.")
+                        vc.alertEventAppear(title: "Error detected ⛔️", message: "We haven't any recipe for your request.\n Please enter your ingredients in english, or enter more ingredients, or new ingredients./n")
                     }
                 }
             case .failure(let error):
@@ -63,7 +63,7 @@ class BTNActions {
         }
     }
     
-    func addFavorite(recipe: RecipeDetails?, ingredients: String, star: UIBarButtonItem, vc: UIViewController){
+    func addFavorite(recipe: RecipeDetails?, star: UIBarButtonItem, vc: UIViewController){
         guard let recipeAdded = recipe else { return }
       vc.alertEventAppear(title: "Good New ⭐️" , message: "You add a new recipe to your favorites!")
         if !coreDataManager.checkIfRecipeIsAlreadySaved(recipeUrl: recipeAdded.url ?? "no url") {
@@ -72,7 +72,6 @@ class BTNActions {
         } else {
             //implement Alert here
             vc.alertEventAppear(title: "Error detected ⛔️", message: "You have already added the recipe.")
-            print("=> OUpps" )
         }
     }
 }
