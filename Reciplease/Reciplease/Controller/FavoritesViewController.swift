@@ -9,6 +9,10 @@ import UIKit
 import CoreData
 
 class FavoritesViewController: UIViewController {
+    //MARK: Orientation property
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 
     //MARK: Properties
         private let mainView = RecipesMainView()
@@ -33,7 +37,6 @@ class FavoritesViewController: UIViewController {
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             loadSavedRecipes()
-            print("FavoriteVC")
         }
     //MARK: Methods 
         //Load FavoriteRecipe Array in the app launch

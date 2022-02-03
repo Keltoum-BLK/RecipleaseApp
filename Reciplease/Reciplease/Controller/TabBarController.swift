@@ -8,11 +8,15 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    //MARK: Orientation property
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVCs()
-    
     }
     
     override func viewDidLayoutSubviews() {

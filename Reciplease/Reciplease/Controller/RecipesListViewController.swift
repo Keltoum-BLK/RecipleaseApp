@@ -8,7 +8,10 @@
 import UIKit
 
 class RecipesListViewController: UIViewController {
-    
+    //MARK: Orientation property
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
     //MARK: Properties
     private let recipesMainView = RecipesMainView()
     private var recipeSearch = [Recipe]()

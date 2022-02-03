@@ -44,24 +44,6 @@ class MockRecipeFavorites: XCTestCase {
         favoriteService = nil
     }
     
-    func testAddARecipe_WhenYouTapToTheRecipeBTN_ThenResultsAdd() {
-        //When
-        let starBTN = UIBarButtonItem()
-        let vc = SearchingVC()
-        btnAction.addFavorite(recipe: recipe1, star: starBTN, vc: vc)
-        //Then
-        XCTAssertNotNil(recipe1)
-        
-        XCTAssertEqual(recipe1.label,"Chocolate Pie")
-        XCTAssertEqual(recipe1.url, "www.marmitton.org")
-        XCTAssertEqual(recipe1.ingredientLines, [])
-        XCTAssertNotNil(recipe1.ingredients)
-        XCTAssertEqual(recipe1.totalTime, 2.0)
-        XCTAssertEqual(recipe1.yield, 1.0)
-        XCTAssertEqual(recipe1.image, "")
-    }
-    
-    
     
     func testGivenAlert_WhenYouAddARecipe_ThenResultAlert() {
         //Given

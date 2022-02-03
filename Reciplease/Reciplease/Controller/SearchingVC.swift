@@ -8,7 +8,10 @@
 import UIKit
 
 class SearchingVC: UIViewController {
-    
+    //MARK: Orientation property
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
     //MARK: Properties
    var ingredientArray = [String]()
     var recipeSearch = [Recipe]()

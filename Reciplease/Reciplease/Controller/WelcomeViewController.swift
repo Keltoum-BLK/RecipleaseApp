@@ -52,7 +52,9 @@ class WelcomeViewController: UIViewController {
         return desc
     }()
     
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
     
     //MARK: Life Cycle
     override func viewDidLoad() {
@@ -65,6 +67,7 @@ class WelcomeViewController: UIViewController {
         super.viewWillLayoutSubviews()
         setupLayout()
     }
+   
     //MARK: Methods 
     func setupLayout() {
         view.addSubview(welcomeContainer)

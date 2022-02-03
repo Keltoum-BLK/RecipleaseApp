@@ -15,7 +15,7 @@ class RecipleaseTests: XCTestCase {
     //MARK: Properties
     private  var  ingredient1 = IngredientsData(food: "chocolate")
     private var ingredient2 = IngredientsData(food: "banana")
-    private var recipe1 = RecipeDetails(label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [IngredientsData(food: "Banana"), IngredientsData(food: "chocolate")])
+    private var recipe1 = RecipeDetails(label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [])
     private var ingredientsList: String = ""
     private var starButton = UIBarButtonItem()
     private var recipeResults = RecipeDetails()
@@ -40,7 +40,7 @@ class RecipleaseTests: XCTestCase {
 
     func testGivenStringArray_WhenYouAddIngredientDataArray_ThenReturnStringArray() {
         //Given
-        let recipe = RecipeDetails(label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [IngredientsData(food: "Banana"), IngredientsData(food: "chocolate")])
+        let recipe = RecipeDetails(label: "pop corn chicken", image: "", url: "", yield: 1.0, ingredientLines: [""], totalTime: 1.0, ingredients: [ingredient1, ingredient2])
         //When
         let ingredients = tool.listOfIngredients(recipe: recipe, ingredients: ingredientsList)
         //Then

@@ -9,6 +9,10 @@ import UIKit
 import WebKit
 
 class RecipeWebPageVC: UIViewController, WKNavigationDelegate {
+    //MARK: Orientation property
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
     //MARK: property
     let recipeWebPage = RecipeWebView()
     //MARK: Life Cycle
