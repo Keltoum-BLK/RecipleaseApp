@@ -9,10 +9,10 @@ import UIKit
 import CoreData
 
 class RecipeDetailsVC: UIViewController {
-    //MARK: Orientation property
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
+//    //MARK: Orientation property
+//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        return .portrait
+//    }
     
     //MARK: UI Properties
     lazy var star:  UIBarButtonItem = {

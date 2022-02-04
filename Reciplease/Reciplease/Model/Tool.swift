@@ -20,7 +20,7 @@ struct Tool {
         
         return ID
     }
-    
+    //method to delete the duplicate Data
    func notDuplicateIngredients(ingredients: [String]) -> [String] {
         let notDuplicate = Array(Set(ingredients))
         return notDuplicate

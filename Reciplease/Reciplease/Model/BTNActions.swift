@@ -74,6 +74,15 @@ class BTNActions {
             vc.alertEventAppear(title: "Error detected ⛔️", message: "You have already added the recipe.")
         }
     }
+    
+    func searchBTNIsAlreadyTap(alreadyTap: Int, vc: UIViewController) -> Int {
+        if alreadyTap < 1 {
+            return alreadyTap + 1
+        } else {
+            vc.alertEventAppear(title: "Error detected", message: "You have already tap to lunch the search")
+            return alreadyTap - 1
+        }
+    }
 }
 
 

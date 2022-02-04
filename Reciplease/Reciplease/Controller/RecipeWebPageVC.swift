@@ -9,10 +9,7 @@ import UIKit
 import WebKit
 
 class RecipeWebPageVC: UIViewController, WKNavigationDelegate {
-    //MARK: Orientation property
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
+    
     //MARK: property
     let recipeWebPage = RecipeWebView()
     //MARK: Life Cycle
@@ -23,13 +20,17 @@ class RecipeWebPageVC: UIViewController, WKNavigationDelegate {
         title = "Reciplease"
     }
     
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        decisionHandler(.allow)
-    }
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -> Void) {
-        decisionHandler(.allow)
+    override func viewWillDisappear(_ animated: Bool) {
+        recipeWebPage.webPage.stopLoading()
     }
     
+//    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+//        decisionHandler(.allow)
+//    }
+//    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -> Void) {
+//        decisionHandler(.allow)
+//    }
+   
 }
 
 

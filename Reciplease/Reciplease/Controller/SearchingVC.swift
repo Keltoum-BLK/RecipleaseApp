@@ -8,17 +8,14 @@
 import UIKit
 
 class SearchingVC: UIViewController {
-    //MARK: Orientation property
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
+
     //MARK: Properties
    var ingredientArray = [String]()
     var recipeSearch = [Recipe]()
     
     //MARK: UI Properties
     private let searchMainView = SearchMainView()
-    
+    private var count: Int = 0
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,8 +65,10 @@ extension SearchingVC: SearchMainViewDelegate {
     
     func searchRecipes() {
         guard let navigation = self.navigationController else { return }
-        BTNActions.shared.searchRecipes(ingredientArray: ingredientArray, navigationController: navigation, vc: self)
+            count = BTNActions.shared.searchBTNIsAlreadyTap(alreadyTap: count, vc: self)
+            BTNActions.shared.searchRecipes(ingredientArray: ingredientArray, navigationController: navigation, vc: self)
     }
+    
     func addIngredient() {
         view.endEditing(true)
 

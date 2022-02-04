@@ -9,10 +9,10 @@ import UIKit
 import CoreData
 
 class FavoritesViewController: UIViewController {
-    //MARK: Orientation property
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
+//    //MARK: Orientation property
+//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        return .portrait
+//    }
 
     //MARK: Properties
         private let mainView = RecipesMainView()

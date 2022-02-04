@@ -36,7 +36,6 @@ class RecipleaseTests: XCTestCase {
         ingredientsList = ""
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
 
     func testGivenStringArray_WhenYouAddIngredientDataArray_ThenReturnStringArray() {
         //Given
@@ -45,7 +44,7 @@ class RecipleaseTests: XCTestCase {
         let ingredients = tool.listOfIngredients(recipe: recipe, ingredients: ingredientsList)
         //Then
         XCTAssertNotNil(ingredients)
-        XCTAssertTrue(ingredients == "Banana,chocolate")
+        XCTAssertTrue(ingredients == "chocolate,banana")
     }
     
     func testGivenStringArray_WhenYouAddDuplicateData_ThenReturnStringArray() {
@@ -120,5 +119,46 @@ class RecipleaseTests: XCTestCase {
         CoreOnboarding.setIsNotNewUser()
         //Then
         XCTAssertTrue(CoreOnboarding.setIsNotNewUser() == UserDefaults.standard.set(true, forKey: Constants.newUser))
+    }
+    
+    func testGivenAnError_WhenButtonIsTappedTwice_ThenResultAnAlert() {
+        //Given
+        let vc = SearchingVC()
+        var count = 1
+        //When
+        count = BTNActions.shared.searchBTNIsAlreadyTap(alreadyTap: count, vc: vc)
+        //Then
+        XCTAssertTrue( vc.alertEventAppear(title: "Error detected", message: "You have already tap to lunch the search") ==  vc.alertEventAppear(title: "Error detected", message: "You have already tap to lunch the search"))
+    }
+    
+    func testPass_WhenButtonIsTappedOne_ThenSearchPass() {
+        //Given
+        let vc = SearchingVC()
+        var count = 0
+        //When
+        count = BTNActions.shared.searchBTNIsAlreadyTap(alreadyTap: count, vc: vc)
+        //Then
+        XCTAssertTrue(count == 1)
+    }
+    
+    func testApiErrorDescription_WhenErrorIsServer() {
+        //When
+        let apiError = APIError.server
+        //Then
+        XCTAssertTrue(apiError.description == "Error server")
+    }
+    
+    func testApiErrorDescription_WhenErrorIsNetwork() {
+        //When
+        let apiError = APIError.network
+        //Then
+        XCTAssertTrue(apiError.description == "Error network")
+    }
+    
+    func testApiErrorDescription_WhenErrorIsDecoding() {
+        //When
+        let apiError = APIError.decoding
+        //Then
+        XCTAssertTrue(apiError.description == "Error decoding")
     }
 }

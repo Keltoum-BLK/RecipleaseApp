@@ -24,7 +24,6 @@ class EdamamApiService {
         manager.request("https://api.edamam.com/api/recipes/v2?type=public&app_id=\(SecretApiKey.shared.edamamID)&app_key=\(SecretApiKey.shared.edamamKey)&time=10-60&imageSize=REGULAR&q=\(ingredientsList)")
             .validate(statusCode: 200..<299)
             .responseData { response in
-//                print(response.response?.statusCode)
                 switch response.result {
                     case .success(let hits):
                         switch response.response?.statusCode {
@@ -48,7 +47,4 @@ class EdamamApiService {
             }
         }
     }
-    
-    
-    
 }

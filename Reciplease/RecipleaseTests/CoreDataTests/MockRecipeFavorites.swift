@@ -13,7 +13,7 @@ class MockRecipeFavorites: XCTestCase {
     
     var favoriteService : FavoriteService!
     var coreDataStack: CoreDataStack!
-    var btnAction = BTNActions()
+    var btnAction =  BTNActions()
     
     override func setUp() {
         super.setUp()
@@ -21,29 +21,27 @@ class MockRecipeFavorites: XCTestCase {
         favoriteService = FavoriteService(coreDataStack: coreDataStack)
     }
     private var recipe1 = RecipeDetails(label: "Chocolate Pie",
-                                       image: "",
-                                       url: "www.marmitton.org",
-                                       yield: 1.0,
-                                       ingredientLines: [],
-                                       totalTime: 2.0,
+                                        image: "",
+                                        url: "www.marmitton.org",
+                                        yield: 1.0,
+                                        ingredientLines: [],
+                                        totalTime: 2.0,
                                         ingredients: [IngredientsData(food: "banana")])
     private var recipe2 = RecipeDetails(label: "Chicken Pie",
-                                       image: "",
-                                       url: "",
-                                       yield: 1.0,
-                                       ingredientLines: [],
-                                       totalTime: 2.0,
-                                       ingredients: [])
+                                        image: "",
+                                        url: "",
+                                        yield: 1.0,
+                                        ingredientLines: [],
+                                        totalTime: 2.0,
+                                        ingredients: [])
     private var listOfFavorite = [RecipeFavorites]()
-
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
         coreDataStack = nil
         favoriteService = nil
     }
-    
     
     func testGivenAlert_WhenYouAddARecipe_ThenResultAlert() {
         //Given
@@ -55,7 +53,6 @@ class MockRecipeFavorites: XCTestCase {
         XCTAssertTrue( vc.alertEventAppear(title: "Good New ⭐️" , message: "You add a new recipe to your favorites!") ==  vc.alertEventAppear(title: "Good New ⭐️" , message: "You add a new recipe to your favorites!"))
     }
     
-
     func test_add_a_recipe() {
         //When
         favoriteService.addRecipe(recipe: recipe1)

@@ -11,13 +11,13 @@ import CoreData
 
 class FavoriteService {
     
-    private let coreDataStack: CoreDataStack
+    private let coreDataStack: TestCoreDataStack
     private let managedObjectContext: NSManagedObjectContext
     
     
     
     init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
+        self.coreDataStack = coreDataStack as! TestCoreDataStack
         self.managedObjectContext = coreDataStack.mainContext    }
     
     

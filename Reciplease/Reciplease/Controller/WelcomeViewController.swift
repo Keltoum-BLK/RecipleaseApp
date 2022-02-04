@@ -52,10 +52,6 @@ class WelcomeViewController: UIViewController {
         return desc
     }()
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
