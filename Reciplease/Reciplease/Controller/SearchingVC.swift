@@ -77,7 +77,5 @@ extension SearchingVC: SearchMainViewDelegate {
             ingredientArray = Tool.shared.notDuplicateIngredients(ingredients: ingredients)
             searchMainView.addIngredientTextField.text = nil
             searchMainView.ingredientsTabView.reloadData()
-
-        
     }
 }

@@ -147,14 +147,14 @@ class RecipleaseTests: XCTestCase {
         //Then
         XCTAssertTrue(apiError.description == "Error server")
     }
-    
+
     func testApiErrorDescription_WhenErrorIsNetwork() {
         //When
         let apiError = APIError.network
         //Then
         XCTAssertTrue(apiError.description == "Error network")
     }
-    
+
     func testApiErrorDescription_WhenErrorIsDecoding() {
         //When
         let apiError = APIError.decoding

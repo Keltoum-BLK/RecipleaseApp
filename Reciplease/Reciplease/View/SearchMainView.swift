@@ -182,15 +182,17 @@ extension SearchMainView {
 
 
     private func setTitleContainerConstraints() {
-        addIngredientContainer.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
-        addIngredientContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20).isActive = true
-        addIngredientContainer.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
-        addIngredientContainer.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        addIngredientContainer.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        sContainer.centerYAnchor.constraint(equalTo: addIngredientContainer.centerYAnchor).isActive = true
-        sContainer.centerXAnchor.constraint(equalTo: addIngredientContainer.centerXAnchor).isActive = true
-        sContainer.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.95).isActive = true
-        addBTN.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        NSLayoutConstraint.activate([
+            addIngredientContainer.topAnchor.constraint(equalTo: topAnchor, constant: 60),
+            addIngredientContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20),
+            addIngredientContainer.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1),
+            addIngredientContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
+            addIngredientContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
+            sContainer.centerYAnchor.constraint(equalTo: addIngredientContainer.centerYAnchor),
+            sContainer.centerXAnchor.constraint(equalTo: addIngredientContainer.centerXAnchor),
+            sContainer.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.95),
+            addBTN.widthAnchor.constraint(equalToConstant: 100)
+        ])
     }
     
     private func setTabViewConstraints() {
@@ -207,7 +209,7 @@ extension SearchMainView {
         ingredientsTabView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         ingredientsTabView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
-    //
+
    private func setSearchBTNContraints() {
         searchBTN.topAnchor.constraint(equalTo: ingredientsTabView.bottomAnchor, constant: 15).isActive = true
         searchBTN.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.08 ).isActive = true
