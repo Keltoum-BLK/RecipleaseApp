@@ -180,7 +180,6 @@ class SearchMainView: UIView {
 //MARK: Constraints
 extension SearchMainView {
 
-
     private func setTitleContainerConstraints() {
         NSLayoutConstraint.activate([
             addIngredientContainer.topAnchor.constraint(equalTo: topAnchor, constant: 60),

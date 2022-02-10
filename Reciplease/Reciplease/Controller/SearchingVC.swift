@@ -8,10 +8,10 @@
 import UIKit
 
 class SearchingVC: UIViewController {
-
+    
     //MARK: Properties
-   var ingredientArray = [String]()
-    var recipeSearch = [Recipe]()
+    lazy var ingredientArray = [String]()
+    lazy var recipeSearch = [Recipe]()
     
     //MARK: UI Properties
     private let searchMainView = SearchMainView()
@@ -24,10 +24,6 @@ class SearchingVC: UIViewController {
         searchMainView.ingredientsTabView.delegate = self
         searchMainView.ingredientsTabView.dataSource = self
         navigationItem.backButtonTitle = "Back"
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
 }
 
@@ -65,17 +61,16 @@ extension SearchingVC: SearchMainViewDelegate {
     
     func searchRecipes() {
         guard let navigation = self.navigationController else { return }
-            count = BTNActions.shared.searchBTNIsAlreadyTap(alreadyTap: count, vc: self)
-            BTNActions.shared.searchRecipes(ingredientArray: ingredientArray, navigationController: navigation, vc: self)
+        count = BTNActions.shared.searchBTNIsAlreadyTap(alreadyTap: count, vc: self)
+        BTNActions.shared.searchRecipes(ingredientArray: ingredientArray, navigationController: navigation, vc: self)
     }
     
     func addIngredient() {
         view.endEditing(true)
-
-            guard let text = searchMainView.addIngredientTextField.text else { return }
-            let ingredients = BTNActions.shared.addIngredient(ingredient: text, vc: self)
-            ingredientArray = Tool.shared.notDuplicateIngredients(ingredients: ingredients)
-            searchMainView.addIngredientTextField.text = nil
-            searchMainView.ingredientsTabView.reloadData()
+        guard let text = searchMainView.addIngredientTextField.text else { return }
+        let ingredients = BTNActions.shared.addIngredient(ingredient: text, vc: self)
+        ingredientArray = Tool.shared.notDuplicateIngredients(ingredients: ingredients)
+        searchMainView.addIngredientTextField.text = nil
+        searchMainView.ingredientsTabView.reloadData()
     }
 }

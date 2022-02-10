@@ -24,7 +24,7 @@ class RecipeCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-   
+   //MARK: Life's Cycle 
     override func layoutSubviews() {
         super.layoutSubviews()
         DispatchQueue.main.async {

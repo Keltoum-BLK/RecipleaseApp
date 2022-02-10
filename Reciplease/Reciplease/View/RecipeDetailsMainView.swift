@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol RecipeDetailsDelegate: AnyObject {
-    func nextView()
+    func goToTheNextView()
 }
 
 class RecipeDetailsMainView: UIView {
@@ -196,7 +196,7 @@ class RecipeDetailsMainView: UIView {
     }
     
     @objc private func getDirections() {
-        delegate?.nextView()
+        delegate?.goToTheNextView()
     }
 }
 
