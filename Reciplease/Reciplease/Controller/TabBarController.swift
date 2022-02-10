@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupVCs()
+        setUpVCs()
     }
     
     override func viewDidLayoutSubviews() {
@@ -29,13 +29,13 @@ class TabBarController: UITabBarController {
         }
     }
     //MARK: Methods
-    func setupVCs() {
+   private func setUpVCs() {
         viewControllers = [createNavController(for: SearchingVC(), title: NSLocalizedString("Searching", comment: "")), createNavController(for: FavoritesViewController(), title: NSLocalizedString("Favorites", comment: ""))]
         self.setViewControllers(viewControllers, animated: false)
         setUpTabBar()
     }
     
-    func setUpTabBar() {
+    private func setUpTabBar() {
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             let tabBarItemAppearance = UITabBarItemAppearance()
@@ -49,7 +49,7 @@ class TabBarController: UITabBarController {
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = appearance
         }
-        //set the font title
+            //set the font title
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.chalkduster(fontSize: 25) as Any], for: .selected)
         

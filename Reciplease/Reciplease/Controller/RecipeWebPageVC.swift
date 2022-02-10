@@ -23,14 +23,6 @@ class RecipeWebPageVC: UIViewController, WKNavigationDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         recipeWebPage.webPage.stopLoading()
     }
-    
-//    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-//        decisionHandler(.allow)
-//    }
-//    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -> Void) {
-//        decisionHandler(.allow)
-//    }
-   
 }
 
 

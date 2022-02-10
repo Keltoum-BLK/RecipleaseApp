@@ -30,7 +30,7 @@ class RecipesMainView: UIView {
     }()
 
     //MARK: Methods 
-    func addTabViewConstraints() {
+   private func addTabViewConstraints() {
         recipesTabView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         recipesTabView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
         recipesTabView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
@@ -38,7 +38,7 @@ class RecipesMainView: UIView {
         recipesTabView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
     }
 
-    func configureSubviews() {
+    private func configureSubviews() {
         addSubview(recipesTabView)
         backgroundColor = .recipleasePantone(color: .chalkBoardBackground)
     }

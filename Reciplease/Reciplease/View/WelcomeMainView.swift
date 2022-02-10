@@ -14,7 +14,7 @@ class WelcomeMainView {
     //MARK: Init
     private init() {}
     //MARK: Constraints 
-    func labelLayoutConstraints(label: UILabel, vc: UIView) {
+   func labelLayoutConstraints(label: UILabel, vc: UIView) {
         label.centerXAnchor.constraint(equalTo: vc.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: vc.centerYAnchor).isActive = true
         label.widthAnchor.constraint(equalTo: vc.widthAnchor, multiplier: 0.8).isActive = true

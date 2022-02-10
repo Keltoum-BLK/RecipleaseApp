@@ -37,7 +37,7 @@ class WelcomeViewController: UIViewController {
         welcome.numberOfLines = 0
         welcome.font = UIFont.chalkduster(fontSize: 30)
         welcome.textColor = UIColor.white
-       
+        
         return welcome
     }()
     
@@ -48,7 +48,7 @@ class WelcomeViewController: UIViewController {
         desc.numberOfLines = 0
         desc.font = UIFont.chalkduster(fontSize: 20)
         desc.textColor = UIColor.white
-        desc.translatesAutoresizingMaskIntoConstraints = false 
+        desc.translatesAutoresizingMaskIntoConstraints = false
         return desc
     }()
     
@@ -56,23 +56,23 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.recipleasePantone(color: .chalkBoardBackground)
-        goTheTabBar()
+        goTheNextViewController()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupLayout()
     }
-   
-    //MARK: Methods 
-    func setupLayout() {
+    
+    //MARK: Methods
+    private func setupLayout() {
         view.addSubview(welcomeContainer)
         view.addSubview(descApp)
         view.addSubview(button)
         WelcomeMainView.shared.labelLayoutConstraints(label: descApp, vc: view)
     }
     
-    func goTheTabBar() {
+    private func goTheNextViewController() {
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
     
@@ -80,5 +80,4 @@ class WelcomeViewController: UIViewController {
         CoreOnboarding.setIsNotNewUser()
         dismiss(animated: true, completion: nil)
     }
-    
 }

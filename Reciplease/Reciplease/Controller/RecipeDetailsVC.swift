@@ -9,10 +9,6 @@ import UIKit
 import CoreData
 
 class RecipeDetailsVC: UIViewController {
-//    //MARK: Orientation property
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        return .portrait
-//    }
     
     //MARK: UI Properties
     lazy var star:  UIBarButtonItem = {
@@ -28,7 +24,7 @@ class RecipeDetailsVC: UIViewController {
     private let ingredients = ""
     //MainView Properties
     lazy var recipedetailsView = RecipeDetailsMainView()
-
+    
     //MARK: CoreDataContext Properties
     let coreDataManager = CoreDataManager(managedObjectContext: CoreDataStack.shared.mainContext)
     
@@ -41,7 +37,7 @@ class RecipeDetailsVC: UIViewController {
         title = "Reciplease"
         navigationItem.backButtonTitle = "Back"
         navigationItem.rightBarButtonItem = star
-        recipeAddStarFill(fillTheStar: fillTheStar)
+        fillTheStar(fillTheStar: fillTheStar)
     }
     
     //MARK: Methods
@@ -49,16 +45,17 @@ class RecipeDetailsVC: UIViewController {
         BTNActions.shared.addFavorite(recipe: recipe, star: star, vc: self)
     }
     
-    func recipeAddStarFill(fillTheStar: String) {
+    private func fillTheStar(fillTheStar: String) {
         if coreDataManager.checkIfRecipeIsAlreadySaved(recipeUrl: fillTheStar) {
             star.image = UIImage(systemName: "star.fill")
         }
     }
 }
+
 extension RecipeDetailsVC: RecipeDetailsDelegate {
     
     //MARK: Methods RecipePageWeb
-    func nextView() {
+    func goToTheNextView() {
         let recipeWeb = RecipeWebPageVC()
         DispatchQueue.main.async {
             guard let url = URL(string: self.recipeUrl) else { return }
